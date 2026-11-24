@@ -52,8 +52,14 @@ class Engine:
         self.gpu = torch.cuda.get_device_name(0)
         self.config = "stock bf16" if stock else "W8A16 + INT8 KV + graph-captured Mimi"
         from importlib.metadata import version
-        self.versions = {"torch": torch.__version__, "cuda": torch.version.cuda, "moshi": version("moshi"),
-                         "triton": version("triton")}
+
+        def ver(pkg):
+            try:
+                return version(pkg)
+            except Exception:
+                return "unknown"
+        self.versions = {"torch": torch.__version__, "cuda": torch.version.cuda, "moshi": ver("moshi"),
+                         "triton": ver("triton")}
         self.lock = asyncio.Lock()
         self._warmup()
 
