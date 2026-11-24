@@ -16,6 +16,14 @@ We profile [Moshi](https://github.com/kyutai-labs/moshi), Kyutai's full-duplex s
 
 Moshi's source is not edited; the changes are applied at runtime to the loaded model.
 
+**In short** (one NVIDIA L4, compared with stock bf16 Moshi):
+
+- **1.6× faster.** One conversation takes 48.2 ms per 80 ms frame instead of 77.2 ms (median).
+- **40% less GPU memory.** Peak drops from 17.4 GB to 10.4 GB, and it also runs under a 16 GB memory cap.
+- **8 conversations per GPU instead of 0.** Stock Moshi runs late on 1.2% of frames even with one caller. With the changes, 8 streams ran 34,599 batch steps over 19 runs with none late.
+- **Almost the same output.** 98.55% of audio tokens match stock Moshi, teacher-forced on the same audio.
+- **Talk to it yourself.** `./start.sh` opens a web app on your own GPU, or on a temporary GPU in your Modal account.
+
 <p align="center">
   <img src="figures/arch.png" alt="One 80 ms frame of Moshi" width="100%">
 </p>
@@ -30,13 +38,13 @@ The dashed boxes mark the three changes.
 
 ## Results
 
-| one NVIDIA L4 | bf16 (stock) | INT8 weights + INT8 KV + Mimi graph |
-|---|---|---|
-| frame time, 1 stream (p50 / worst p99) | 77.2 / 83.4 ms (7 runs) | 48.2 / 49.5 ms (2 runs) |
-| late frames, 1 stream | 150 of 12,747 (1.2%) | 0 of 1,821 |
-| peak GPU memory, 1 stream | 17.4 GB | 10.4 GB |
-| concurrent streams with no late frame | 0 | 8 (0 of 34,599 batch steps, 19 runs) |
-| audio KL to bf16, teacher-forced | 0 | 0.0011 |
+| one NVIDIA L4 | bf16 (stock) | INT8 weights + INT8 KV + Mimi graph | change |
+|---|---|---|---|
+| frame time, 1 stream (p50 / worst p99) | 77.2 / 83.4 ms (7 runs) | 48.2 / 49.5 ms (2 runs) | 1.6× faster |
+| late frames, 1 stream | 150 of 12,747 (1.2%) | 0 of 1,821 | none late |
+| peak GPU memory, 1 stream | 17.4 GB | 10.4 GB | 40% less |
+| concurrent streams with no late frame | 0 | 8 (0 of 34,599 batch steps, 19 runs) | 0 → 8 |
+| audio tokens matching bf16, teacher-forced (top-1 / KL) | 100% / 0 | 98.55% / 0.0011 | near-identical |
 
 A late frame is a step longer than 80 ms. In a batch it delays every stream at once, so counts are per batch step.
 
@@ -69,7 +77,7 @@ The chart shows per-stage p50 time of one frame for one stream. In the stock bf1
 
 - **W8A16 GEMV** ([`kernels/w8a16.py`](kernels/w8a16.py)). The temporal transformer's 128 linear layers are stored as INT8 with one scale per output row. A Triton kernel dequantizes tiles in registers and multiplies on tensor cores, with the batch padded to 16 rows. On Moshi's weight shapes it streams INT8 at 214–251 GB/s, 1.73–1.93× faster than cuBLAS bf16 per shape ([`results/kernel_w8a16.json`](results/kernel_w8a16.json)).
 - **Fused ring attention with INT8 KV** ([`kernels/kv_attn.py`](kernels/kv_attn.py)). Split-K decode attention over Moshi's ring cache. Slot validity is computed in the kernel. Keys and values are INT8 with a scale per token and head, which cuts the cache from 1.57 to 0.81 GB per stream. Its output differs from Moshi's `RingKVCache` + SDPA by at most 0.031. With a full ring it is 1.54–1.92× faster ([`results/kernel_kv_attn.json`](results/kernel_kv_attn.json)).
-- **Graph-captured Mimi encoder** ([`bench/mimi_graph.py`](bench/mimi_graph.py)). Mimi's downsampling convolution and residual quantizer run eagerly, and their kernel launches wait on the host CPU. Of the 224 late frames we logged per stage, 219 coincided with such an encode stall. We capture both in a CUDA graph. That required one streaming-convolution flag to be updated in place. Codes are identical to the stock encoder over 120 frames that include a stream reset ([`results/mimi_graph_check.json`](results/mimi_graph_check.json)).
+- **Graph-captured Mimi encoder** ([`bench/mimi_graph.py`](bench/mimi_graph.py)). Mimi's downsampling convolution and residual quantizer run eagerly, so their many small kernels are launched one by one from the host CPU. Late frames line up with encode stalls rather than with the transformer: in one 8-stream run the slowest step took 112.0 ms, with encode at 33.9 ms against its 5.1 ms median, while the temporal transformer stayed between 57.0 ms (median) and 57.4 ms (max) ([`results/streams_w8kv8_b8_paced_r10.json`](results/streams_w8kv8_b8_paced_r10.json)). We capture both in a CUDA graph. That required one streaming-convolution flag to be updated in place. Codes are identical to the stock encoder over 120 frames that include a stream reset ([`results/mimi_graph_check.json`](results/mimi_graph_check.json)).
 
 <p align="center">
   <img src="figures/tail.png" alt="Encode and frame maxima per run" width="60%">
