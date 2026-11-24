@@ -166,6 +166,10 @@ body:not([data-state="live"]) .captions, body:not([data-state="live"]) .dock { o
 @media (max-width: 560px) { .summary { grid-template-columns: repeat(2, 1fr); } }
 .pill { padding: 11px 22px; border-radius: 999px; font-weight: 600; color: #fff;
   background: linear-gradient(145deg, var(--accent-2), var(--accent)); box-shadow: 0 8px 20px rgba(255, 107, 44, .3); }
+.pill.ghost { color: var(--ink); background: var(--surface);
+  box-shadow: 5px 5px 12px var(--sh-dark), -5px -5px 12px var(--sh-light); }
+.pill.ghost:active { box-shadow: inset 4px 4px 10px var(--sh-dark), inset -4px -4px 10px var(--sh-light); }
+.ended-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
 
 .captions {
   position: absolute; left: 50%; bottom: 150px; transform: translateX(-50%);

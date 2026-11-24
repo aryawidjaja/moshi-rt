@@ -61,6 +61,7 @@
   let ctx, ws, mic, cam, capNode, playNode, outAn, inAn, pingTimer, demoTimer, t0;
   let muted = false, pending = [], pendingLen = 0;
   let frames = [], lateTotal = 0, frameTotal = 0, rtts = [], captionText = "";
+  let callLog = null;  // every frame and ping of the current call, for "Save call log"
 
   function serverURL() {
     let base = (q.get("server") || location.origin).replace(/^http/, "ws").replace(/\/$/, "");
@@ -70,6 +71,7 @@
 
   function resetStats() {
     frames = []; lateTotal = 0; frameTotal = 0; rtts = []; captionText = ""; $("captions").textContent = "";
+    callLog = null;
   }
 
   async function start() {
@@ -126,6 +128,7 @@
 
   function goLive(info) {
     t0 = performance.now();
+    callLog = { started: new Date().toISOString(), server: info, frames: [], rtt_ms: [] };
     $("config").textContent = `${info.config} · ${info.gpu}`;
     setState("live", "Live");
     pingTimer = setInterval(ping, 1000);
@@ -134,6 +137,7 @@
   function onFrame(f) {
     frames.push({ t: performance.now(), ...f });
     frameTotal++; if (f.ms > BUDGET) lateTotal++;
+    if (callLog) callLog.frames.push([+(performance.now() - t0).toFixed(1), f.ms, f.enc, f.lm, f.dec]);
     while (frames.length && performance.now() - frames[0].t > 30000) frames.shift();
   }
 
@@ -162,7 +166,11 @@
       for (let i = 0; i < pcm.length; i++) f[i] = pcm[i] / 32768;
       playNode.port.postMessage(f, [f.buffer]);
     } else if (kind === 2) addText(new TextDecoder().decode(b.subarray(1)));
-    else if (kind === 5) { rtts.push(performance.now() - new Float64Array(e.data.slice(1, 9))[0]); if (rtts.length > 20) rtts.shift(); }
+    else if (kind === 5) {
+      const r = performance.now() - new Float64Array(e.data.slice(1, 9))[0];
+      rtts.push(r); if (rtts.length > 20) rtts.shift();
+      if (callLog) callLog.rtt_ms.push(+r.toFixed(1));
+    }
   }
 
   function ping() {
@@ -182,8 +190,21 @@
   }
 
   function finish(reason) {
-    const ms = frames.map((f) => f.ms);
+    const ms = callLog ? callLog.frames.map((f) => f[1]) : frames.map((f) => f.ms);  // whole call, not the chart window
     const s = t0 ? Math.floor((performance.now() - t0) / 1000) : 0;
+    if (callLog) {
+      const st = (i) => { const v = callLog.frames.map((f) => f[i]);
+        const r = (x) => +x.toFixed(2);
+        return v.length ? { p50: r(pct(v, 0.5)), p95: r(pct(v, 0.95)), p99: r(pct(v, 0.99)), max: r(Math.max(...v)) } : null; };
+      Object.assign(callLog, {
+        ended: new Date().toISOString(), duration_s: s, simulated: DEMO, page: location.origin,
+        user_agent: navigator.userAgent, budget_ms: BUDGET, n_frames: frameTotal, late_frames: lateTotal,
+        summary_ms: { frame: st(1), encode: st(2), lm: st(3), decode: st(4),
+          rtt: callLog.rtt_ms.length ? { p50: pct(callLog.rtt_ms, 0.5), max: Math.max(...callLog.rtt_ms) } : null },
+        columns: ["t_ms", "frame_ms", "encode_ms", "lm_ms", "decode_ms"],
+      });
+    }
+    $("saveLog").hidden = !(callLog && frameTotal);
     $("sDur").textContent = `${Math.floor(s / 60)}:${String(s % 60).padStart(2, "0")}`;
     $("sP50").textContent = ms.length ? `${pct(ms, 0.5).toFixed(1)} ms` : "–";
     $("sP99").textContent = ms.length ? `${pct(ms, 0.99).toFixed(1)} ms` : "–";
@@ -210,6 +231,15 @@
   }
   $("startBtn").onclick = start;
   $("againBtn").onclick = start;
+  $("saveLog").onclick = () => {  // per-frame log of the call as JSON, e.g. for results/app_call_<date>.json
+    if (!callLog) return;
+    const name = `app_call_${callLog.started.slice(0, 16).replace(/[-:]/g, "").replace("T", "_")}.json`;
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(new Blob([JSON.stringify(callLog)], { type: "application/json" }));
+    a.download = name; a.click();
+    setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+    toast(`Saved ${name} to your downloads`);
+  };
   $("endBtn").onclick = () => finish("Call ended");
   $("muteBtn").onclick = toggleMute;
   $("camBtn").onclick = toggleCam;

@@ -51,6 +51,9 @@ class Engine:
         self.frame = int(self.mimi.sample_rate / self.mimi.frame_rate)
         self.gpu = torch.cuda.get_device_name(0)
         self.config = "stock bf16" if stock else "W8A16 + INT8 KV + graph-captured Mimi"
+        from importlib.metadata import version
+        self.versions = {"torch": torch.__version__, "cuda": torch.version.cuda, "moshi": version("moshi"),
+                         "triton": version("triton")}
         self.lock = asyncio.Lock()
         self._warmup()
 
@@ -109,7 +112,7 @@ async def chat(request):
     async with engine.lock:
         engine.reset()
         await ws.send_str(json.dumps({"type": "ready", "gpu": engine.gpu, "config": engine.config,
-                                      "frame_ms": 80, "sample_rate": 24000}))
+                                      "frame_ms": 80, "sample_rate": 24000, "versions": engine.versions}))
         buf = np.zeros(0, dtype=np.float32)
         first, n = True, 0
         async for msg in ws:
