@@ -1,0 +1,63 @@
+{
+  "meta": {
+    "machine": "modal-L4",
+    "gpu": "NVIDIA L4",
+    "driver": "610.57.04",
+    "cuda": "12.8",
+    "python": "3.12.16",
+    "torch": "2.9.1+cu128",
+    "moshi": "0.2.13",
+    "torchao": "0.14.1",
+    "bitsandbytes": "0.49.2",
+    "triton": "3.5.1",
+    "git": "0f37d4a",
+    "seed": 42424242,
+    "command": "python kernels/w8a16.py",
+    "env": {},
+    "date": "2026-11-23 20:01 UTC"
+  },
+  "what": "W8A16 Triton linear vs bf16 F.linear at M=1, moshi temporal shapes, weights rotated through >=256 MB so reads come from DRAM",
+  "max_rel_err_ok": true,
+  "shapes": [
+    {
+      "N": 12288,
+      "K": 4096,
+      "w8a16_us": 201.4,
+      "w8a16_int8_gbs": 249.9,
+      "bf16_us": 387.9,
+      "bf16_gbs": 259.5,
+      "speedup": 1.93,
+      "rotated_copies": 6
+    },
+    {
+      "N": 4096,
+      "K": 4096,
+      "w8a16_us": 78.5,
+      "w8a16_int8_gbs": 213.7,
+      "bf16_us": 136.1,
+      "bf16_gbs": 246.6,
+      "speedup": 1.73,
+      "rotated_copies": 16
+    },
+    {
+      "N": 22528,
+      "K": 4096,
+      "w8a16_us": 367.2,
+      "w8a16_int8_gbs": 251.3,
+      "bf16_us": 708.6,
+      "bf16_gbs": 260.5,
+      "speedup": 1.93,
+      "rotated_copies": 3
+    },
+    {
+      "N": 4096,
+      "K": 11264,
+      "w8a16_us": 187.5,
+      "w8a16_int8_gbs": 246.0,
+      "bf16_us": 357.7,
+      "bf16_gbs": 258.0,
+      "speedup": 1.91,
+      "rotated_copies": 6
+    }
+  ]
+}

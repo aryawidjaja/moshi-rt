@@ -1,0 +1,164 @@
+{
+  "meta": {
+    "machine": "modal-L4",
+    "gpu": "NVIDIA L4",
+    "driver": "610.57.04",
+    "cuda": "12.8",
+    "python": "3.12.16",
+    "torch": "2.9.1+cu128",
+    "moshi": "0.2.13",
+    "torchao": "0.14.1",
+    "bitsandbytes": "0.49.2",
+    "triton": "3.5.1",
+    "git": "0f37d4a",
+    "seed": 42424242,
+    "command": "python bench/stream_bench.py --quant w8triton --kv int8 --batch 6 --tag streams_w8kv8_b6_r4",
+    "env": {},
+    "date": "2026-11-23 20:18 UTC"
+  },
+  "what": "per-frame latency budget on the moshi.server path, CUDA events per stage, ms",
+  "config": {
+    "batch": 6,
+    "dtype": "bf16",
+    "quant": "w8triton",
+    "compile_temporal": false,
+    "mem_cap_gb": 0.0,
+    "paced": false,
+    "kv": "int8",
+    "cuda_graphs": true,
+    "torch_compile": true,
+    "warmup_frames": 50,
+    "clips": 5,
+    "frames_per_clip": 375,
+    "hf_repo": "kyutai/moshiko-pytorch-bf16"
+  },
+  "frames_measured": 1821,
+  "frames_over_80ms": 0,
+  "frames_over_80ms_pct": 0.0,
+  "realtime_strict": true,
+  "realtime_p99": true,
+  "paced_late_ms": null,
+  "stages_ms": {
+    "encode": {
+      "p50": 5.144,
+      "p95": 5.614,
+      "p99": 6.139,
+      "mean": 5.179,
+      "max": 7.487
+    },
+    "temporal": {
+      "p50": 50.524,
+      "p95": 50.637,
+      "p99": 50.703,
+      "mean": 50.527,
+      "max": 51.261
+    },
+    "text": {
+      "p50": 0.683,
+      "p95": 0.726,
+      "p99": 0.792,
+      "mean": 0.689,
+      "max": 1.612
+    },
+    "depth": {
+      "p50": 10.231,
+      "p95": 10.365,
+      "p99": 10.466,
+      "mean": 10.221,
+      "max": 10.697
+    },
+    "decode": {
+      "p50": 3.073,
+      "p95": 3.152,
+      "p99": 3.193,
+      "mean": 3.061,
+      "max": 3.293
+    },
+    "host": {
+      "p50": 0.274,
+      "p95": 0.394,
+      "p99": 0.499,
+      "mean": 0.295,
+      "max": 1.259
+    },
+    "frame": {
+      "p50": 69.983,
+      "p95": 70.635,
+      "p99": 70.971,
+      "mean": 70.023,
+      "max": 71.999
+    },
+    "wall": {
+      "p50": 70.066,
+      "p95": 70.727,
+      "p99": 71.056,
+      "mean": 70.107,
+      "max": 72.088
+    }
+  },
+  "per_clip_wall_p99": [
+    71.125,
+    71.055,
+    71.123,
+    70.901,
+    70.99
+  ],
+  "peak_mem_gb": {
+    "allocated": 14.548,
+    "reserved": 14.808,
+    "after_load": 9.215,
+    "device_used_now": 15.13
+  },
+  "lm_weight_gb": 8.804,
+  "gpu_telemetry": [
+    {
+      "sm_mhz": "2040",
+      "mem_mhz": "6251",
+      "power_w": "36.88",
+      "temp_c": "73",
+      "throttle": "0x0000000000000000"
+    },
+    {
+      "sm_mhz": "1575",
+      "mem_mhz": "6251",
+      "power_w": "71.83",
+      "temp_c": "80",
+      "throttle": "0x0000000000000004"
+    },
+    {
+      "sm_mhz": "1515",
+      "mem_mhz": "6251",
+      "power_w": "73.03",
+      "temp_c": "76",
+      "throttle": "0x0000000000000004"
+    },
+    {
+      "sm_mhz": "1620",
+      "mem_mhz": "6251",
+      "power_w": "71.27",
+      "temp_c": "75",
+      "throttle": "0x0000000000000004"
+    },
+    {
+      "sm_mhz": "1545",
+      "mem_mhz": "6251",
+      "power_w": "71.04",
+      "temp_c": "77",
+      "throttle": "0x0000000000000004"
+    },
+    {
+      "sm_mhz": "1680",
+      "mem_mhz": "6251",
+      "power_w": "71.36",
+      "temp_c": "77",
+      "throttle": "0x0000000000000004"
+    }
+  ],
+  "moshi_text": [
+    "Hey, how was your day? Yeah, same here. It's getting really annoying. I don' know how people can take it. It' like walking on a tightrope without a net. Yeah, it's nuts. I'm trying to make",
+    "Hello, how are you today? The sad woman smiled, and her gaze met the sea's. Her eyes were filled with hope, and the child's laugh echoed in the background.",
+    "Hey, how are you doing? Oh, great. Yeah. Oh, yeah. That sounds perfect. Oh, that's very cool. Oh, my.",
+    "Hey, how can I help you? Well, I'm not sure. Well, I'm not sure. Well, those are some interesting dishes. Well, those are some interesting dishes. What' the matter, Elroy? Well, I think this is a very interesting conversation. I hope you're having a great day.",
+    "Hello, how are you today? I'm doing okay. Thanks for asking."
+  ]
+}

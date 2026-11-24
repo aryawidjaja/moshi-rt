@@ -1,0 +1,167 @@
+{
+  "meta": {
+    "machine": "modal-L4",
+    "gpu": "NVIDIA L4",
+    "driver": "610.57.04",
+    "cuda": "12.8",
+    "python": "3.12.16",
+    "torch": "2.9.1+cu128",
+    "moshi": "0.2.13",
+    "torchao": "0.14.1",
+    "bitsandbytes": "0.49.2",
+    "triton": "3.5.1",
+    "git": "6b043e3",
+    "seed": 42424242,
+    "command": "python bench/stream_bench.py --quant w8triton --kv int8 --batch 8 --tag streams_w8kv8_b8_r7",
+    "env": {},
+    "date": "2026-11-24 06:18 UTC"
+  },
+  "what": "per-frame latency budget on the moshi.server path, CUDA events per stage, ms",
+  "config": {
+    "batch": 8,
+    "dtype": "bf16",
+    "quant": "w8triton",
+    "compile_temporal": false,
+    "mem_cap_gb": 0.0,
+    "paced": false,
+    "kv": "int8",
+    "graph_mimi": false,
+    "pacing": null,
+    "cuda_graphs": true,
+    "torch_compile": true,
+    "warmup_frames": 50,
+    "clips": 5,
+    "frames_per_clip": 375,
+    "hf_repo": "kyutai/moshiko-pytorch-bf16"
+  },
+  "frames_measured": 1821,
+  "frames_over_80ms": 0,
+  "frames_over_80ms_pct": 0.0,
+  "realtime_strict": true,
+  "realtime_p99": true,
+  "paced_late_ms": null,
+  "late_frames": [],
+  "stages_ms": {
+    "encode": {
+      "p50": 4.858,
+      "p95": 5.503,
+      "p99": 5.995,
+      "mean": 4.895,
+      "max": 6.444
+    },
+    "temporal": {
+      "p50": 57.056,
+      "p95": 57.181,
+      "p99": 57.243,
+      "mean": 57.058,
+      "max": 57.698
+    },
+    "text": {
+      "p50": 0.653,
+      "p95": 0.731,
+      "p99": 0.813,
+      "mean": 0.66,
+      "max": 1.293
+    },
+    "depth": {
+      "p50": 10.359,
+      "p95": 10.481,
+      "p99": 10.562,
+      "mean": 10.349,
+      "max": 10.929
+    },
+    "decode": {
+      "p50": 3.288,
+      "p95": 3.384,
+      "p99": 3.423,
+      "mean": 3.284,
+      "max": 3.502
+    },
+    "host": {
+      "p50": 0.235,
+      "p95": 0.384,
+      "p99": 0.508,
+      "mean": 0.249,
+      "max": 0.944
+    },
+    "frame": {
+      "p50": 76.473,
+      "p95": 77.392,
+      "p99": 77.798,
+      "mean": 76.546,
+      "max": 78.827
+    },
+    "wall": {
+      "p50": 76.547,
+      "p95": 77.468,
+      "p99": 77.871,
+      "mean": 76.617,
+      "max": 78.912
+    }
+  },
+  "per_clip_wall_p99": [
+    77.793,
+    78.114,
+    77.644,
+    77.851,
+    77.638
+  ],
+  "peak_mem_gb": {
+    "allocated": 16.326,
+    "reserved": 16.534,
+    "after_load": 9.215,
+    "device_used_now": 16.855
+  },
+  "lm_weight_gb": 8.804,
+  "gpu_telemetry": [
+    {
+      "sm_mhz": "2040",
+      "mem_mhz": "6251",
+      "power_w": "35.99",
+      "temp_c": "71",
+      "throttle": "0x0000000000000000"
+    },
+    {
+      "sm_mhz": "1575",
+      "mem_mhz": "6251",
+      "power_w": "72.12",
+      "temp_c": "80",
+      "throttle": "0x0000000000000004"
+    },
+    {
+      "sm_mhz": "1815",
+      "mem_mhz": "6251",
+      "power_w": "72.36",
+      "temp_c": "75",
+      "throttle": "0x0000000000000004"
+    },
+    {
+      "sm_mhz": "1440",
+      "mem_mhz": "6251",
+      "power_w": "70.25",
+      "temp_c": "75",
+      "throttle": "0x0000000000000004"
+    },
+    {
+      "sm_mhz": "1485",
+      "mem_mhz": "6251",
+      "power_w": "70.68",
+      "temp_c": "78",
+      "throttle": "0x0000000000000004"
+    },
+    {
+      "sm_mhz": "1455",
+      "mem_mhz": "6251",
+      "power_w": "71.51",
+      "temp_c": "76",
+      "throttle": "0x0000000000000004"
+    }
+  ],
+  "moshi_text": [
+    "Hey, how was your day? Yeah, that's right. See, you're such a know-it-all. I'm just saying. No need to be a critic. Yeah, whatever. Keep your opinions",
+    "Hello, how are you today? I'm glad you're okay, she said. But this child, I don't understand, she said.",
+    "Hey, how are you doing? Oh, great. Yeah. Oh, yeah. That sounds perfect. Oh, that's very cool. Oh, my.",
+    "Hey, how can I help you? Well, I'm not sure. Well, I'm not sure. Well, those are some interesting dishes. Well, those are some interesting dishes. What' the stuffer? Sure. I'm going to leave",
+    "Hello, how are you today? Yeah, it's a challenge. What about the problem?"
+  ]
+}

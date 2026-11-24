@@ -1,0 +1,170 @@
+{
+  "meta": {
+    "machine": "modal-L4",
+    "gpu": "NVIDIA L4",
+    "driver": "620.70.06",
+    "cuda": "12.8",
+    "python": "3.12.16",
+    "torch": "2.9.1+cu128",
+    "moshi": "0.2.13",
+    "torchao": "0.14.1",
+    "bitsandbytes": "0.49.2",
+    "triton": "3.5.1",
+    "git": "c5e8b13",
+    "seed": 42424242,
+    "command": "python bench/stream_bench.py --paced --tag bf16_b1_paced",
+    "env": {},
+    "date": "2026-11-23 18:46 UTC"
+  },
+  "what": "per-frame latency budget on the moshi.server path, CUDA events per stage, ms",
+  "config": {
+    "batch": 1,
+    "dtype": "bf16",
+    "quant": "none",
+    "compile_temporal": false,
+    "mem_cap_gb": 0.0,
+    "paced": true,
+    "cuda_graphs": true,
+    "torch_compile": true,
+    "warmup_frames": 50,
+    "clips": 5,
+    "frames_per_clip": 375,
+    "hf_repo": "kyutai/moshiko-pytorch-bf16",
+    "pacing": "schedule started before warm-up, so the first clip ran back to back; frames-over-80 counts are unaffected"
+  },
+  "frames_measured": 1821,
+  "frames_over_80ms": 26,
+  "frames_over_80ms_pct": 1.428,
+  "realtime_strict": false,
+  "realtime_p99": false,
+  "paced_late_ms": {
+    "p50": 0.0,
+    "p95": 5021.443,
+    "p99": 5244.343,
+    "mean": 856.415,
+    "max": 5315.478
+  },
+  "stages_ms": {
+    "encode": {
+      "p50": 3.497,
+      "p95": 5.119,
+      "p99": 6.67,
+      "mean": 3.671,
+      "max": 12.978
+    },
+    "temporal": {
+      "p50": 60.888,
+      "p95": 61.015,
+      "p99": 61.105,
+      "mean": 60.881,
+      "max": 61.46
+    },
+    "text": {
+      "p50": 0.497,
+      "p95": 0.59,
+      "p99": 0.752,
+      "mean": 0.472,
+      "max": 2.541
+    },
+    "depth": {
+      "p50": 9.461,
+      "p95": 9.598,
+      "p99": 9.655,
+      "mean": 9.46,
+      "max": 9.779
+    },
+    "decode": {
+      "p50": 2.248,
+      "p95": 2.296,
+      "p99": 2.314,
+      "mean": 2.245,
+      "max": 2.361
+    },
+    "host": {
+      "p50": 0.22,
+      "p95": 0.293,
+      "p99": 0.631,
+      "mean": 0.195,
+      "max": 0.938
+    },
+    "frame": {
+      "p50": 76.873,
+      "p95": 78.648,
+      "p99": 79.962,
+      "mean": 76.979,
+      "max": 85.799
+    },
+    "wall": {
+      "p50": 76.985,
+      "p95": 78.845,
+      "p99": 80.093,
+      "mean": 77.091,
+      "max": 85.961
+    }
+  },
+  "per_clip_wall_p99": [
+    79.083,
+    80.086,
+    79.827,
+    80.411,
+    81.462
+  ],
+  "peak_mem_gb": {
+    "allocated": 17.422,
+    "reserved": 17.738,
+    "after_load": 15.77,
+    "device_used_now": 18.057
+  },
+  "lm_weight_gb": 15.375,
+  "gpu_telemetry": [
+    {
+      "sm_mhz": "2040",
+      "mem_mhz": "6251",
+      "power_w": "37.24",
+      "temp_c": "69.06",
+      "throttle": "0x0000000000000000"
+    },
+    {
+      "sm_mhz": "1545",
+      "mem_mhz": "6251",
+      "power_w": "71.16",
+      "temp_c": "73.88",
+      "throttle": "0x0000000000000004"
+    },
+    {
+      "sm_mhz": "1725",
+      "mem_mhz": "6251",
+      "power_w": "72.38",
+      "temp_c": "75.56",
+      "throttle": "0x0000000000000004"
+    },
+    {
+      "sm_mhz": "1665",
+      "mem_mhz": "6251",
+      "power_w": "70.59",
+      "temp_c": "76.53",
+      "throttle": "0x0000000000000004"
+    },
+    {
+      "sm_mhz": "1575",
+      "mem_mhz": "6251",
+      "power_w": "70.92",
+      "temp_c": "77.59",
+      "throttle": "0x0000000000000004"
+    },
+    {
+      "sm_mhz": "1575",
+      "mem_mhz": "6251",
+      "power_w": "71.56",
+      "temp_c": "77.59",
+      "throttle": "0x0000000000000004"
+    }
+  ],
+  "moshi_text": [
+    "Hello, what's up? I'm fine, thanks for asking. It's just a headache, you know, I'm used to it.",
+    "Hello, how are you today? It was strange indeed, but I had no choice. I know, I wish I could unsee it.",
+    "Hey, how are you doing? That's interesting. Why do you say that? Well, how about the blue scarf? Well, that's a good question. Tell me more.",
+    "Hello, what's going on? I'm confused. What do you mean? Oh, I see. What's the fat part? I' sorry, but I don't think it's a good idea to stuff your dog's stomach with food. Hmm. No. Oh, I see what you did",
+    "Hello, how are you today? I'm glad you're enjoying your time with them."
+  ]
+}

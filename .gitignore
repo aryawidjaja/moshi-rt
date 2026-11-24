@@ -1,0 +1,33 @@
+# environments and caches
+.venv/
+.cache/
+__pycache__/
+*.pyc
+.DS_Store
+._*
+
+# secrets
+.env
+.env.*
+
+# model weights, raw traces and generated audio stay out of git
+*.safetensors
+*.pt
+*.pth
+*.bin
+*.ckpt
+*.nsys-rep
+*.qdrep
+*.sqlite
+profiles/raw/
+audio/generated/
+results/raw/
+
+# working notes
+docs/
+
+# paper sources (published separately)
+paper/
+
+# logo concepts (kept locally)
+assets/logo-options/

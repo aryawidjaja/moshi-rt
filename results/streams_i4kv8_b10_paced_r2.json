@@ -1,0 +1,184 @@
+{
+  "meta": {
+    "machine": "modal-L4",
+    "gpu": "NVIDIA L4",
+    "driver": "610.57.04",
+    "cuda": "12.8",
+    "python": "3.12.16",
+    "torch": "2.9.1+cu128",
+    "moshi": "0.2.13",
+    "torchao": "0.14.1",
+    "bitsandbytes": "0.49.2",
+    "triton": "3.5.1",
+    "git": "abd734d",
+    "seed": 42424242,
+    "command": "python bench/stream_bench.py --quant int4wo-hqq-g32 --kv int8 --batch 10 --paced --tag streams_i4kv8_b10_paced_r2",
+    "env": {},
+    "date": "2026-11-24 04:46 UTC"
+  },
+  "what": "per-frame latency budget on the moshi.server path, CUDA events per stage, ms",
+  "config": {
+    "batch": 10,
+    "dtype": "bf16",
+    "quant": "int4wo-hqq-g32",
+    "compile_temporal": false,
+    "mem_cap_gb": 0.0,
+    "paced": true,
+    "kv": "int8",
+    "cuda_graphs": true,
+    "torch_compile": true,
+    "warmup_frames": 50,
+    "clips": 5,
+    "frames_per_clip": 375,
+    "hf_repo": "kyutai/moshiko-pytorch-bf16",
+    "pacing": "schedule started before warm-up, so the first clip ran back to back; frames-over-80 counts are unaffected"
+  },
+  "frames_measured": 1821,
+  "frames_over_80ms": 1,
+  "frames_over_80ms_pct": 0.055,
+  "realtime_strict": false,
+  "realtime_p99": true,
+  "paced_late_ms": {
+    "p50": 0.0,
+    "p95": 9397.53,
+    "p99": 9777.599,
+    "mean": 1612.825,
+    "max": 9880.063
+  },
+  "late_frames": [
+    {
+      "clip": 4,
+      "frame": 81.51,
+      "encode": 11.32,
+      "temporal": 54.31,
+      "text": 1.88,
+      "depth": 10.24,
+      "decode": 3.32,
+      "host": 0.37,
+      "wall": 81.71
+    }
+  ],
+  "stages_ms": {
+    "encode": {
+      "p50": 4.764,
+      "p95": 5.498,
+      "p99": 6.241,
+      "mean": 4.804,
+      "max": 11.319
+    },
+    "temporal": {
+      "p50": 54.47,
+      "p95": 54.888,
+      "p99": 54.997,
+      "mean": 54.521,
+      "max": 55.143
+    },
+    "text": {
+      "p50": 0.636,
+      "p95": 0.719,
+      "p99": 0.81,
+      "mean": 0.64,
+      "max": 1.878
+    },
+    "depth": {
+      "p50": 10.464,
+      "p95": 10.707,
+      "p99": 10.817,
+      "mean": 10.437,
+      "max": 11.033
+    },
+    "decode": {
+      "p50": 3.389,
+      "p95": 3.567,
+      "p99": 3.644,
+      "mean": 3.403,
+      "max": 3.731
+    },
+    "host": {
+      "p50": 0.211,
+      "p95": 0.345,
+      "p99": 0.449,
+      "mean": 0.226,
+      "max": 2.109
+    },
+    "frame": {
+      "p50": 74.077,
+      "p95": 75.082,
+      "p99": 75.844,
+      "mean": 74.085,
+      "max": 81.505
+    },
+    "wall": {
+      "p50": 74.21,
+      "p95": 75.191,
+      "p99": 76.021,
+      "mean": 74.206,
+      "max": 81.709
+    }
+  },
+  "per_clip_wall_p99": [
+    75.708,
+    76.711,
+    75.582,
+    75.902,
+    76.316
+  ],
+  "peak_mem_gb": {
+    "allocated": 15.684,
+    "reserved": 15.94,
+    "after_load": 6.884,
+    "device_used_now": 16.264
+  },
+  "lm_weight_gb": 6.333,
+  "gpu_telemetry": [
+    {
+      "sm_mhz": "2040",
+      "mem_mhz": "6251",
+      "power_w": "38.92",
+      "temp_c": "79",
+      "throttle": "0x0000000000000000"
+    },
+    {
+      "sm_mhz": "1560",
+      "mem_mhz": "6251",
+      "power_w": "71.30",
+      "temp_c": "77",
+      "throttle": "0x0000000000000004"
+    },
+    {
+      "sm_mhz": "1770",
+      "mem_mhz": "6251",
+      "power_w": "71.51",
+      "temp_c": "75",
+      "throttle": "0x0000000000000004"
+    },
+    {
+      "sm_mhz": "1740",
+      "mem_mhz": "6251",
+      "power_w": "71.47",
+      "temp_c": "77",
+      "throttle": "0x0000000000000004"
+    },
+    {
+      "sm_mhz": "1725",
+      "mem_mhz": "6251",
+      "power_w": "73.78",
+      "temp_c": "77",
+      "throttle": "0x0000000000000004"
+    },
+    {
+      "sm_mhz": "1665",
+      "mem_mhz": "6251",
+      "power_w": "69.54",
+      "temp_c": "76",
+      "throttle": "0x0000000000000004"
+    }
+  ],
+  "moshi_text": [
+    "Hi there, what's going on? What's going on with your hand? I'm sorry, what's happening? I will. Oh no, are you okay? What happened?",
+    "Hello, how can I help you? It was as if the garden's eye had taken pity on this poor woman, and the garden's dearest ply.",
+    "Hey, how was your day? Mmm, that's a pretty outfit. Wow, that's quite a show. That's too, he looks like a gentle giant.",
+    "Hey there, what's going on? You wouldn't happen to know where I can find a place like this, right?",
+    "Hello, how is it going? Yes, I was aware of that."
+  ]
+}

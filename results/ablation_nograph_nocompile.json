@@ -1,0 +1,113 @@
+{
+  "meta": {
+    "machine": "modal-L4",
+    "gpu": "NVIDIA L4",
+    "driver": "610.57.04",
+    "cuda": "12.8",
+    "python": "3.12.16",
+    "torch": "2.9.1+cu128",
+    "moshi": "0.2.13",
+    "torchao": null,
+    "bitsandbytes": "0.49.2",
+    "triton": "3.5.1",
+    "git": "8d3d949",
+    "seed": 42424242,
+    "command": "python bench/stream_bench.py --tag ablation_nograph_nocompile",
+    "env": {
+      "NO_CUDA_GRAPH": "1",
+      "NO_TORCH_COMPILE": "1"
+    },
+    "date": "2026-11-23 16:48 UTC"
+  },
+  "what": "per-frame latency budget on the moshi.server path, CUDA events per stage, ms",
+  "config": {
+    "batch": 1,
+    "dtype": "bf16",
+    "quant": "none",
+    "cuda_graphs": false,
+    "torch_compile": false,
+    "warmup_frames": 50,
+    "clips": 5,
+    "frames_per_clip": 375,
+    "hf_repo": "kyutai/moshiko-pytorch-bf16"
+  },
+  "frames_measured": 1821,
+  "frames_over_80ms": 1821,
+  "frames_over_80ms_pct": 100.0,
+  "stages_ms": {
+    "encode": {
+      "p50": 21.811,
+      "p95": 22.283,
+      "p99": 24.024,
+      "mean": 21.882,
+      "max": 28.854
+    },
+    "temporal": {
+      "p50": 73.839,
+      "p95": 74.906,
+      "p99": 78.509,
+      "mean": 73.968,
+      "max": 93.177
+    },
+    "text": {
+      "p50": 1.028,
+      "p95": 1.103,
+      "p99": 1.207,
+      "mean": 1.033,
+      "max": 1.454
+    },
+    "depth": {
+      "p50": 82.724,
+      "p95": 84.547,
+      "p99": 88.871,
+      "mean": 82.935,
+      "max": 97.501
+    },
+    "decode": {
+      "p50": 19.138,
+      "p95": 19.537,
+      "p99": 22.129,
+      "mean": 19.204,
+      "max": 25.103
+    },
+    "host": {
+      "p50": 0.114,
+      "p95": 0.151,
+      "p99": 0.164,
+      "mean": 0.12,
+      "max": 0.278
+    },
+    "frame": {
+      "p50": 198.816,
+      "p95": 203.094,
+      "p99": 211.062,
+      "mean": 199.217,
+      "max": 219.409
+    },
+    "wall": {
+      "p50": 198.857,
+      "p95": 203.131,
+      "p99": 211.103,
+      "mean": 199.256,
+      "max": 219.487
+    }
+  },
+  "per_clip_wall_p99": [
+    213.836,
+    210.974,
+    206.883,
+    208.803,
+    211.75
+  ],
+  "peak_mem_gb": {
+    "allocated": 17.422,
+    "reserved": 17.664
+  },
+  "moshi_text": [
+    "Hello, what's up? I'm fine, thanks. But don't you think we should turn down the speakers? I don't think it's that bad, but",
+    "Hello, how are you today? \"'The same way a sunflower follows the sun,' \"'In such a way.\"",
+    "Hey, how are you doing? hey how's it going how's that sounds amazing",
+    "Hello, what's going on? Okay, Yeah, he said.",
+    "Hello, how are you today? I agree. What do you want to mention? That's interesting. I hadn't noticed that."
+  ]
+}

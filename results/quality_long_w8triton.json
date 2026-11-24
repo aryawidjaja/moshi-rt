@@ -1,0 +1,96 @@
+{
+  "meta": {
+    "machine": "modal-L4",
+    "gpu": "NVIDIA L4",
+    "driver": "620.70.06",
+    "cuda": "12.8",
+    "python": "3.12.16",
+    "torch": "2.9.1+cu128",
+    "moshi": "0.2.13",
+    "torchao": "0.14.1",
+    "bitsandbytes": "0.49.2",
+    "triton": "3.5.1",
+    "git": "abd734d",
+    "seed": 42424242,
+    "command": "python quant/teacher_force.py --quant w8triton --long",
+    "env": {},
+    "date": "2026-11-24 04:56 UTC"
+  },
+  "text": {
+    "kl_mean": 0.0001691087381914258,
+    "kl_p99": 0.0023063740227371454,
+    "top1_agree": 0.9990624785423279,
+    "word_steps": 190,
+    "top1_agree_words": 0.9947368502616882,
+    "kl_mean_words": 0.0010203815763816237
+  },
+  "audio": {
+    "kl_mean": 0.000514178944285959,
+    "kl_p99": 0.004963342100381851,
+    "top1_agree": 0.991992175579071,
+    "per_codebook_kl": [
+      0.00031,
+      0.00044,
+      0.00047,
+      0.00059,
+      0.00048,
+      0.00048,
+      0.00061,
+      0.00073
+    ],
+    "per_codebook_top1": [
+      0.9978,
+      0.9925,
+      0.9887,
+      0.9934,
+      0.9916,
+      0.9922,
+      0.9906,
+      0.9891
+    ]
+  },
+  "steps": 3200,
+  "after_ring_fills": {
+    "text": {
+      "kl_mean": 0.00019882259948644787,
+      "kl_p99": 0.002897466067224741,
+      "top1_agree": 0.9975000023841858,
+      "word_steps": 48,
+      "top1_agree_words": 0.9791666865348816,
+      "kl_mean_words": 0.0016635580686852336
+    },
+    "audio": {
+      "kl_mean": 0.0007515911129303277,
+      "kl_p99": 0.005282040685415268,
+      "top1_agree": 0.9885937571525574,
+      "per_codebook_kl": [
+        0.00041,
+        0.00072,
+        0.00075,
+        0.00083,
+        0.00074,
+        0.0008,
+        0.00081,
+        0.00096
+      ],
+      "per_codebook_top1": [
+        1.0,
+        0.9862,
+        0.9825,
+        0.99,
+        0.99,
+        0.9887,
+        0.99,
+        0.9812
+      ]
+    },
+    "steps": 800
+  },
+  "what": "teacher-forced vs bf16 on one uninterrupted 3200-step call (fills the 3000-slot ring)",
+  "config": {
+    "quant": "w8triton",
+    "kv": "sdpa",
+    "steps": 3200,
+    "clips": "1-5 twice, concatenated"
+  }
+}

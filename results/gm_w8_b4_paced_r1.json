@@ -1,0 +1,173 @@
+{
+  "meta": {
+    "machine": "modal-L4",
+    "gpu": "NVIDIA L4",
+    "driver": "610.57.04",
+    "cuda": "12.8",
+    "python": "3.12.16",
+    "torch": "2.9.1+cu128",
+    "moshi": "0.2.13",
+    "torchao": "0.14.1",
+    "bitsandbytes": "0.49.2",
+    "triton": "3.5.1",
+    "git": "e4ea6ad",
+    "seed": 42424242,
+    "command": "python bench/stream_bench.py --quant w8triton --batch 4 --paced --graph-mimi --tag gm_w8_b4_paced_r1",
+    "env": {},
+    "date": "2026-11-24 05:26 UTC"
+  },
+  "what": "per-frame latency budget on the moshi.server path, CUDA events per stage, ms",
+  "config": {
+    "batch": 4,
+    "dtype": "bf16",
+    "quant": "w8triton",
+    "compile_temporal": false,
+    "mem_cap_gb": 0.0,
+    "paced": true,
+    "kv": "sdpa",
+    "graph_mimi": true,
+    "pacing": "restart after warm-up and at each clip",
+    "cuda_graphs": true,
+    "torch_compile": true,
+    "warmup_frames": 50,
+    "clips": 5,
+    "frames_per_clip": 375,
+    "hf_repo": "kyutai/moshiko-pytorch-bf16"
+  },
+  "frames_measured": 1821,
+  "frames_over_80ms": 0,
+  "frames_over_80ms_pct": 0.0,
+  "realtime_strict": true,
+  "realtime_p99": true,
+  "paced_late_ms": {
+    "p50": 0.0,
+    "p95": 0.0,
+    "p99": 0.0,
+    "mean": 0.0,
+    "max": 0.0
+  },
+  "late_frames": [],
+  "stages_ms": {
+    "encode": {
+      "p50": 3.121,
+      "p95": 3.243,
+      "p99": 3.298,
+      "mean": 3.132,
+      "max": 4.027
+    },
+    "temporal": {
+      "p50": 57.298,
+      "p95": 57.588,
+      "p99": 57.696,
+      "mean": 57.329,
+      "max": 58.045
+    },
+    "text": {
+      "p50": 0.182,
+      "p95": 0.187,
+      "p99": 0.19,
+      "mean": 0.182,
+      "max": 0.195
+    },
+    "depth": {
+      "p50": 9.8,
+      "p95": 10.02,
+      "p99": 10.09,
+      "mean": 9.816,
+      "max": 10.28
+    },
+    "decode": {
+      "p50": 2.625,
+      "p95": 2.718,
+      "p99": 2.744,
+      "mean": 2.623,
+      "max": 2.82
+    },
+    "host": {
+      "p50": 0.258,
+      "p95": 0.353,
+      "p99": 0.463,
+      "mean": 0.265,
+      "max": 1.627
+    },
+    "frame": {
+      "p50": 73.347,
+      "p95": 73.971,
+      "p99": 74.193,
+      "mean": 73.391,
+      "max": 74.941
+    },
+    "wall": {
+      "p50": 73.487,
+      "p95": 74.126,
+      "p99": 74.345,
+      "mean": 73.535,
+      "max": 75.136
+    }
+  },
+  "per_clip_wall_p99": [
+    74.157,
+    74.538,
+    73.733,
+    74.339,
+    74.338
+  ],
+  "peak_mem_gb": {
+    "allocated": 15.898,
+    "reserved": 16.098,
+    "after_load": 9.215,
+    "device_used_now": 16.202
+  },
+  "lm_weight_gb": 8.804,
+  "gpu_telemetry": [
+    {
+      "sm_mhz": "2040",
+      "mem_mhz": "6251",
+      "power_w": "34.54",
+      "temp_c": "71",
+      "throttle": "0x0000000000000000"
+    },
+    {
+      "sm_mhz": "1635",
+      "mem_mhz": "6251",
+      "power_w": "72.97",
+      "temp_c": "80",
+      "throttle": "0x0000000000000004"
+    },
+    {
+      "sm_mhz": "1635",
+      "mem_mhz": "6251",
+      "power_w": "70.47",
+      "temp_c": "76",
+      "throttle": "0x0000000000000004"
+    },
+    {
+      "sm_mhz": "1695",
+      "mem_mhz": "6251",
+      "power_w": "70.82",
+      "temp_c": "75",
+      "throttle": "0x0000000000000004"
+    },
+    {
+      "sm_mhz": "1635",
+      "mem_mhz": "6251",
+      "power_w": "70.92",
+      "temp_c": "77",
+      "throttle": "0x0000000000000004"
+    },
+    {
+      "sm_mhz": "1725",
+      "mem_mhz": "6251",
+      "power_w": "70.94",
+      "temp_c": "76",
+      "throttle": "0x0000000000000004"
+    }
+  ],
+  "moshi_text": [
+    "Hello, what's up? I'm fine. Just tired, is all. I've been dealing with this for days. I can't seem to shake it. I know, I know.",
+    "Hello, how are you today? She watched, her eyes wide with amazement. The joy of life, it seemed, was in the finer details. The mother smiled, her heart full of joy. The mother grinned, her pride lingering.",
+    "Hey, how are you doing? Oh, that's quite an outfit.",
+    "Hello, what's going on? sounds like a good meal. That sounds delicious. Wow, it sounds like you have a really nice home. Yeah, I just realized something. Yeah, I'",
+    "Hello, how are you today? Yeah, that's true. It's quite a pattern."
+  ]
+}

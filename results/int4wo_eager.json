@@ -1,0 +1,163 @@
+{
+  "meta": {
+    "machine": "modal-L4",
+    "gpu": "NVIDIA L4",
+    "driver": "620.70.06",
+    "cuda": "12.8",
+    "python": "3.12.16",
+    "torch": "2.9.1+cu128",
+    "moshi": "0.2.13",
+    "torchao": "0.14.1",
+    "bitsandbytes": "0.49.2",
+    "triton": "3.5.1",
+    "git": "0e99fd8",
+    "seed": 42424242,
+    "command": "python bench/stream_bench.py --quant int4wo --tag int4wo_eager",
+    "env": {},
+    "date": "2026-11-23 18:58 UTC"
+  },
+  "what": "per-frame latency budget on the moshi.server path, CUDA events per stage, ms",
+  "config": {
+    "batch": 1,
+    "dtype": "bf16",
+    "quant": "int4wo",
+    "compile_temporal": false,
+    "mem_cap_gb": 0.0,
+    "paced": false,
+    "cuda_graphs": true,
+    "torch_compile": true,
+    "warmup_frames": 50,
+    "clips": 5,
+    "frames_per_clip": 375,
+    "hf_repo": "kyutai/moshiko-pytorch-bf16"
+  },
+  "frames_measured": 1821,
+  "frames_over_80ms": 0,
+  "frames_over_80ms_pct": 0.0,
+  "realtime_strict": true,
+  "realtime_p99": true,
+  "paced_late_ms": null,
+  "stages_ms": {
+    "encode": {
+      "p50": 2.948,
+      "p95": 3.369,
+      "p99": 3.616,
+      "mean": 2.978,
+      "max": 3.97
+    },
+    "temporal": {
+      "p50": 23.716,
+      "p95": 23.921,
+      "p99": 24.029,
+      "mean": 23.726,
+      "max": 24.216
+    },
+    "text": {
+      "p50": 0.262,
+      "p95": 0.484,
+      "p99": 0.517,
+      "mean": 0.279,
+      "max": 0.598
+    },
+    "depth": {
+      "p50": 8.935,
+      "p95": 9.095,
+      "p99": 9.15,
+      "mean": 8.941,
+      "max": 9.202
+    },
+    "decode": {
+      "p50": 2.188,
+      "p95": 2.249,
+      "p99": 2.27,
+      "mean": 2.185,
+      "max": 2.324
+    },
+    "host": {
+      "p50": 0.075,
+      "p95": 0.181,
+      "p99": 0.257,
+      "mean": 0.086,
+      "max": 0.386
+    },
+    "frame": {
+      "p50": 38.199,
+      "p95": 38.771,
+      "p99": 39.086,
+      "mean": 38.224,
+      "max": 39.706
+    },
+    "wall": {
+      "p50": 38.227,
+      "p95": 38.82,
+      "p99": 39.143,
+      "mean": 38.254,
+      "max": 39.764
+    }
+  },
+  "per_clip_wall_p99": [
+    38.994,
+    39.038,
+    39.202,
+    39.095,
+    39.191
+  ],
+  "peak_mem_gb": {
+    "allocated": 7.793,
+    "reserved": 7.996,
+    "after_load": 6.124,
+    "device_used_now": 8.316
+  },
+  "lm_weight_gb": 5.716,
+  "gpu_telemetry": [
+    {
+      "sm_mhz": "2040",
+      "mem_mhz": "6251",
+      "power_w": "43.41",
+      "temp_c": "74.31",
+      "throttle": "0x0000000000000000"
+    },
+    {
+      "sm_mhz": "1725",
+      "mem_mhz": "6251",
+      "power_w": "72.28",
+      "temp_c": "78.75",
+      "throttle": "0x0000000000000004"
+    },
+    {
+      "sm_mhz": "1590",
+      "mem_mhz": "6251",
+      "power_w": "71.70",
+      "temp_c": "80.06",
+      "throttle": "0x0000000000000004"
+    },
+    {
+      "sm_mhz": "1680",
+      "mem_mhz": "6251",
+      "power_w": "71.31",
+      "temp_c": "81.16",
+      "throttle": "0x0000000000000004"
+    },
+    {
+      "sm_mhz": "1650",
+      "mem_mhz": "6251",
+      "power_w": "71.48",
+      "temp_c": "82.22",
+      "throttle": "0x0000000000000004"
+    },
+    {
+      "sm_mhz": "1665",
+      "mem_mhz": "6251",
+      "power_w": "71.00",
+      "temp_c": "82.34",
+      "throttle": "0x0000000000000004"
+    }
+  ],
+  "moshi_text": [
+    "Hey, how are you doing? That's a good point. I'm sure there's a way to stay warm without having to drive all the time. Oh, I see. That's a sci-fi film, right? I' not sure I really believe in that stuff.",
+    "Hello, how is it going? A gloomy aura of misery hung over her face. A soreness in the air, a pain in the aura. A glow of joy in her eyes. A merry grin on her face.",
+    "Hello, what's up? Um, so what's new?",
+    "Hey, what's going on? Oh, I'm always here for you. Yes, I'm tired of hearing that. What? I can't help it if I'm so in love.",
+    "Hello, how can I help you? I'm finding it hard to stay awake."
+  ]
+}

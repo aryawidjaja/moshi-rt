@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<title>moshi-rt</title>
+<link rel="icon" type="image/svg+xml" href="logo.svg">
+<link rel="stylesheet" href="style.css">
+<script>
+  // apply the saved or system theme before first paint
+  (function () {
+    var t = null;
+    try { t = localStorage.getItem("moshi-rt-theme"); } catch (e) {}
+    if (!t) t = matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+    document.documentElement.dataset.theme = t;
+  })();
+</script>
+</head>
+<body data-state="idle">
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-mic" viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21"/></symbol>
+  <symbol id="i-mic-off" viewBox="0 0 24 24"><path d="M15 9.4V6a3 3 0 0 0-5.8-1.1M9 9v2a3 3 0 0 0 4.7 2.5M5.5 11a6.5 6.5 0 0 0 10.9 4.8M18.5 11c0 .6-.1 1.2-.2 1.8M12 17.5V21M4 4l16 16"/></symbol>
+  <symbol id="i-video" viewBox="0 0 24 24"><rect x="3" y="6.5" width="12.5" height="11" rx="2.5"/><path d="M15.5 10.5 21 7.5v9l-5.5-3"/></symbol>
+  <symbol id="i-video-off" viewBox="0 0 24 24"><path d="M10 6.5h3a2.5 2.5 0 0 1 2.5 2.5v3M15.5 15v.5a2 2 0 0 1-2 2H5.5A2.5 2.5 0 0 1 3 15V9a2.5 2.5 0 0 1 2.1-2.5M15.5 10.5 21 7.5v9l-3-1.6M3 3l18 18"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><path d="M6.7 3.5h2.4l1.6 4.2-2 1.4a11.5 11.5 0 0 0 6.2 6.2l1.4-2 4.2 1.6v2.4A2.2 2.2 0 0 1 18.3 19.5 15.8 15.8 0 0 1 4.5 5.7 2.2 2.2 0 0 1 6.7 3.5z"/></symbol>
+  <symbol id="i-hangup" viewBox="0 0 24 24"><path d="M3.2 14.6 2.5 12.4c3.3-2.9 6.2-3.9 9.5-3.9s6.2 1 9.5 3.9l-.7 2.2-3.9.4-.6-2.9a10 10 0 0 0-8.6 0l-.6 2.9z"/></symbol>
+  <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2M12 19.5v2M4.6 4.6 6 6M18 18l1.4 1.4M2.5 12h2M19.5 12h2M4.6 19.4 6 18M18 6l1.4-1.4"/></symbol>
+  <symbol id="i-moon" viewBox="0 0 24 24"><path d="M20.5 14.2A8.5 8.5 0 1 1 9.8 3.5a7 7 0 0 0 10.7 10.7z"/></symbol>
+  <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 7.6v.1"/></symbol>
+</svg>
+
+<header class="topbar glass">
+  <div class="brand">
+    <img class="logo logo-light" src="logo.svg" alt="">
+    <img class="logo logo-dark" src="logo-dark.svg" alt="">
+    <span>moshi-rt</span>
+  </div>
+  <div class="conn" id="conn"><span class="dot"></span><span id="status">Ready</span></div>
+  <button class="icon-btn neu" id="themeBtn" aria-label="Switch between light and dark">
+    <svg class="ico when-light"><use href="#i-moon"/></svg>
+    <svg class="ico when-dark"><use href="#i-sun"/></svg>
+  </button>
+</header>
+
+<main class="layout">
+  <section class="stage neu">
+    <div class="orb-area">
+      <div class="orb neu" id="orb">
+        <canvas id="ring" aria-hidden="true"></canvas>
+        <div class="orb-core neu-in">
+          <img class="logo logo-light" src="logo.svg" alt="">
+          <img class="logo logo-dark" src="logo-dark.svg" alt="">
+        </div>
+      </div>
+    </div>
+
+    <div class="panel-idle">
+      <h1>Talk to Moshi</h1>
+      <p class="lead">A full-duplex voice model, running on a GPU you control. Speak naturally; you can interrupt it at any time.</p>
+      <button class="call" id="startBtn" aria-label="Start conversation">
+        <svg class="ico"><use href="#i-phone"/></svg>
+        <span class="spinner" aria-hidden="true"></span>
+      </button>
+      <div class="call-label" id="callLabel">Start conversation</div>
+      <p class="hint"><svg class="ico sm"><use href="#i-info"/></svg>Use headphones. Your microphone audio goes to your model server only.</p>
+    </div>
+
+    <div class="panel-ended glass">
+      <h2>Call ended</h2>
+      <div class="summary">
+        <div><span id="sDur">–</span><small>duration</small></div>
+        <div><span id="sP50">–</span><small>frame p50</small></div>
+        <div><span id="sP99">–</span><small>frame p99</small></div>
+        <div><span id="sLate">–</span><small>late frames</small></div>
+      </div>
+      <button class="pill" id="againBtn">Call again</button>
+    </div>
+
+    <div class="captions glass" id="captions" aria-live="polite"></div>
+    <video class="pip glass" id="pip" autoplay muted playsinline></video>
+
+    <div class="dock glass" role="toolbar" aria-label="Call controls">
+      <button class="round neu" id="muteBtn" aria-label="Mute microphone (M)" aria-pressed="false">
+        <svg class="ico on-off-a"><use href="#i-mic"/></svg><svg class="ico on-off-b"><use href="#i-mic-off"/></svg>
+        <span class="label">Mute</span>
+      </button>
+      <button class="round neu" id="camBtn" aria-label="Show camera (C)" aria-pressed="false">
+        <svg class="ico on-off-a"><use href="#i-video-off"/></svg><svg class="ico on-off-b"><use href="#i-video"/></svg>
+        <span class="label">Camera</span>
+      </button>
+      <button class="round end" id="endBtn" aria-label="End conversation (Esc)">
+        <svg class="ico"><use href="#i-hangup"/></svg>
+        <span class="label">End</span>
+      </button>
+    </div>
+
+    <p class="disclaimer">You are talking to an AI model. It can make mistakes.</p>
+  </section>
+
+  <aside class="side">
+    <div class="card neu">
+      <div class="card-head"><span>Frame time</span><span class="chip" id="liveChip">idle</span></div>
+      <div class="gauge-row">
+        <svg class="gauge" viewBox="0 0 120 120" aria-hidden="true">
+          <circle class="g-track" cx="60" cy="60" r="48"/>
+          <circle class="g-value" id="gValue" cx="60" cy="60" r="48"/>
+        </svg>
+        <div class="gauge-text">
+          <div class="big"><span id="p50">–</span><small> ms</small></div>
+          <div class="sub">median model time of the<br>80 ms budget per frame</div>
+        </div>
+      </div>
+      <canvas id="chart" aria-label="Per-frame model time, last 6 seconds"></canvas>
+      <div class="legend">
+        <span><i class="sw enc"></i>encode</span><span><i class="sw lm"></i>language model</span>
+        <span><i class="sw dec"></i>decode</span><span><i class="sw bud"></i>80 ms</span>
+      </div>
+    </div>
+
+    <div class="tiles">
+      <div class="tile neu"><small>frame p99</small><span id="p99">–</span></div>
+      <div class="tile neu"><small>late frames</small><span id="late">–</span></div>
+      <div class="tile neu"><small>network round trip</small><span id="rtt">–</span></div>
+      <div class="tile neu"><small>call time</small><span id="clock">–</span></div>
+    </div>
+
+    <div class="card neu config">
+      <div class="card-head"><span>Model server</span></div>
+      <div id="config">Not connected</div>
+      <div class="muted">Model time is measured on the GPU per 80 ms frame. Network round trip is measured separately from this browser.</div>
+    </div>
+  </aside>
+</main>
+
+<div class="toast glass" id="toast" role="status" aria-live="polite"></div>
+
+<script src="app.js"></script>
+</body>
+</html>

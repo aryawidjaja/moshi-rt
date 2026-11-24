@@ -1,0 +1,294 @@
+{
+  "meta": {
+    "machine": "modal-L4",
+    "gpu": "NVIDIA L4",
+    "driver": "610.57.04",
+    "cuda": "12.8",
+    "python": "3.12.16",
+    "torch": "2.9.1+cu128",
+    "moshi": "0.2.13",
+    "torchao": "0.14.1",
+    "bitsandbytes": "0.49.2",
+    "triton": "3.5.1",
+    "git": "abd734d",
+    "seed": 42424242,
+    "command": "python bench/stream_bench.py --quant w8triton --kv int8 --batch 8 --paced --tag streams_w8kv8_b8_paced_r5",
+    "env": {},
+    "date": "2026-11-24 04:29 UTC"
+  },
+  "what": "per-frame latency budget on the moshi.server path, CUDA events per stage, ms",
+  "config": {
+    "batch": 8,
+    "dtype": "bf16",
+    "quant": "w8triton",
+    "compile_temporal": false,
+    "mem_cap_gb": 0.0,
+    "paced": true,
+    "kv": "int8",
+    "cuda_graphs": true,
+    "torch_compile": true,
+    "warmup_frames": 50,
+    "clips": 5,
+    "frames_per_clip": 375,
+    "hf_repo": "kyutai/moshiko-pytorch-bf16",
+    "pacing": "schedule started before warm-up, so the first clip ran back to back; frames-over-80 counts are unaffected"
+  },
+  "frames_measured": 1821,
+  "frames_over_80ms": 11,
+  "frames_over_80ms_pct": 0.604,
+  "realtime_strict": false,
+  "realtime_p99": true,
+  "paced_late_ms": {
+    "p50": 0.0,
+    "p95": 22550.872,
+    "p99": 22757.548,
+    "mean": 3981.524,
+    "max": 22817.033
+  },
+  "late_frames": [
+    {
+      "clip": 2,
+      "frame": 82.17,
+      "encode": 10.2,
+      "temporal": 56.9,
+      "text": 1.24,
+      "depth": 10.06,
+      "decode": 3.12,
+      "host": 0.47,
+      "wall": 82.73
+    },
+    {
+      "clip": 2,
+      "frame": 84.0,
+      "encode": 10.48,
+      "temporal": 56.81,
+      "text": 0.94,
+      "depth": 10.08,
+      "decode": 3.18,
+      "host": 2.45,
+      "wall": 84.1
+    },
+    {
+      "clip": 2,
+      "frame": 80.61,
+      "encode": 8.83,
+      "temporal": 56.94,
+      "text": 0.9,
+      "depth": 10.1,
+      "decode": 3.28,
+      "host": 0.5,
+      "wall": 80.83
+    },
+    {
+      "clip": 2,
+      "frame": 89.16,
+      "encode": 16.6,
+      "temporal": 56.78,
+      "text": 1.57,
+      "depth": 10.1,
+      "decode": 3.18,
+      "host": 0.84,
+      "wall": 89.45
+    },
+    {
+      "clip": 2,
+      "frame": 82.42,
+      "encode": 10.93,
+      "temporal": 56.76,
+      "text": 1.13,
+      "depth": 10.06,
+      "decode": 3.12,
+      "host": 0.36,
+      "wall": 82.52
+    },
+    {
+      "clip": 2,
+      "frame": 87.94,
+      "encode": 16.25,
+      "temporal": 56.76,
+      "text": 1.26,
+      "depth": 10.02,
+      "decode": 3.19,
+      "host": 0.35,
+      "wall": 88.18
+    },
+    {
+      "clip": 3,
+      "frame": 82.58,
+      "encode": 11.14,
+      "temporal": 56.79,
+      "text": 0.74,
+      "depth": 10.25,
+      "decode": 3.29,
+      "host": 0.31,
+      "wall": 82.75
+    },
+    {
+      "clip": 3,
+      "frame": 82.39,
+      "encode": 10.52,
+      "temporal": 56.86,
+      "text": 0.94,
+      "depth": 10.28,
+      "decode": 3.28,
+      "host": 0.37,
+      "wall": 82.73
+    },
+    {
+      "clip": 3,
+      "frame": 83.24,
+      "encode": 11.29,
+      "temporal": 56.88,
+      "text": 1.1,
+      "depth": 10.2,
+      "decode": 3.23,
+      "host": 0.41,
+      "wall": 84.0
+    },
+    {
+      "clip": 4,
+      "frame": 82.62,
+      "encode": 10.28,
+      "temporal": 56.94,
+      "text": 0.84,
+      "depth": 10.29,
+      "decode": 3.28,
+      "host": 0.82,
+      "wall": 82.69
+    },
+    {
+      "clip": 4,
+      "frame": 80.38,
+      "encode": 9.02,
+      "temporal": 56.84,
+      "text": 0.65,
+      "depth": 10.29,
+      "decode": 3.27,
+      "host": 0.26,
+      "wall": 80.51
+    }
+  ],
+  "stages_ms": {
+    "encode": {
+      "p50": 4.571,
+      "p95": 5.274,
+      "p99": 6.463,
+      "mean": 4.689,
+      "max": 16.601
+    },
+    "temporal": {
+      "p50": 56.96,
+      "p95": 57.294,
+      "p99": 57.373,
+      "mean": 57.002,
+      "max": 57.502
+    },
+    "text": {
+      "p50": 0.618,
+      "p95": 0.689,
+      "p99": 0.827,
+      "mean": 0.624,
+      "max": 1.57
+    },
+    "depth": {
+      "p50": 10.335,
+      "p95": 10.555,
+      "p99": 10.608,
+      "mean": 10.348,
+      "max": 10.764
+    },
+    "decode": {
+      "p50": 3.316,
+      "p95": 3.44,
+      "p99": 3.46,
+      "mean": 3.318,
+      "max": 3.587
+    },
+    "host": {
+      "p50": 0.189,
+      "p95": 0.298,
+      "p99": 0.494,
+      "mean": 0.206,
+      "max": 2.454
+    },
+    "frame": {
+      "p50": 76.168,
+      "p95": 77.141,
+      "p99": 78.164,
+      "mean": 76.241,
+      "max": 89.161
+    },
+    "wall": {
+      "p50": 76.275,
+      "p95": 77.28,
+      "p99": 78.329,
+      "mean": 76.352,
+      "max": 89.446
+    }
+  },
+  "per_clip_wall_p99": [
+    77.794,
+    77.002,
+    82.579,
+    79.314,
+    78.336
+  ],
+  "peak_mem_gb": {
+    "allocated": 16.326,
+    "reserved": 16.534,
+    "after_load": 9.215,
+    "device_used_now": 16.855
+  },
+  "lm_weight_gb": 8.804,
+  "gpu_telemetry": [
+    {
+      "sm_mhz": "2040",
+      "mem_mhz": "6251",
+      "power_w": "38.72",
+      "temp_c": "76",
+      "throttle": "0x0000000000000000"
+    },
+    {
+      "sm_mhz": "1575",
+      "mem_mhz": "6251",
+      "power_w": "70.87",
+      "temp_c": "78",
+      "throttle": "0x0000000000000004"
+    },
+    {
+      "sm_mhz": "1725",
+      "mem_mhz": "6251",
+      "power_w": "72.30",
+      "temp_c": "74",
+      "throttle": "0x0000000000000004"
+    },
+    {
+      "sm_mhz": "1590",
+      "mem_mhz": "6251",
+      "power_w": "69.62",
+      "temp_c": "77",
+      "throttle": "0x0000000000000004"
+    },
+    {
+      "sm_mhz": "1605",
+      "mem_mhz": "6251",
+      "power_w": "72.70",
+      "temp_c": "78",
+      "throttle": "0x0000000000000004"
+    },
+    {
+      "sm_mhz": "1575",
+      "mem_mhz": "6251",
+      "power_w": "71.79",
+      "temp_c": "76",
+      "throttle": "0x0000000000000004"
+    }
+  ],
+  "moshi_text": [
+    "Hey, how was your day? Yeah, that's right. See, you're such a know-it-all. I'm just saying. No need to be a critic. Yeah, whatever. Keep your opinions",
+    "Hello, how are you today? I'm glad you're okay, she said. But this child, I don't understand, she said.",
+    "Hey, how are you doing? Oh, great. Yeah. Oh, yeah. That sounds perfect. Oh, that's very cool. Oh, my.",
+    "Hey, how can I help you? Well, I'm not sure. Well, I'm not sure. Well, those are some interesting dishes. Well, those are some interesting dishes. What' the stuffer? Sure. I'm going to leave",
+    "Hello, how are you today? Yeah, it's a challenge. What about the problem?"
+  ]
+}

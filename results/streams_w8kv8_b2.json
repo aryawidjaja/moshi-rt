@@ -1,0 +1,164 @@
+{
+  "meta": {
+    "machine": "modal-L4",
+    "gpu": "NVIDIA L4",
+    "driver": "610.57.04",
+    "cuda": "12.8",
+    "python": "3.12.16",
+    "torch": "2.9.1+cu128",
+    "moshi": "0.2.13",
+    "torchao": "0.14.1",
+    "bitsandbytes": "0.49.2",
+    "triton": "3.5.1",
+    "git": "27a7a88",
+    "seed": 42424242,
+    "command": "python bench/stream_bench.py --quant w8triton --kv int8 --batch 2 --tag streams_w8kv8_b2",
+    "env": {},
+    "date": "2026-11-23 19:40 UTC"
+  },
+  "what": "per-frame latency budget on the moshi.server path, CUDA events per stage, ms",
+  "config": {
+    "batch": 2,
+    "dtype": "bf16",
+    "quant": "w8triton",
+    "compile_temporal": false,
+    "mem_cap_gb": 0.0,
+    "paced": false,
+    "kv": "int8",
+    "cuda_graphs": true,
+    "torch_compile": true,
+    "warmup_frames": 50,
+    "clips": 5,
+    "frames_per_clip": 375,
+    "hf_repo": "kyutai/moshiko-pytorch-bf16"
+  },
+  "frames_measured": 1821,
+  "frames_over_80ms": 0,
+  "frames_over_80ms_pct": 0.0,
+  "realtime_strict": true,
+  "realtime_p99": true,
+  "paced_late_ms": null,
+  "stages_ms": {
+    "encode": {
+      "p50": 5.088,
+      "p95": 5.626,
+      "p99": 6.048,
+      "mean": 5.098,
+      "max": 9.042
+    },
+    "temporal": {
+      "p50": 37.1,
+      "p95": 37.221,
+      "p99": 37.273,
+      "mean": 37.099,
+      "max": 37.463
+    },
+    "text": {
+      "p50": 0.649,
+      "p95": 0.708,
+      "p99": 0.844,
+      "mean": 0.653,
+      "max": 1.401
+    },
+    "depth": {
+      "p50": 9.884,
+      "p95": 10.045,
+      "p99": 10.126,
+      "mean": 9.881,
+      "max": 10.339
+    },
+    "decode": {
+      "p50": 2.338,
+      "p95": 2.419,
+      "p99": 2.424,
+      "mean": 2.336,
+      "max": 2.485
+    },
+    "host": {
+      "p50": 0.228,
+      "p95": 0.36,
+      "p99": 0.488,
+      "mean": 0.241,
+      "max": 0.897
+    },
+    "frame": {
+      "p50": 55.332,
+      "p95": 56.048,
+      "p99": 56.586,
+      "mean": 55.361,
+      "max": 59.42
+    },
+    "wall": {
+      "p50": 55.398,
+      "p95": 56.117,
+      "p99": 56.656,
+      "mean": 55.426,
+      "max": 59.496
+    }
+  },
+  "per_clip_wall_p99": [
+    57.614,
+    57.762,
+    56.033,
+    56.33,
+    56.036
+  ],
+  "peak_mem_gb": {
+    "allocated": 11.227,
+    "reserved": 11.404,
+    "after_load": 9.215,
+    "device_used_now": 11.491
+  },
+  "lm_weight_gb": 8.804,
+  "gpu_telemetry": [
+    {
+      "sm_mhz": "2040",
+      "mem_mhz": "6251",
+      "power_w": "35.41",
+      "temp_c": "70",
+      "throttle": "0x0000000000000000"
+    },
+    {
+      "sm_mhz": "1515",
+      "mem_mhz": "6251",
+      "power_w": "72.72",
+      "temp_c": "80",
+      "throttle": "0x0000000000000004"
+    },
+    {
+      "sm_mhz": "1650",
+      "mem_mhz": "6251",
+      "power_w": "69.02",
+      "temp_c": "78",
+      "throttle": "0x0000000000000004"
+    },
+    {
+      "sm_mhz": "1635",
+      "mem_mhz": "6251",
+      "power_w": "71.38",
+      "temp_c": "76",
+      "throttle": "0x0000000000000004"
+    },
+    {
+      "sm_mhz": "1605",
+      "mem_mhz": "6251",
+      "power_w": "71.44",
+      "temp_c": "74",
+      "throttle": "0x0000000000000004"
+    },
+    {
+      "sm_mhz": "1680",
+      "mem_mhz": "6251",
+      "power_w": "71.58",
+      "temp_c": "76",
+      "throttle": "0x0000000000000004"
+    }
+  ],
+  "moshi_text": [
+    "Hello, what's up? I'm fine, just a little sore. Thanks for asking. It's not that bad. I'd",
+    "Hello, how are you today? The sad woman's eyes were soft with tears as she watched the city. The-",
+    "Hey, how are you doing? I see. Can you please repeat the question? Thank you for your description. Can you please repeat the question? Thank you for the clear description. Can you please repeat the question? Thank you for your response.",
+    "Hey, how can I help you? Well, they're not your children. It's understandable that you want to do something nice for your kids, but the children are not your responsibility. \"Really. Can you imagine having that many kids?\" \"I was just thinking about our trip to the mountains next month. \"I' have to plan something fun for them.\"",
+    "Hello, how is it going? Yeah, I've heard that too. What's your opinion on it? Hmm."
+  ]
+}

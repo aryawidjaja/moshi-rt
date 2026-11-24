@@ -1,0 +1,59 @@
+{
+  "meta": {
+    "machine": "modal-L4",
+    "gpu": "NVIDIA L4",
+    "driver": "620.70.06",
+    "cuda": "12.8",
+    "python": "3.12.16",
+    "torch": "2.9.1+cu128",
+    "moshi": "0.2.13",
+    "torchao": "0.14.1",
+    "bitsandbytes": "0.49.2",
+    "triton": "3.5.1",
+    "git": "27a7a88",
+    "seed": 42424242,
+    "command": "python quant/teacher_force.py --quant none",
+    "env": {},
+    "date": "2026-11-23 19:35 UTC"
+  },
+  "text": {
+    "kl_mean": 0.0,
+    "kl_p99": 0.0,
+    "top1_agree": 1.0,
+    "word_steps": 23,
+    "top1_agree_words": 1.0,
+    "kl_mean_words": 0.0
+  },
+  "audio": {
+    "kl_mean": 0.0,
+    "kl_p99": 0.0,
+    "top1_agree": 1.0,
+    "per_codebook_kl": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "per_codebook_top1": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ]
+  },
+  "steps": 300,
+  "what": "bf16 vs bf16 replay of clip 1 (noise floor of the measurement)",
+  "config": {
+    "quant": "none",
+    "steps_per_clip": 300,
+    "clips": 1
+  }
+}

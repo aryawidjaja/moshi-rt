@@ -1,0 +1,514 @@
+{
+  "meta": {
+    "machine": "modal-L4",
+    "gpu": "NVIDIA L4",
+    "driver": "610.57.04",
+    "cuda": "12.8",
+    "python": "3.12.16",
+    "torch": "2.9.1+cu128",
+    "moshi": "0.2.13",
+    "torchao": "0.14.1",
+    "bitsandbytes": "0.49.2",
+    "triton": "3.5.1",
+    "git": "abd734d",
+    "seed": 42424242,
+    "command": "python bench/stream_bench.py --quant w8triton --batch 4 --paced --tag streams_w8_b4_paced_r2",
+    "env": {},
+    "date": "2026-11-24 04:39 UTC"
+  },
+  "what": "per-frame latency budget on the moshi.server path, CUDA events per stage, ms",
+  "config": {
+    "batch": 4,
+    "dtype": "bf16",
+    "quant": "w8triton",
+    "compile_temporal": false,
+    "mem_cap_gb": 0.0,
+    "paced": true,
+    "kv": "sdpa",
+    "cuda_graphs": true,
+    "torch_compile": true,
+    "warmup_frames": 50,
+    "clips": 5,
+    "frames_per_clip": 375,
+    "hf_repo": "kyutai/moshiko-pytorch-bf16",
+    "pacing": "schedule started before warm-up, so the first clip ran back to back; frames-over-80 counts are unaffected"
+  },
+  "frames_measured": 1821,
+  "frames_over_80ms": 31,
+  "frames_over_80ms_pct": 1.702,
+  "realtime_strict": false,
+  "realtime_p99": false,
+  "paced_late_ms": {
+    "p50": 0.0,
+    "p95": 10356.721,
+    "p99": 10611.878,
+    "mean": 1807.052,
+    "max": 10670.729
+  },
+  "late_frames": [
+    {
+      "clip": 0,
+      "frame": 87.26,
+      "encode": 12.31,
+      "temporal": 57.34,
+      "text": 0.64,
+      "depth": 9.73,
+      "decode": 2.64,
+      "host": 4.54,
+      "wall": 87.47
+    },
+    {
+      "clip": 1,
+      "frame": 79.52,
+      "encode": 8.99,
+      "temporal": 57.24,
+      "text": 0.65,
+      "depth": 9.66,
+      "decode": 2.57,
+      "host": 0.33,
+      "wall": 81.6
+    },
+    {
+      "clip": 2,
+      "frame": 85.87,
+      "encode": 15.61,
+      "temporal": 56.99,
+      "text": 0.71,
+      "depth": 9.71,
+      "decode": 2.57,
+      "host": 0.21,
+      "wall": 86.05
+    },
+    {
+      "clip": 2,
+      "frame": 79.87,
+      "encode": 9.3,
+      "temporal": 57.2,
+      "text": 0.64,
+      "depth": 9.79,
+      "decode": 2.64,
+      "host": 0.23,
+      "wall": 80.04
+    },
+    {
+      "clip": 2,
+      "frame": 84.67,
+      "encode": 13.68,
+      "temporal": 57.25,
+      "text": 1.09,
+      "depth": 9.68,
+      "decode": 2.57,
+      "host": 0.36,
+      "wall": 84.87
+    },
+    {
+      "clip": 2,
+      "frame": 82.28,
+      "encode": 9.98,
+      "temporal": 57.25,
+      "text": 2.43,
+      "depth": 9.67,
+      "decode": 2.57,
+      "host": 0.3,
+      "wall": 82.47
+    },
+    {
+      "clip": 2,
+      "frame": 80.81,
+      "encode": 10.27,
+      "temporal": 57.11,
+      "text": 0.66,
+      "depth": 9.75,
+      "decode": 2.6,
+      "host": 0.35,
+      "wall": 80.97
+    },
+    {
+      "clip": 3,
+      "frame": 84.94,
+      "encode": 14.51,
+      "temporal": 57.02,
+      "text": 0.7,
+      "depth": 9.72,
+      "decode": 2.6,
+      "host": 0.34,
+      "wall": 85.11
+    },
+    {
+      "clip": 3,
+      "frame": 80.06,
+      "encode": 5.26,
+      "temporal": 57.31,
+      "text": 0.64,
+      "depth": 9.72,
+      "decode": 2.55,
+      "host": 4.52,
+      "wall": 80.21
+    },
+    {
+      "clip": 3,
+      "frame": 80.13,
+      "encode": 9.37,
+      "temporal": 57.28,
+      "text": 0.76,
+      "depth": 9.69,
+      "decode": 2.62,
+      "host": 0.35,
+      "wall": 80.33
+    },
+    {
+      "clip": 3,
+      "frame": 81.55,
+      "encode": 10.56,
+      "temporal": 57.2,
+      "text": 0.8,
+      "depth": 9.72,
+      "decode": 2.64,
+      "host": 0.51,
+      "wall": 81.98
+    },
+    {
+      "clip": 3,
+      "frame": 86.34,
+      "encode": 14.64,
+      "temporal": 57.12,
+      "text": 1.85,
+      "depth": 9.74,
+      "decode": 2.59,
+      "host": 0.33,
+      "wall": 86.45
+    },
+    {
+      "clip": 3,
+      "frame": 83.05,
+      "encode": 12.36,
+      "temporal": 57.26,
+      "text": 0.67,
+      "depth": 9.83,
+      "decode": 2.63,
+      "host": 0.23,
+      "wall": 83.22
+    },
+    {
+      "clip": 3,
+      "frame": 82.41,
+      "encode": 11.63,
+      "temporal": 57.21,
+      "text": 0.68,
+      "depth": 9.81,
+      "decode": 2.64,
+      "host": 0.37,
+      "wall": 82.58
+    },
+    {
+      "clip": 3,
+      "frame": 84.06,
+      "encode": 13.68,
+      "temporal": 57.07,
+      "text": 0.64,
+      "depth": 9.76,
+      "decode": 2.6,
+      "host": 0.26,
+      "wall": 84.2
+    },
+    {
+      "clip": 3,
+      "frame": 80.09,
+      "encode": 9.38,
+      "temporal": 57.24,
+      "text": 0.65,
+      "depth": 9.8,
+      "decode": 2.64,
+      "host": 0.33,
+      "wall": 80.27
+    },
+    {
+      "clip": 3,
+      "frame": 82.92,
+      "encode": 12.16,
+      "temporal": 57.21,
+      "text": 0.7,
+      "depth": 9.87,
+      "decode": 2.64,
+      "host": 0.28,
+      "wall": 83.06
+    },
+    {
+      "clip": 3,
+      "frame": 83.08,
+      "encode": 11.39,
+      "temporal": 57.31,
+      "text": 1.73,
+      "depth": 9.75,
+      "decode": 2.6,
+      "host": 0.24,
+      "wall": 83.25
+    },
+    {
+      "clip": 3,
+      "frame": 80.82,
+      "encode": 10.33,
+      "temporal": 57.14,
+      "text": 0.65,
+      "depth": 9.76,
+      "decode": 2.6,
+      "host": 0.27,
+      "wall": 80.96
+    },
+    {
+      "clip": 3,
+      "frame": 85.37,
+      "encode": 15.03,
+      "temporal": 57.07,
+      "text": 0.65,
+      "depth": 9.74,
+      "decode": 2.59,
+      "host": 0.24,
+      "wall": 85.52
+    },
+    {
+      "clip": 4,
+      "frame": 83.51,
+      "encode": 7.2,
+      "temporal": 62.75,
+      "text": 0.73,
+      "depth": 9.81,
+      "decode": 2.62,
+      "host": 0.33,
+      "wall": 83.68
+    },
+    {
+      "clip": 4,
+      "frame": 80.51,
+      "encode": 9.87,
+      "temporal": 57.21,
+      "text": 0.62,
+      "depth": 9.83,
+      "decode": 2.65,
+      "host": 0.26,
+      "wall": 80.65
+    },
+    {
+      "clip": 4,
+      "frame": 82.95,
+      "encode": 10.87,
+      "temporal": 57.24,
+      "text": 2.09,
+      "depth": 9.83,
+      "decode": 2.64,
+      "host": 0.23,
+      "wall": 83.13
+    },
+    {
+      "clip": 4,
+      "frame": 84.42,
+      "encode": 11.58,
+      "temporal": 57.13,
+      "text": 2.97,
+      "depth": 9.75,
+      "decode": 2.59,
+      "host": 0.34,
+      "wall": 84.65
+    },
+    {
+      "clip": 4,
+      "frame": 81.31,
+      "encode": 5.5,
+      "temporal": 57.46,
+      "text": 0.69,
+      "depth": 9.87,
+      "decode": 2.7,
+      "host": 5.0,
+      "wall": 81.5
+    },
+    {
+      "clip": 4,
+      "frame": 80.63,
+      "encode": 9.58,
+      "temporal": 57.35,
+      "text": 0.69,
+      "depth": 9.93,
+      "decode": 2.67,
+      "host": 0.34,
+      "wall": 81.68
+    },
+    {
+      "clip": 4,
+      "frame": 80.11,
+      "encode": 5.54,
+      "temporal": 61.04,
+      "text": 0.69,
+      "depth": 9.85,
+      "decode": 2.65,
+      "host": 0.29,
+      "wall": 80.29
+    },
+    {
+      "clip": 4,
+      "frame": 82.58,
+      "encode": 9.54,
+      "temporal": 57.23,
+      "text": 2.97,
+      "depth": 9.82,
+      "decode": 2.62,
+      "host": 0.34,
+      "wall": 82.75
+    },
+    {
+      "clip": 4,
+      "frame": 82.22,
+      "encode": 11.85,
+      "temporal": 57.11,
+      "text": 0.62,
+      "depth": 9.75,
+      "decode": 2.59,
+      "host": 0.24,
+      "wall": 82.36
+    },
+    {
+      "clip": 4,
+      "frame": 83.56,
+      "encode": 13.09,
+      "temporal": 57.08,
+      "text": 0.66,
+      "depth": 9.73,
+      "decode": 2.59,
+      "host": 0.35,
+      "wall": 83.74
+    },
+    {
+      "clip": 4,
+      "frame": 81.04,
+      "encode": 10.46,
+      "temporal": 57.25,
+      "text": 0.64,
+      "depth": 9.75,
+      "decode": 2.59,
+      "host": 0.28,
+      "wall": 81.21
+    }
+  ],
+  "stages_ms": {
+    "encode": {
+      "p50": 5.041,
+      "p95": 5.961,
+      "p99": 10.21,
+      "mean": 5.161,
+      "max": 15.611
+    },
+    "temporal": {
+      "p50": 57.437,
+      "p95": 58.002,
+      "p99": 58.131,
+      "mean": 57.507,
+      "max": 62.751
+    },
+    "text": {
+      "p50": 0.637,
+      "p95": 0.7,
+      "p99": 0.946,
+      "mean": 0.648,
+      "max": 2.97
+    },
+    "depth": {
+      "p50": 9.848,
+      "p95": 10.05,
+      "p99": 10.153,
+      "mean": 9.849,
+      "max": 10.23
+    },
+    "decode": {
+      "p50": 2.671,
+      "p95": 2.737,
+      "p99": 2.783,
+      "mean": 2.659,
+      "max": 2.81
+    },
+    "host": {
+      "p50": 0.245,
+      "p95": 0.339,
+      "p99": 0.468,
+      "mean": 0.257,
+      "max": 5.003
+    },
+    "frame": {
+      "p50": 75.97,
+      "p95": 77.253,
+      "p99": 81.499,
+      "mean": 76.138,
+      "max": 87.258
+    },
+    "wall": {
+      "p50": 76.104,
+      "p95": 77.435,
+      "p99": 81.921,
+      "mean": 76.276,
+      "max": 87.472
+    }
+  },
+  "per_clip_wall_p99": [
+    78.437,
+    77.849,
+    80.294,
+    83.509,
+    82.856
+  ],
+  "peak_mem_gb": {
+    "allocated": 15.898,
+    "reserved": 16.047,
+    "after_load": 9.215,
+    "device_used_now": 16.176
+  },
+  "lm_weight_gb": 8.804,
+  "gpu_telemetry": [
+    {
+      "sm_mhz": "2040",
+      "mem_mhz": "6251",
+      "power_w": "37.73",
+      "temp_c": "71",
+      "throttle": "0x0000000000000000"
+    },
+    {
+      "sm_mhz": "1635",
+      "mem_mhz": "6251",
+      "power_w": "71.88",
+      "temp_c": "81",
+      "throttle": "0x0000000000000004"
+    },
+    {
+      "sm_mhz": "1710",
+      "mem_mhz": "6251",
+      "power_w": "71.58",
+      "temp_c": "74",
+      "throttle": "0x0000000000000004"
+    },
+    {
+      "sm_mhz": "1560",
+      "mem_mhz": "6251",
+      "power_w": "70.83",
+      "temp_c": "75",
+      "throttle": "0x0000000000000004"
+    },
+    {
+      "sm_mhz": "1785",
+      "mem_mhz": "6251",
+      "power_w": "72.96",
+      "temp_c": "77",
+      "throttle": "0x0000000000000004"
+    },
+    {
+      "sm_mhz": "1695",
+      "mem_mhz": "6251",
+      "power_w": "70.54",
+      "temp_c": "76",
+      "throttle": "0x0000000000000004"
+    }
+  ],
+  "moshi_text": [
+    "Hello, what's up? I'm fine. Just tired, is all. I've been dealing with this for days. I can't seem to shake it. I know, I know.",
+    "Hello, how are you today? She watched, her eyes wide with amazement. The joy of life, it seemed, was in the finer details. The mother smiled, her heart full of joy. The mother grinned, her pride lingering.",
+    "Hey, how are you doing? Oh, that's quite an outfit.",
+    "Hello, what's going on? sounds like a good meal. That sounds delicious. Wow, it sounds like you have a really nice home. Yeah, I just realized something. Yeah, I'",
+    "Hello, how are you today? Yeah, that's true. It's quite a pattern."
+  ]
+}

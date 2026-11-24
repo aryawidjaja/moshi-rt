@@ -1,0 +1,171 @@
+{
+  "meta": {
+    "machine": "modal-L4",
+    "gpu": "NVIDIA L4",
+    "driver": "620.70.06",
+    "cuda": "12.8",
+    "python": "3.12.16",
+    "torch": "2.9.1+cu128",
+    "moshi": "0.2.13",
+    "torchao": "0.14.1",
+    "bitsandbytes": "0.49.2",
+    "triton": "3.5.1",
+    "git": "0f37d4a",
+    "seed": 42424242,
+    "command": "python bench/stream_bench.py --quant w8triton --kv int8 --batch 6 --paced --tag streams_w8kv8_b6_paced_r3",
+    "env": {},
+    "date": "2026-11-23 20:08 UTC"
+  },
+  "what": "per-frame latency budget on the moshi.server path, CUDA events per stage, ms",
+  "config": {
+    "batch": 6,
+    "dtype": "bf16",
+    "quant": "w8triton",
+    "compile_temporal": false,
+    "mem_cap_gb": 0.0,
+    "paced": true,
+    "kv": "int8",
+    "cuda_graphs": true,
+    "torch_compile": true,
+    "warmup_frames": 50,
+    "clips": 5,
+    "frames_per_clip": 375,
+    "hf_repo": "kyutai/moshiko-pytorch-bf16",
+    "pacing": "schedule started before warm-up, so the first clip ran back to back; frames-over-80 counts are unaffected"
+  },
+  "frames_measured": 1821,
+  "frames_over_80ms": 0,
+  "frames_over_80ms_pct": 0.0,
+  "realtime_strict": true,
+  "realtime_p99": true,
+  "paced_late_ms": {
+    "p50": 0.0,
+    "p95": 9065.312,
+    "p99": 9931.299,
+    "mean": 1465.196,
+    "max": 10155.605
+  },
+  "stages_ms": {
+    "encode": {
+      "p50": 3.368,
+      "p95": 4.296,
+      "p99": 4.605,
+      "mean": 3.508,
+      "max": 5.376
+    },
+    "temporal": {
+      "p50": 50.08,
+      "p95": 50.5,
+      "p99": 50.559,
+      "mean": 50.137,
+      "max": 50.604
+    },
+    "text": {
+      "p50": 0.274,
+      "p95": 0.615,
+      "p99": 0.656,
+      "mean": 0.348,
+      "max": 0.951
+    },
+    "depth": {
+      "p50": 10.039,
+      "p95": 10.307,
+      "p99": 10.349,
+      "mean": 10.059,
+      "max": 10.488
+    },
+    "decode": {
+      "p50": 2.952,
+      "p95": 3.088,
+      "p99": 3.131,
+      "mean": 2.964,
+      "max": 3.215
+    },
+    "host": {
+      "p50": 0.1,
+      "p95": 0.284,
+      "p99": 0.43,
+      "mean": 0.128,
+      "max": 1.27
+    },
+    "frame": {
+      "p50": 67.015,
+      "p95": 68.313,
+      "p99": 68.855,
+      "mean": 67.183,
+      "max": 69.421
+    },
+    "wall": {
+      "p50": 67.095,
+      "p95": 68.51,
+      "p99": 69.036,
+      "mean": 67.268,
+      "max": 69.589
+    }
+  },
+  "per_clip_wall_p99": [
+    69.234,
+    68.622,
+    69.002,
+    68.851,
+    68.524
+  ],
+  "peak_mem_gb": {
+    "allocated": 14.548,
+    "reserved": 14.808,
+    "after_load": 9.215,
+    "device_used_now": 15.128
+  },
+  "lm_weight_gb": 8.804,
+  "gpu_telemetry": [
+    {
+      "sm_mhz": "2040",
+      "mem_mhz": "6251",
+      "power_w": "35.14",
+      "temp_c": "73.00",
+      "throttle": "0x0000000000000000"
+    },
+    {
+      "sm_mhz": "1560",
+      "mem_mhz": "6251",
+      "power_w": "73.37",
+      "temp_c": "78.03",
+      "throttle": "0x0000000000000004"
+    },
+    {
+      "sm_mhz": "1590",
+      "mem_mhz": "6251",
+      "power_w": "69.48",
+      "temp_c": "79.88",
+      "throttle": "0x0000000000000004"
+    },
+    {
+      "sm_mhz": "1605",
+      "mem_mhz": "6251",
+      "power_w": "71.41",
+      "temp_c": "80.75",
+      "throttle": "0x0000000000000004"
+    },
+    {
+      "sm_mhz": "1815",
+      "mem_mhz": "6251",
+      "power_w": "72.87",
+      "temp_c": "81.81",
+      "throttle": "0x0000000000000004"
+    },
+    {
+      "sm_mhz": "1815",
+      "mem_mhz": "6251",
+      "power_w": "70.30",
+      "temp_c": "79.97",
+      "throttle": "0x0000000000000004"
+    }
+  ],
+  "moshi_text": [
+    "Hey, how was your day? Yeah, same here. It's getting really annoying. I don' know how people can take it. It' like walking on a tightrope without a net. Yeah, it's nuts. I'm trying to make",
+    "Hello, how are you today? The sad woman smiled, and her gaze met the sea's. Her eyes were filled with hope, and the child's laugh echoed in the background.",
+    "Hey, how are you doing? Oh, great. Yeah. Oh, yeah. That sounds perfect. Oh, that's very cool. Oh, my.",
+    "Hey, how can I help you? Well, I'm not sure. Well, I'm not sure. Well, those are some interesting dishes. Well, those are some interesting dishes. What' the matter, Elroy? Well, I think this is a very interesting conversation. I hope you're having a great day.",
+    "Hello, how are you today? I'm doing okay. Thanks for asking."
+  ]
+}

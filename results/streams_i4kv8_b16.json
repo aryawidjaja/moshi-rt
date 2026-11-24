@@ -1,0 +1,164 @@
+{
+  "meta": {
+    "machine": "modal-L4",
+    "gpu": "NVIDIA L4",
+    "driver": "610.57.04",
+    "cuda": "12.8",
+    "python": "3.12.16",
+    "torch": "2.9.1+cu128",
+    "moshi": "0.2.13",
+    "torchao": "0.14.1",
+    "bitsandbytes": "0.49.2",
+    "triton": "3.5.1",
+    "git": "0f37d4a",
+    "seed": 42424242,
+    "command": "python bench/stream_bench.py --quant int4wo-hqq-g32 --kv int8 --batch 16 --tag streams_i4kv8_b16",
+    "env": {},
+    "date": "2026-11-23 20:22 UTC"
+  },
+  "what": "per-frame latency budget on the moshi.server path, CUDA events per stage, ms",
+  "config": {
+    "batch": 16,
+    "dtype": "bf16",
+    "quant": "int4wo-hqq-g32",
+    "compile_temporal": false,
+    "mem_cap_gb": 0.0,
+    "paced": false,
+    "kv": "int8",
+    "cuda_graphs": true,
+    "torch_compile": true,
+    "warmup_frames": 50,
+    "clips": 5,
+    "frames_per_clip": 375,
+    "hf_repo": "kyutai/moshiko-pytorch-bf16"
+  },
+  "frames_measured": 1821,
+  "frames_over_80ms": 1821,
+  "frames_over_80ms_pct": 100.0,
+  "realtime_strict": false,
+  "realtime_p99": false,
+  "paced_late_ms": null,
+  "stages_ms": {
+    "encode": {
+      "p50": 4.952,
+      "p95": 5.315,
+      "p99": 6.059,
+      "mean": 4.962,
+      "max": 7.783
+    },
+    "temporal": {
+      "p50": 83.076,
+      "p95": 83.688,
+      "p99": 83.981,
+      "mean": 83.091,
+      "max": 84.911
+    },
+    "text": {
+      "p50": 0.673,
+      "p95": 0.721,
+      "p99": 0.821,
+      "mean": 0.675,
+      "max": 0.998
+    },
+    "depth": {
+      "p50": 10.867,
+      "p95": 11.022,
+      "p99": 11.083,
+      "mean": 10.87,
+      "max": 11.35
+    },
+    "decode": {
+      "p50": 4.23,
+      "p95": 4.337,
+      "p99": 4.374,
+      "mean": 4.227,
+      "max": 4.556
+    },
+    "host": {
+      "p50": 0.268,
+      "p95": 0.367,
+      "p99": 0.568,
+      "mean": 0.277,
+      "max": 1.444
+    },
+    "frame": {
+      "p50": 104.111,
+      "p95": 105.004,
+      "p99": 105.764,
+      "mean": 104.152,
+      "max": 107.386
+    },
+    "wall": {
+      "p50": 104.186,
+      "p95": 105.079,
+      "p99": 105.851,
+      "mean": 104.229,
+      "max": 107.49
+    }
+  },
+  "per_clip_wall_p99": [
+    105.644,
+    106.192,
+    105.601,
+    105.537,
+    105.52
+  ],
+  "peak_mem_gb": {
+    "allocated": 20.979,
+    "reserved": 21.297,
+    "after_load": 6.884,
+    "device_used_now": 21.621
+  },
+  "lm_weight_gb": 6.333,
+  "gpu_telemetry": [
+    {
+      "sm_mhz": "2040",
+      "mem_mhz": "6251",
+      "power_w": "38.81",
+      "temp_c": "77",
+      "throttle": "0x0000000000000000"
+    },
+    {
+      "sm_mhz": "1530",
+      "mem_mhz": "6251",
+      "power_w": "68.44",
+      "temp_c": "78",
+      "throttle": "0x0000000000000004"
+    },
+    {
+      "sm_mhz": "1470",
+      "mem_mhz": "6251",
+      "power_w": "70.79",
+      "temp_c": "75",
+      "throttle": "0x0000000000000004"
+    },
+    {
+      "sm_mhz": "1425",
+      "mem_mhz": "6251",
+      "power_w": "75.83",
+      "temp_c": "77",
+      "throttle": "0x0000000000000004"
+    },
+    {
+      "sm_mhz": "1530",
+      "mem_mhz": "6251",
+      "power_w": "68.16",
+      "temp_c": "77",
+      "throttle": "0x0000000000000004"
+    },
+    {
+      "sm_mhz": "1515",
+      "mem_mhz": "6251",
+      "power_w": "67.35",
+      "temp_c": "76",
+      "throttle": "0x0000000000000004"
+    }
+  ],
+  "moshi_text": [
+    "Hi, how is it going? Hey, what's up man? You look frustrated. That's rough, but don't worry,",
+    "Hello, how can I help you? Oh, I know. I feel so helpless. I'm telling you, it's just heartbreaking.",
+    "Hey, how was your day? The hat That's a fantastic description.",
+    "Hey, how was your day? Oh, Paige's nerves, it's penny,",
+    "Hello, how is it going? Yeah, I've noticed that. It's still a word though."
+  ]
+}

@@ -1,0 +1,173 @@
+{
+  "meta": {
+    "machine": "modal-L4",
+    "gpu": "NVIDIA L4",
+    "driver": "610.57.04",
+    "cuda": "12.8",
+    "python": "3.12.16",
+    "torch": "2.9.1+cu128",
+    "moshi": "0.2.13",
+    "torchao": "0.14.1",
+    "bitsandbytes": "0.49.2",
+    "triton": "3.5.1",
+    "git": "6b043e3",
+    "seed": 42424242,
+    "command": "python bench/stream_bench.py --quant w8triton --kv int8 --graph-mimi --paced --tag gm_w8kv8_b1_paced_r1",
+    "env": {},
+    "date": "2026-11-24 06:05 UTC"
+  },
+  "what": "per-frame latency budget on the moshi.server path, CUDA events per stage, ms",
+  "config": {
+    "batch": 1,
+    "dtype": "bf16",
+    "quant": "w8triton",
+    "compile_temporal": false,
+    "mem_cap_gb": 0.0,
+    "paced": true,
+    "kv": "int8",
+    "graph_mimi": true,
+    "pacing": "restart after warm-up and at each clip",
+    "cuda_graphs": true,
+    "torch_compile": true,
+    "warmup_frames": 50,
+    "clips": 5,
+    "frames_per_clip": 375,
+    "hf_repo": "kyutai/moshiko-pytorch-bf16"
+  },
+  "frames_measured": 1821,
+  "frames_over_80ms": 0,
+  "frames_over_80ms_pct": 0.0,
+  "realtime_strict": true,
+  "realtime_p99": true,
+  "paced_late_ms": {
+    "p50": 0.0,
+    "p95": 0.0,
+    "p99": 0.0,
+    "mean": 0.0,
+    "max": 0.0
+  },
+  "late_frames": [],
+  "stages_ms": {
+    "encode": {
+      "p50": 2.755,
+      "p95": 2.82,
+      "p99": 2.906,
+      "mean": 2.756,
+      "max": 3.428
+    },
+    "temporal": {
+      "p50": 33.055,
+      "p95": 33.108,
+      "p99": 33.122,
+      "mean": 33.053,
+      "max": 33.143
+    },
+    "text": {
+      "p50": 0.159,
+      "p95": 0.166,
+      "p99": 0.167,
+      "mean": 0.159,
+      "max": 0.173
+    },
+    "depth": {
+      "p50": 8.974,
+      "p95": 9.14,
+      "p99": 9.166,
+      "mean": 8.985,
+      "max": 9.217
+    },
+    "decode": {
+      "p50": 2.118,
+      "p95": 2.167,
+      "p99": 2.18,
+      "mean": 2.114,
+      "max": 2.184
+    },
+    "host": {
+      "p50": 0.244,
+      "p95": 0.35,
+      "p99": 0.473,
+      "mean": 0.251,
+      "max": 0.77
+    },
+    "frame": {
+      "p50": 47.353,
+      "p95": 47.562,
+      "p99": 47.749,
+      "mean": 47.364,
+      "max": 48.275
+    },
+    "wall": {
+      "p50": 47.564,
+      "p95": 47.8,
+      "p99": 48.018,
+      "mean": 47.574,
+      "max": 48.605
+    }
+  },
+  "per_clip_wall_p99": [
+    48.094,
+    47.963,
+    48.05,
+    47.865,
+    47.971
+  ],
+  "peak_mem_gb": {
+    "allocated": 10.367,
+    "reserved": 10.519,
+    "after_load": 9.215,
+    "device_used_now": 10.708
+  },
+  "lm_weight_gb": 8.804,
+  "gpu_telemetry": [
+    {
+      "sm_mhz": "2040",
+      "mem_mhz": "6251",
+      "power_w": "36.76",
+      "temp_c": "71",
+      "throttle": "0x0000000000000000"
+    },
+    {
+      "sm_mhz": "1950",
+      "mem_mhz": "6251",
+      "power_w": "62.02",
+      "temp_c": "77",
+      "throttle": "0x0000000000000004"
+    },
+    {
+      "sm_mhz": "1665",
+      "mem_mhz": "6251",
+      "power_w": "61.71",
+      "temp_c": "79",
+      "throttle": "0x0000000000000004"
+    },
+    {
+      "sm_mhz": "1890",
+      "mem_mhz": "6251",
+      "power_w": "64.43",
+      "temp_c": "77",
+      "throttle": "0x0000000000000004"
+    },
+    {
+      "sm_mhz": "1770",
+      "mem_mhz": "6251",
+      "power_w": "66.94",
+      "temp_c": "76",
+      "throttle": "0x0000000000000004"
+    },
+    {
+      "sm_mhz": "1830",
+      "mem_mhz": "6251",
+      "power_w": "62.03",
+      "temp_c": "77",
+      "throttle": "0x0000000000000004"
+    }
+  ],
+  "moshi_text": [
+    "Hello, what's up? I'm fine. Thanks for asking. How about you? Yeah, I heard that from our mute friend. Well, I guess I' not that special.",
+    "Hello, how are you today? \"'Wow, really? \"' looks so serene and peaceful, like a dream.\" \"'No way, I can't believe it.\" \"'That's harsh, I couldn't imagine.\"",
+    "Hey, how your day? How do you like me? I'm you looking at you?",
+    "Hey, how can I help you? Oh, that sounds delicious. What's in it? That does sound delicious. How much does it cost? That's beautiful. You're describing the atmosphere of the brothel. Yeah, I'm doing great. How about you? Oh cool. What do you want to do?",
+    "Hello, how are you today? Yeah, I've heard that too. It's not a fair thing. That's interesting. I've never heard of those terms before."
+  ]
+}

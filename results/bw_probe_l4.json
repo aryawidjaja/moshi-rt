@@ -1,0 +1,24 @@
+{
+  "meta": {
+    "machine": "modal-L4",
+    "gpu": "NVIDIA L4",
+    "driver": "620.70.06",
+    "cuda": "12.8",
+    "python": "3.12.16",
+    "torch": "2.9.1+cu128",
+    "moshi": "0.2.13",
+    "torchao": "0.14.1",
+    "bitsandbytes": "0.49.2",
+    "triton": "3.5.1",
+    "git": "c5e8b13",
+    "seed": 42424242,
+    "command": "python bench/bw_probe.py --tag l4",
+    "env": {},
+    "date": "2026-11-23 18:41 UTC"
+  },
+  "what": "achievable DRAM bandwidth, median of 50, 2 GiB bf16 buffer",
+  "buffer_gb": 2.147,
+  "copy_gbs": 233.5,
+  "read_gbs": 260.9,
+  "datasheet_gbs": 300.0
+}

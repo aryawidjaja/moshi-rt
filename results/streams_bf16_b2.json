@@ -1,0 +1,163 @@
+{
+  "meta": {
+    "machine": "modal-L4",
+    "gpu": "NVIDIA L4",
+    "driver": "620.70.06",
+    "cuda": "12.8",
+    "python": "3.12.16",
+    "torch": "2.9.1+cu128",
+    "moshi": "0.2.13",
+    "torchao": "0.14.1",
+    "bitsandbytes": "0.49.2",
+    "triton": "3.5.1",
+    "git": "c5e8b13",
+    "seed": 42424242,
+    "command": "python bench/stream_bench.py --batch 2 --tag streams_bf16_b2",
+    "env": {},
+    "date": "2026-11-23 18:50 UTC"
+  },
+  "what": "per-frame latency budget on the moshi.server path, CUDA events per stage, ms",
+  "config": {
+    "batch": 2,
+    "dtype": "bf16",
+    "quant": "none",
+    "compile_temporal": false,
+    "mem_cap_gb": 0.0,
+    "paced": false,
+    "cuda_graphs": true,
+    "torch_compile": true,
+    "warmup_frames": 50,
+    "clips": 5,
+    "frames_per_clip": 375,
+    "hf_repo": "kyutai/moshiko-pytorch-bf16"
+  },
+  "frames_measured": 1821,
+  "frames_over_80ms": 1821,
+  "frames_over_80ms_pct": 100.0,
+  "realtime_strict": false,
+  "realtime_p99": false,
+  "paced_late_ms": null,
+  "stages_ms": {
+    "encode": {
+      "p50": 3.333,
+      "p95": 3.909,
+      "p99": 6.142,
+      "mean": 3.36,
+      "max": 12.056
+    },
+    "temporal": {
+      "p50": 72.531,
+      "p95": 72.738,
+      "p99": 72.865,
+      "mean": 72.478,
+      "max": 73.113
+    },
+    "text": {
+      "p50": 0.487,
+      "p95": 0.536,
+      "p99": 0.658,
+      "mean": 0.399,
+      "max": 1.844
+    },
+    "depth": {
+      "p50": 9.807,
+      "p95": 9.939,
+      "p99": 10.004,
+      "mean": 9.781,
+      "max": 10.147
+    },
+    "decode": {
+      "p50": 2.298,
+      "p95": 2.346,
+      "p99": 2.37,
+      "mean": 2.29,
+      "max": 2.416
+    },
+    "host": {
+      "p50": 0.217,
+      "p95": 0.273,
+      "p99": 0.644,
+      "mean": 0.185,
+      "max": 0.826
+    },
+    "frame": {
+      "p50": 88.483,
+      "p95": 89.429,
+      "p99": 91.61,
+      "mean": 88.532,
+      "max": 96.354
+    },
+    "wall": {
+      "p50": 88.531,
+      "p95": 89.492,
+      "p99": 91.659,
+      "mean": 88.575,
+      "max": 96.402
+    }
+  },
+  "per_clip_wall_p99": [
+    91.615,
+    91.505,
+    91.211,
+    92.116,
+    91.305
+  ],
+  "peak_mem_gb": {
+    "allocated": 19.133,
+    "reserved": 19.35,
+    "after_load": 15.77,
+    "device_used_now": 19.604
+  },
+  "lm_weight_gb": 15.375,
+  "gpu_telemetry": [
+    {
+      "sm_mhz": "2040",
+      "mem_mhz": "6251",
+      "power_w": "38.68",
+      "temp_c": "72.66",
+      "throttle": "0x0000000000000000"
+    },
+    {
+      "sm_mhz": "1830",
+      "mem_mhz": "6251",
+      "power_w": "73.34",
+      "temp_c": "77.88",
+      "throttle": "0x0000000000000004"
+    },
+    {
+      "sm_mhz": "1620",
+      "mem_mhz": "6251",
+      "power_w": "71.20",
+      "temp_c": "80.62",
+      "throttle": "0x0000000000000004"
+    },
+    {
+      "sm_mhz": "1665",
+      "mem_mhz": "6251",
+      "power_w": "72.84",
+      "temp_c": "81.25",
+      "throttle": "0x0000000000000004"
+    },
+    {
+      "sm_mhz": "1635",
+      "mem_mhz": "6251",
+      "power_w": "72.75",
+      "temp_c": "82.00",
+      "throttle": "0x0000000000000004"
+    },
+    {
+      "sm_mhz": "1695",
+      "mem_mhz": "6251",
+      "power_w": "70.56",
+      "temp_c": "81.19",
+      "throttle": "0x0000000000000004"
+    }
+  ],
+  "moshi_text": [
+    "Hello, what's up? I'm just so tired. I' been eating so much food. I feel like I can't control myself. I just want to lay down and take a nap.",
+    "Hello, how are you today? I know the feeling. It's a tough one. It's a sad one. It's tough to watch someone in the state of grief.",
+    "Hey, how are you doing? Oh, I see. So you are too daring.",
+    "Hello, what's going on? That sounds delicious. What time is dinner? That sounds amazing. How do you make it? Wow, this is a story that has a happy ending. I thinking about a conversation I had with someone recently. What would you like",
+    "Hello, how are you today? I'm doing okay, just a little bit stressed about an upcoming exam."
+  ]
+}

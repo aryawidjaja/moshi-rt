@@ -1,0 +1,163 @@
+{
+  "meta": {
+    "machine": "modal-L4",
+    "gpu": "NVIDIA L4",
+    "driver": "610.57.04",
+    "cuda": "12.8",
+    "python": "3.12.16",
+    "torch": "2.9.1+cu128",
+    "moshi": "0.2.13",
+    "torchao": "0.14.1",
+    "bitsandbytes": "0.49.2",
+    "triton": "3.5.1",
+    "git": "7f5d4cf",
+    "seed": 42424242,
+    "command": "python bench/stream_bench.py --quant w8triton --tag w8triton",
+    "env": {},
+    "date": "2026-11-23 19:11 UTC"
+  },
+  "what": "per-frame latency budget on the moshi.server path, CUDA events per stage, ms",
+  "config": {
+    "batch": 1,
+    "dtype": "bf16",
+    "quant": "w8triton",
+    "compile_temporal": false,
+    "mem_cap_gb": 0.0,
+    "paced": false,
+    "cuda_graphs": true,
+    "torch_compile": true,
+    "warmup_frames": 50,
+    "clips": 5,
+    "frames_per_clip": 375,
+    "hf_repo": "kyutai/moshiko-pytorch-bf16"
+  },
+  "frames_measured": 1821,
+  "frames_over_80ms": 0,
+  "frames_over_80ms_pct": 0.0,
+  "realtime_strict": true,
+  "realtime_p99": true,
+  "paced_late_ms": null,
+  "stages_ms": {
+    "encode": {
+      "p50": 5.237,
+      "p95": 5.825,
+      "p99": 6.723,
+      "mean": 5.227,
+      "max": 8.281
+    },
+    "temporal": {
+      "p50": 36.475,
+      "p95": 36.697,
+      "p99": 36.774,
+      "mean": 36.496,
+      "max": 37.079
+    },
+    "text": {
+      "p50": 0.658,
+      "p95": 0.727,
+      "p99": 0.858,
+      "mean": 0.663,
+      "max": 1.347
+    },
+    "depth": {
+      "p50": 9.378,
+      "p95": 9.541,
+      "p99": 9.599,
+      "mean": 9.38,
+      "max": 9.799
+    },
+    "decode": {
+      "p50": 2.212,
+      "p95": 2.295,
+      "p99": 2.314,
+      "mean": 2.219,
+      "max": 2.39
+    },
+    "host": {
+      "p50": 0.244,
+      "p95": 0.411,
+      "p99": 0.563,
+      "mean": 0.26,
+      "max": 1.42
+    },
+    "frame": {
+      "p50": 54.234,
+      "p95": 55.029,
+      "p99": 56.166,
+      "mean": 54.296,
+      "max": 57.729
+    },
+    "wall": {
+      "p50": 54.308,
+      "p95": 55.106,
+      "p99": 56.255,
+      "mean": 54.369,
+      "max": 57.819
+    }
+  },
+  "per_clip_wall_p99": [
+    55.343,
+    56.568,
+    55.22,
+    55.191,
+    55.765
+  ],
+  "peak_mem_gb": {
+    "allocated": 11.103,
+    "reserved": 11.339,
+    "after_load": 9.215,
+    "device_used_now": 11.418
+  },
+  "lm_weight_gb": 8.804,
+  "gpu_telemetry": [
+    {
+      "sm_mhz": "2040",
+      "mem_mhz": "6251",
+      "power_w": "36.25",
+      "temp_c": "76",
+      "throttle": "0x0000000000000000"
+    },
+    {
+      "sm_mhz": "1575",
+      "mem_mhz": "6251",
+      "power_w": "70.58",
+      "temp_c": "81",
+      "throttle": "0x0000000000000004"
+    },
+    {
+      "sm_mhz": "1575",
+      "mem_mhz": "6251",
+      "power_w": "72.97",
+      "temp_c": "75",
+      "throttle": "0x0000000000000004"
+    },
+    {
+      "sm_mhz": "1710",
+      "mem_mhz": "6251",
+      "power_w": "73.03",
+      "temp_c": "74",
+      "throttle": "0x0000000000000004"
+    },
+    {
+      "sm_mhz": "1620",
+      "mem_mhz": "6251",
+      "power_w": "70.85",
+      "temp_c": "75",
+      "throttle": "0x0000000000000004"
+    },
+    {
+      "sm_mhz": "1650",
+      "mem_mhz": "6251",
+      "power_w": "70.88",
+      "temp_c": "78",
+      "throttle": "0x0000000000000004"
+    }
+  ],
+  "moshi_text": [
+    "Hello, how was your day? What's the problem? I'm not sure. I'm not really sure. What's the water? Yes, that's a popular",
+    "Hello, how are you today? \"' not strange at all. It's beauty. It's life's most beautiful creation. \"'No, it's beauty.",
+    "Hey, how are you doing? Yeah, blue is a very popular color. M hmm. Mm hmm. hmm.",
+    "Hello, what's going on? Okay, what about potatoes? She was thin, pale, and her hair was long and black.",
+    "Hello, how are you today? Yeah, that's true. They were part of a single political unit. Yeah, that's because the French Revolution and the French Revolution."
+  ]
+}

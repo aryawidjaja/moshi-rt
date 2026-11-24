@@ -1,0 +1,164 @@
+{
+  "meta": {
+    "machine": "modal-L4",
+    "gpu": "NVIDIA L4",
+    "driver": "610.57.04",
+    "cuda": "12.8",
+    "python": "3.12.16",
+    "torch": "2.9.1+cu128",
+    "moshi": "0.2.13",
+    "torchao": "0.14.1",
+    "bitsandbytes": "0.49.2",
+    "triton": "3.5.1",
+    "git": "27a7a88",
+    "seed": 42424242,
+    "command": "python bench/stream_bench.py --quant w8triton --kv int8 --tag streams_w8kv8_b1",
+    "env": {},
+    "date": "2026-11-23 19:38 UTC"
+  },
+  "what": "per-frame latency budget on the moshi.server path, CUDA events per stage, ms",
+  "config": {
+    "batch": 1,
+    "dtype": "bf16",
+    "quant": "w8triton",
+    "compile_temporal": false,
+    "mem_cap_gb": 0.0,
+    "paced": false,
+    "kv": "int8",
+    "cuda_graphs": true,
+    "torch_compile": true,
+    "warmup_frames": 50,
+    "clips": 5,
+    "frames_per_clip": 375,
+    "hf_repo": "kyutai/moshiko-pytorch-bf16"
+  },
+  "frames_measured": 1821,
+  "frames_over_80ms": 0,
+  "frames_over_80ms_pct": 0.0,
+  "realtime_strict": true,
+  "realtime_p99": true,
+  "paced_late_ms": null,
+  "stages_ms": {
+    "encode": {
+      "p50": 5.415,
+      "p95": 6.182,
+      "p99": 6.801,
+      "mean": 5.392,
+      "max": 8.057
+    },
+    "temporal": {
+      "p50": 33.708,
+      "p95": 33.838,
+      "p99": 33.896,
+      "mean": 33.715,
+      "max": 34.449
+    },
+    "text": {
+      "p50": 0.681,
+      "p95": 0.767,
+      "p99": 0.859,
+      "mean": 0.683,
+      "max": 1.501
+    },
+    "depth": {
+      "p50": 9.369,
+      "p95": 9.518,
+      "p99": 9.584,
+      "mean": 9.371,
+      "max": 9.711
+    },
+    "decode": {
+      "p50": 2.224,
+      "p95": 2.291,
+      "p99": 2.33,
+      "mean": 2.225,
+      "max": 2.393
+    },
+    "host": {
+      "p50": 0.26,
+      "p95": 0.423,
+      "p99": 0.506,
+      "mean": 0.282,
+      "max": 0.968
+    },
+    "frame": {
+      "p50": 51.756,
+      "p95": 52.607,
+      "p99": 53.479,
+      "mean": 51.72,
+      "max": 54.716
+    },
+    "wall": {
+      "p50": 51.841,
+      "p95": 52.695,
+      "p99": 53.565,
+      "mean": 51.799,
+      "max": 54.802
+    }
+  },
+  "per_clip_wall_p99": [
+    53.858,
+    53.832,
+    53.554,
+    51.854,
+    52.68
+  ],
+  "peak_mem_gb": {
+    "allocated": 10.367,
+    "reserved": 10.57,
+    "after_load": 9.215,
+    "device_used_now": 10.683
+  },
+  "lm_weight_gb": 8.804,
+  "gpu_telemetry": [
+    {
+      "sm_mhz": "2040",
+      "mem_mhz": "6251",
+      "power_w": "33.53",
+      "temp_c": "69",
+      "throttle": "0x0000000000000000"
+    },
+    {
+      "sm_mhz": "1635",
+      "mem_mhz": "6251",
+      "power_w": "71.16",
+      "temp_c": "79",
+      "throttle": "0x0000000000000004"
+    },
+    {
+      "sm_mhz": "1755",
+      "mem_mhz": "6251",
+      "power_w": "71.45",
+      "temp_c": "80",
+      "throttle": "0x0000000000000004"
+    },
+    {
+      "sm_mhz": "1650",
+      "mem_mhz": "6251",
+      "power_w": "71.95",
+      "temp_c": "77",
+      "throttle": "0x0000000000000004"
+    },
+    {
+      "sm_mhz": "1590",
+      "mem_mhz": "6251",
+      "power_w": "72.83",
+      "temp_c": "75",
+      "throttle": "0x0000000000000004"
+    },
+    {
+      "sm_mhz": "1635",
+      "mem_mhz": "6251",
+      "power_w": "71.35",
+      "temp_c": "75",
+      "throttle": "0x0000000000000004"
+    }
+  ],
+  "moshi_text": [
+    "Hello, what's up? I'm fine. Thanks for asking. How about you? Yeah, I heard that from our mute friend. Well, I guess I' not that special.",
+    "Hello, how are you today? \"'Wow, really? \"' looks so serene and peaceful, like a dream.\" \"'No way, I can't believe it.\" \"'That's harsh, I couldn't imagine.\"",
+    "Hey, how your day? How do you like me? I'm you looking at you?",
+    "Hey, how can I help you? Oh, that sounds delicious. What's in it? That does sound delicious. How much does it cost? That's beautiful. You're describing the atmosphere of the brothel. Yeah, I'm doing great. How about you? Oh cool. What do you want to do?",
+    "Hello, how are you today? Yeah, I've heard that too. It's not a fair thing. That's interesting. I've never heard of those terms before."
+  ]
+}

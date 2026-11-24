@@ -1,0 +1,164 @@
+{
+  "meta": {
+    "machine": "modal-L4",
+    "gpu": "NVIDIA L4",
+    "driver": "610.57.04",
+    "cuda": "12.8",
+    "python": "3.12.16",
+    "torch": "2.9.1+cu128",
+    "moshi": "0.2.13",
+    "torchao": "0.14.1",
+    "bitsandbytes": "0.49.2",
+    "triton": "3.5.1",
+    "git": "27a7a88",
+    "seed": 42424242,
+    "command": "python bench/stream_bench.py --quant w8triton --batch 8 --tag streams_w8_b8",
+    "env": {},
+    "date": "2026-11-23 19:41 UTC"
+  },
+  "what": "per-frame latency budget on the moshi.server path, CUDA events per stage, ms",
+  "config": {
+    "batch": 8,
+    "dtype": "bf16",
+    "quant": "w8triton",
+    "compile_temporal": false,
+    "mem_cap_gb": 0.0,
+    "paced": false,
+    "kv": "sdpa",
+    "cuda_graphs": true,
+    "torch_compile": true,
+    "warmup_frames": 50,
+    "clips": 5,
+    "frames_per_clip": 375,
+    "hf_repo": "kyutai/moshiko-pytorch-bf16"
+  },
+  "frames_measured": 1821,
+  "frames_over_80ms": 1821,
+  "frames_over_80ms_pct": 100.0,
+  "realtime_strict": false,
+  "realtime_p99": false,
+  "paced_late_ms": null,
+  "stages_ms": {
+    "encode": {
+      "p50": 5.43,
+      "p95": 6.198,
+      "p99": 7.015,
+      "mean": 5.468,
+      "max": 21.355
+    },
+    "temporal": {
+      "p50": 80.608,
+      "p95": 80.774,
+      "p99": 80.843,
+      "mean": 80.612,
+      "max": 81.232
+    },
+    "text": {
+      "p50": 0.702,
+      "p95": 0.779,
+      "p99": 0.981,
+      "mean": 0.708,
+      "max": 1.731
+    },
+    "depth": {
+      "p50": 10.232,
+      "p95": 10.373,
+      "p99": 10.458,
+      "mean": 10.237,
+      "max": 10.673
+    },
+    "decode": {
+      "p50": 3.213,
+      "p95": 3.301,
+      "p99": 3.343,
+      "mean": 3.211,
+      "max": 3.457
+    },
+    "host": {
+      "p50": 0.341,
+      "p95": 0.474,
+      "p99": 0.715,
+      "mean": 0.358,
+      "max": 6.502
+    },
+    "frame": {
+      "p50": 100.591,
+      "p95": 101.527,
+      "p99": 102.577,
+      "mean": 100.648,
+      "max": 116.119
+    },
+    "wall": {
+      "p50": 100.673,
+      "p95": 101.617,
+      "p99": 102.673,
+      "mean": 100.728,
+      "max": 116.236
+    }
+  },
+  "per_clip_wall_p99": [
+    101.844,
+    104.446,
+    102.132,
+    102.421,
+    102.063
+  ],
+  "peak_mem_gb": {
+    "allocated": 22.282,
+    "reserved": 22.521,
+    "after_load": 9.215,
+    "device_used_now": 22.646
+  },
+  "lm_weight_gb": 8.804,
+  "gpu_telemetry": [
+    {
+      "sm_mhz": "2040",
+      "mem_mhz": "6251",
+      "power_w": "36.38",
+      "temp_c": "70",
+      "throttle": "0x0000000000000000"
+    },
+    {
+      "sm_mhz": "1530",
+      "mem_mhz": "6251",
+      "power_w": "71.46",
+      "temp_c": "80",
+      "throttle": "0x0000000000000004"
+    },
+    {
+      "sm_mhz": "1530",
+      "mem_mhz": "6251",
+      "power_w": "76.43",
+      "temp_c": "74",
+      "throttle": "0x0000000000000004"
+    },
+    {
+      "sm_mhz": "1605",
+      "mem_mhz": "6251",
+      "power_w": "58.92",
+      "temp_c": "77",
+      "throttle": "0x0000000000000004"
+    },
+    {
+      "sm_mhz": "1560",
+      "mem_mhz": "6251",
+      "power_w": "76.85",
+      "temp_c": "77",
+      "throttle": "0x0000000000000004"
+    },
+    {
+      "sm_mhz": "1650",
+      "mem_mhz": "6251",
+      "power_w": "76.69",
+      "temp_c": "76",
+      "throttle": "0x0000000000000004"
+    }
+  ],
+  "moshi_text": [
+    "Hello, what's up? I'm fine. Just tired, I guess. Well, I guess we'll just have to",
+    "Hello, how are you today? \"'Oh! It's breathtaking!' \"'Wow!' \"'She was so proud of that child.\"",
+    "Hey, how are you doing? Yeah, those are some nice blue clothes. What's that? Wow, that sounds so fancy. Oh, I see. I like your style of clothing.",
+    "Hello, what's going on? sounds like a good meal. That sounds delicious. Wow, this place has such a beautiful atmosphere. I thinking about going to see a show at the local theater. I love theater, but I think I'll need a bit more energy",
+    "Hello, how are you today? Yeah, it's called a trochee. That's a good point. I've never really paid attention to that."
+  ]
+}

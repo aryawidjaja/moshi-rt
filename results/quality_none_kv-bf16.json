@@ -1,0 +1,60 @@
+{
+  "meta": {
+    "machine": "modal-L4",
+    "gpu": "NVIDIA L4",
+    "driver": "620.70.06",
+    "cuda": "12.8",
+    "python": "3.12.16",
+    "torch": "2.9.1+cu128",
+    "moshi": "0.2.13",
+    "torchao": "0.14.1",
+    "bitsandbytes": "0.49.2",
+    "triton": "3.5.1",
+    "git": "27a7a88",
+    "seed": 42424242,
+    "command": "python quant/teacher_force.py --quant none --kv bf16",
+    "env": {},
+    "date": "2026-11-23 19:42 UTC"
+  },
+  "text": {
+    "kl_mean": 7.69456964917481e-05,
+    "kl_p99": 0.0016025360673666,
+    "top1_agree": 0.9980000257492065,
+    "word_steps": 130,
+    "top1_agree_words": 0.9769230484962463,
+    "kl_mean_words": 0.00021023773297201842
+  },
+  "audio": {
+    "kl_mean": 0.000494602310936898,
+    "kl_p99": 0.0045924438163638115,
+    "top1_agree": 0.9887499809265137,
+    "per_codebook_kl": [
+      0.00023,
+      0.00048,
+      0.00042,
+      0.00053,
+      0.00054,
+      0.00058,
+      0.00058,
+      0.0006
+    ],
+    "per_codebook_top1": [
+      0.9947,
+      0.9893,
+      0.9893,
+      0.9853,
+      0.9887,
+      0.9853,
+      0.9907,
+      0.9867
+    ]
+  },
+  "steps": 1500,
+  "what": "teacher-forced next-token agreement vs bf16 on the 5 clips, same token history",
+  "config": {
+    "quant": "none",
+    "kv": "bf16",
+    "steps_per_clip": 300,
+    "clips": 5
+  }
+}

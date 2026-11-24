@@ -1,0 +1,164 @@
+{
+  "meta": {
+    "machine": "modal-L4",
+    "gpu": "NVIDIA L4",
+    "driver": "610.57.04",
+    "cuda": "12.8",
+    "python": "3.12.16",
+    "torch": "2.9.1+cu128",
+    "moshi": "0.2.13",
+    "torchao": "0.14.1",
+    "bitsandbytes": "0.49.2",
+    "triton": "3.5.1",
+    "git": "0f37d4a",
+    "seed": 42424242,
+    "command": "python bench/stream_bench.py --quant int4wo-hqq-g32 --kv int8 --batch 10 --tag streams_i4kv8_b10",
+    "env": {},
+    "date": "2026-11-23 20:09 UTC"
+  },
+  "what": "per-frame latency budget on the moshi.server path, CUDA events per stage, ms",
+  "config": {
+    "batch": 10,
+    "dtype": "bf16",
+    "quant": "int4wo-hqq-g32",
+    "compile_temporal": false,
+    "mem_cap_gb": 0.0,
+    "paced": false,
+    "kv": "int8",
+    "cuda_graphs": true,
+    "torch_compile": true,
+    "warmup_frames": 50,
+    "clips": 5,
+    "frames_per_clip": 375,
+    "hf_repo": "kyutai/moshiko-pytorch-bf16"
+  },
+  "frames_measured": 1821,
+  "frames_over_80ms": 0,
+  "frames_over_80ms_pct": 0.0,
+  "realtime_strict": true,
+  "realtime_p99": true,
+  "paced_late_ms": null,
+  "stages_ms": {
+    "encode": {
+      "p50": 4.888,
+      "p95": 5.376,
+      "p99": 5.756,
+      "mean": 4.911,
+      "max": 6.821
+    },
+    "temporal": {
+      "p50": 54.64,
+      "p95": 54.896,
+      "p99": 55.01,
+      "mean": 54.636,
+      "max": 55.351
+    },
+    "text": {
+      "p50": 0.661,
+      "p95": 0.711,
+      "p99": 0.797,
+      "mean": 0.665,
+      "max": 1.293
+    },
+    "depth": {
+      "p50": 10.478,
+      "p95": 10.762,
+      "p99": 10.863,
+      "mean": 10.46,
+      "max": 11.092
+    },
+    "decode": {
+      "p50": 3.433,
+      "p95": 3.599,
+      "p99": 3.651,
+      "mean": 3.432,
+      "max": 3.747
+    },
+    "host": {
+      "p50": 0.242,
+      "p95": 0.342,
+      "p99": 0.512,
+      "mean": 0.254,
+      "max": 0.973
+    },
+    "frame": {
+      "p50": 74.424,
+      "p95": 75.129,
+      "p99": 75.609,
+      "mean": 74.407,
+      "max": 76.818
+    },
+    "wall": {
+      "p50": 74.484,
+      "p95": 75.188,
+      "p99": 75.688,
+      "mean": 74.466,
+      "max": 76.89
+    }
+  },
+  "per_clip_wall_p99": [
+    75.699,
+    75.625,
+    75.57,
+    75.325,
+    75.752
+  ],
+  "peak_mem_gb": {
+    "allocated": 15.684,
+    "reserved": 15.94,
+    "after_load": 6.884,
+    "device_used_now": 16.264
+  },
+  "lm_weight_gb": 6.333,
+  "gpu_telemetry": [
+    {
+      "sm_mhz": "2040",
+      "mem_mhz": "6251",
+      "power_w": "38.79",
+      "temp_c": "78",
+      "throttle": "0x0000000000000000"
+    },
+    {
+      "sm_mhz": "1470",
+      "mem_mhz": "6251",
+      "power_w": "70.79",
+      "temp_c": "80",
+      "throttle": "0x0000000000000004"
+    },
+    {
+      "sm_mhz": "1485",
+      "mem_mhz": "6251",
+      "power_w": "71.95",
+      "temp_c": "76",
+      "throttle": "0x0000000000000004"
+    },
+    {
+      "sm_mhz": "1590",
+      "mem_mhz": "6251",
+      "power_w": "72.44",
+      "temp_c": "75",
+      "throttle": "0x0000000000000004"
+    },
+    {
+      "sm_mhz": "1575",
+      "mem_mhz": "6251",
+      "power_w": "70.06",
+      "temp_c": "77",
+      "throttle": "0x0000000000000004"
+    },
+    {
+      "sm_mhz": "1575",
+      "mem_mhz": "6251",
+      "power_w": "73.69",
+      "temp_c": "77",
+      "throttle": "0x0000000000000004"
+    }
+  ],
+  "moshi_text": [
+    "Hi there, what's going on? What's going on with your hand? I'm shocked. What's happening? I'm going to report this. This is just... Oh, I'm going to report this.",
+    "Hello, how can I help you? It was as if the garden's eye had taken pity on this woman, and the child's birth was the proof of God's will for her.",
+    "Hey, how was your day? Wow, that's so cool! What's his hair like? That' so neat! I had no idea he had such a cool style. Oh, and what about his eyes?",
+    "Hey there, what's going on? You wouldn't happen to know where I can find a good plate of meat, the way. I' not in the mood for a good night tonight.",
+    "Hello, how is it going? Yes, I have heard that term before. What does it mean?"
+  ]
+}

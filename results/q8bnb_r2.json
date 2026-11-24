@@ -1,0 +1,116 @@
+{
+  "meta": {
+    "machine": "modal-L4",
+    "gpu": "NVIDIA L4",
+    "driver": "620.70.06",
+    "cuda": "12.8",
+    "python": "3.12.16",
+    "torch": "2.9.1+cu128",
+    "moshi": "0.2.13",
+    "torchao": "0.14.1",
+    "bitsandbytes": "0.49.2",
+    "triton": "3.5.1",
+    "git": "e69b470",
+    "seed": 42424242,
+    "command": "python bench/stream_bench.py --quant q8bnb --tag q8bnb",
+    "env": {},
+    "note": "second run of the same command; saved under a separate name",
+    "date": "2026-11-23 19:06 UTC"
+  },
+  "what": "per-frame latency budget on the moshi.server path, CUDA events per stage, ms",
+  "config": {
+    "batch": 1,
+    "dtype": "bf16",
+    "quant": "q8bnb",
+    "compile_temporal": false,
+    "mem_cap_gb": 0.0,
+    "paced": false,
+    "cuda_graphs": true,
+    "torch_compile": true,
+    "warmup_frames": 50,
+    "clips": 5,
+    "frames_per_clip": 375,
+    "hf_repo": "kyutai/moshiko-pytorch-q8"
+  },
+  "frames_measured": 1821,
+  "frames_over_80ms": 0,
+  "frames_over_80ms_pct": 0.0,
+  "stages_ms": {
+    "encode": {
+      "p50": 2.802,
+      "p95": 2.89,
+      "p99": 3.496,
+      "mean": 2.825,
+      "max": 4.177
+    },
+    "temporal": {
+      "p50": 39.426,
+      "p95": 39.582,
+      "p99": 39.64,
+      "mean": 39.43,
+      "max": 39.767
+    },
+    "text": {
+      "p50": 0.392,
+      "p95": 0.434,
+      "p99": 0.506,
+      "mean": 0.394,
+      "max": 1.212
+    },
+    "depth": {
+      "p50": 7.96,
+      "p95": 8.119,
+      "p99": 8.144,
+      "mean": 7.969,
+      "max": 8.423
+    },
+    "decode": {
+      "p50": 2.065,
+      "p95": 2.101,
+      "p99": 2.111,
+      "mean": 2.063,
+      "max": 2.184
+    },
+    "host": {
+      "p50": 0.077,
+      "p95": 0.096,
+      "p99": 0.245,
+      "mean": 0.082,
+      "max": 0.613
+    },
+    "frame": {
+      "p50": 52.772,
+      "p95": 53.138,
+      "p99": 53.536,
+      "mean": 52.798,
+      "max": 54.266
+    },
+    "wall": {
+      "p50": 52.798,
+      "p95": 53.169,
+      "p99": 53.564,
+      "mean": 52.825,
+      "max": 54.325
+    }
+  },
+  "per_clip_wall_p99": [
+    53.348,
+    53.972,
+    53.148,
+    53.445,
+    53.598
+  ],
+  "peak_mem_gb": {
+    "allocated": 16.454,
+    "reserved": 16.523,
+    "after_load": 16.454
+  },
+  "lm_weight_gb": 8.009,
+  "moshi_text": [
+    "Hey, what's up? What's the matter? You seem down today. Oh no, that can't be good. What happened? What? Did you try to fix it? I know you can do that. Oh, I'm sorry to hear that. That must have been rough",
+    "<s> Hi there, what's going on? I saw a woman who was so sad. I hope you can find some peace in",
+    "Hello, what's up? I'm okay. Oh, okay. Thank you",
+    "what's up? Yes, there is.",
+    "day, how are you doing? I' not going to help you with that. I' not going to help you with that. Okay. I not going to help you with that. Why? No, I won't do that. No. No."
+  ]
+}

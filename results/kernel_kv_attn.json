@@ -1,0 +1,268 @@
+{
+  "meta": {
+    "machine": "modal-L4",
+    "gpu": "NVIDIA L4",
+    "driver": "610.57.04",
+    "cuda": "12.8",
+    "python": "3.12.16",
+    "torch": "2.9.1+cu128",
+    "moshi": "0.2.13",
+    "torchao": "0.14.1",
+    "bitsandbytes": "0.49.2",
+    "triton": "3.5.1",
+    "git": "2da6a70",
+    "seed": 42424242,
+    "command": "python kernels/test_kv_attn.py",
+    "env": {},
+    "date": "2026-11-23 19:26 UTC"
+  },
+  "what": "fused ring-KV decode attention vs moshi RingKVCache+mask+SDPA; 32 temporal layers, H=32, D=128, capacity 3000; CUDA-graphed frame; attention part only",
+  "max_abs_err_vs_moshi": {
+    "bf16": 0.01562,
+    "bf16-len": 0.01562,
+    "int8": 0.03125,
+    "int8-len": 0.03125
+  },
+  "bench": [
+    {
+      "batch": 1,
+      "used_slots": 375,
+      "mode": "sdpa",
+      "ms_per_frame_32_layers": 7.71,
+      "speedup_vs_sdpa": 1.0,
+      "kv_cache_mb": 1572.9
+    },
+    {
+      "batch": 1,
+      "used_slots": 375,
+      "mode": "bf16",
+      "ms_per_frame_32_layers": 6.814,
+      "speedup_vs_sdpa": 1.13,
+      "kv_cache_mb": 1572.9
+    },
+    {
+      "batch": 1,
+      "used_slots": 375,
+      "mode": "bf16-len",
+      "ms_per_frame_32_layers": 1.512,
+      "speedup_vs_sdpa": 5.1,
+      "kv_cache_mb": 1572.9
+    },
+    {
+      "batch": 1,
+      "used_slots": 375,
+      "mode": "int8",
+      "ms_per_frame_32_layers": 4.996,
+      "speedup_vs_sdpa": 1.54,
+      "kv_cache_mb": 811.0
+    },
+    {
+      "batch": 1,
+      "used_slots": 375,
+      "mode": "int8-len",
+      "ms_per_frame_32_layers": 2.249,
+      "speedup_vs_sdpa": 3.43,
+      "kv_cache_mb": 811.0
+    },
+    {
+      "batch": 1,
+      "used_slots": 3000,
+      "mode": "sdpa",
+      "ms_per_frame_32_layers": 7.699,
+      "speedup_vs_sdpa": 1.0,
+      "kv_cache_mb": 1572.9
+    },
+    {
+      "batch": 1,
+      "used_slots": 3000,
+      "mode": "bf16",
+      "ms_per_frame_32_layers": 6.81,
+      "speedup_vs_sdpa": 1.13,
+      "kv_cache_mb": 1572.9
+    },
+    {
+      "batch": 1,
+      "used_slots": 3000,
+      "mode": "bf16-len",
+      "ms_per_frame_32_layers": 6.82,
+      "speedup_vs_sdpa": 1.13,
+      "kv_cache_mb": 1572.9
+    },
+    {
+      "batch": 1,
+      "used_slots": 3000,
+      "mode": "int8",
+      "ms_per_frame_32_layers": 4.993,
+      "speedup_vs_sdpa": 1.54,
+      "kv_cache_mb": 811.0
+    },
+    {
+      "batch": 1,
+      "used_slots": 3000,
+      "mode": "int8-len",
+      "ms_per_frame_32_layers": 5.005,
+      "speedup_vs_sdpa": 1.54,
+      "kv_cache_mb": 811.0
+    },
+    {
+      "batch": 4,
+      "used_slots": 375,
+      "mode": "sdpa",
+      "ms_per_frame_32_layers": 28.091,
+      "speedup_vs_sdpa": 1.0,
+      "kv_cache_mb": 6291.5
+    },
+    {
+      "batch": 4,
+      "used_slots": 375,
+      "mode": "bf16",
+      "ms_per_frame_32_layers": 25.1,
+      "speedup_vs_sdpa": 1.12,
+      "kv_cache_mb": 6291.5
+    },
+    {
+      "batch": 4,
+      "used_slots": 375,
+      "mode": "bf16-len",
+      "ms_per_frame_32_layers": 4.036,
+      "speedup_vs_sdpa": 6.96,
+      "kv_cache_mb": 6291.5
+    },
+    {
+      "batch": 4,
+      "used_slots": 375,
+      "mode": "int8",
+      "ms_per_frame_32_layers": 14.629,
+      "speedup_vs_sdpa": 1.92,
+      "kv_cache_mb": 3244.0
+    },
+    {
+      "batch": 4,
+      "used_slots": 375,
+      "mode": "int8-len",
+      "ms_per_frame_32_layers": 3.672,
+      "speedup_vs_sdpa": 7.65,
+      "kv_cache_mb": 3244.0
+    },
+    {
+      "batch": 4,
+      "used_slots": 3000,
+      "mode": "sdpa",
+      "ms_per_frame_32_layers": 28.097,
+      "speedup_vs_sdpa": 1.0,
+      "kv_cache_mb": 6291.5
+    },
+    {
+      "batch": 4,
+      "used_slots": 3000,
+      "mode": "bf16",
+      "ms_per_frame_32_layers": 25.097,
+      "speedup_vs_sdpa": 1.12,
+      "kv_cache_mb": 6291.5
+    },
+    {
+      "batch": 4,
+      "used_slots": 3000,
+      "mode": "bf16-len",
+      "ms_per_frame_32_layers": 25.066,
+      "speedup_vs_sdpa": 1.12,
+      "kv_cache_mb": 6291.5
+    },
+    {
+      "batch": 4,
+      "used_slots": 3000,
+      "mode": "int8",
+      "ms_per_frame_32_layers": 14.635,
+      "speedup_vs_sdpa": 1.92,
+      "kv_cache_mb": 3244.0
+    },
+    {
+      "batch": 4,
+      "used_slots": 3000,
+      "mode": "int8-len",
+      "ms_per_frame_32_layers": 14.648,
+      "speedup_vs_sdpa": 1.92,
+      "kv_cache_mb": 3244.0
+    },
+    {
+      "batch": 8,
+      "used_slots": 375,
+      "mode": "sdpa",
+      "ms_per_frame_32_layers": 51.012,
+      "speedup_vs_sdpa": 1.0,
+      "kv_cache_mb": 12582.9
+    },
+    {
+      "batch": 8,
+      "used_slots": 375,
+      "mode": "bf16",
+      "ms_per_frame_32_layers": 49.506,
+      "speedup_vs_sdpa": 1.03,
+      "kv_cache_mb": 12582.9
+    },
+    {
+      "batch": 8,
+      "used_slots": 375,
+      "mode": "bf16-len",
+      "ms_per_frame_32_layers": 7.244,
+      "speedup_vs_sdpa": 7.04,
+      "kv_cache_mb": 12582.9
+    },
+    {
+      "batch": 8,
+      "used_slots": 375,
+      "mode": "int8",
+      "ms_per_frame_32_layers": 27.689,
+      "speedup_vs_sdpa": 1.84,
+      "kv_cache_mb": 6488.1
+    },
+    {
+      "batch": 8,
+      "used_slots": 375,
+      "mode": "int8-len",
+      "ms_per_frame_32_layers": 5.437,
+      "speedup_vs_sdpa": 9.38,
+      "kv_cache_mb": 6488.1
+    },
+    {
+      "batch": 8,
+      "used_slots": 3000,
+      "mode": "sdpa",
+      "ms_per_frame_32_layers": 51.052,
+      "speedup_vs_sdpa": 1.0,
+      "kv_cache_mb": 12582.9
+    },
+    {
+      "batch": 8,
+      "used_slots": 3000,
+      "mode": "bf16",
+      "ms_per_frame_32_layers": 49.494,
+      "speedup_vs_sdpa": 1.03,
+      "kv_cache_mb": 12582.9
+    },
+    {
+      "batch": 8,
+      "used_slots": 3000,
+      "mode": "bf16-len",
+      "ms_per_frame_32_layers": 49.471,
+      "speedup_vs_sdpa": 1.03,
+      "kv_cache_mb": 12582.9
+    },
+    {
+      "batch": 8,
+      "used_slots": 3000,
+      "mode": "int8",
+      "ms_per_frame_32_layers": 27.718,
+      "speedup_vs_sdpa": 1.84,
+      "kv_cache_mb": 6488.1
+    },
+    {
+      "batch": 8,
+      "used_slots": 3000,
+      "mode": "int8-len",
+      "ms_per_frame_32_layers": 27.75,
+      "speedup_vs_sdpa": 1.84,
+      "kv_cache_mb": 6488.1
+    }
+  ]
+}

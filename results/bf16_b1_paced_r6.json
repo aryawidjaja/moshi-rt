@@ -1,0 +1,228 @@
+{
+  "meta": {
+    "machine": "modal-L4",
+    "gpu": "NVIDIA L4",
+    "driver": "610.57.04",
+    "cuda": "12.8",
+    "python": "3.12.16",
+    "torch": "2.9.1+cu128",
+    "moshi": "0.2.13",
+    "torchao": "0.14.1",
+    "bitsandbytes": "0.49.2",
+    "triton": "3.5.1",
+    "git": "06696cf",
+    "seed": 42424242,
+    "command": "python bench/stream_bench.py --paced --tag bf16_b1_paced_r6",
+    "env": {},
+    "date": "2026-11-24 05:01 UTC"
+  },
+  "what": "per-frame latency budget on the moshi.server path, CUDA events per stage, ms",
+  "config": {
+    "batch": 1,
+    "dtype": "bf16",
+    "quant": "none",
+    "compile_temporal": false,
+    "mem_cap_gb": 0.0,
+    "paced": true,
+    "kv": "sdpa",
+    "pacing": "restart after warm-up and at each clip",
+    "cuda_graphs": true,
+    "torch_compile": true,
+    "warmup_frames": 50,
+    "clips": 5,
+    "frames_per_clip": 375,
+    "hf_repo": "kyutai/moshiko-pytorch-bf16"
+  },
+  "frames_measured": 1821,
+  "frames_over_80ms": 5,
+  "frames_over_80ms_pct": 0.275,
+  "realtime_strict": false,
+  "realtime_p99": true,
+  "paced_late_ms": {
+    "p50": 0.0,
+    "p95": 0.0,
+    "p99": 0.0,
+    "mean": 0.012,
+    "max": 4.085
+  },
+  "late_frames": [
+    {
+      "clip": 1,
+      "frame": 79.94,
+      "encode": 5.74,
+      "temporal": 60.4,
+      "text": 0.74,
+      "depth": 9.1,
+      "decode": 2.1,
+      "host": 1.79,
+      "wall": 80.16
+    },
+    {
+      "clip": 1,
+      "frame": 81.45,
+      "encode": 8.1,
+      "temporal": 60.45,
+      "text": 1.23,
+      "depth": 9.01,
+      "decode": 2.07,
+      "host": 0.54,
+      "wall": 81.63
+    },
+    {
+      "clip": 3,
+      "frame": 79.88,
+      "encode": 6.37,
+      "temporal": 60.52,
+      "text": 0.87,
+      "depth": 9.03,
+      "decode": 2.1,
+      "host": 0.94,
+      "wall": 80.03
+    },
+    {
+      "clip": 3,
+      "frame": 80.06,
+      "encode": 7.55,
+      "temporal": 60.44,
+      "text": 0.6,
+      "depth": 9.07,
+      "decode": 2.1,
+      "host": 0.24,
+      "wall": 80.27
+    },
+    {
+      "clip": 4,
+      "frame": 83.37,
+      "encode": 10.41,
+      "temporal": 60.5,
+      "text": 0.7,
+      "depth": 9.21,
+      "decode": 2.14,
+      "host": 0.35,
+      "wall": 83.6
+    }
+  ],
+  "stages_ms": {
+    "encode": {
+      "p50": 4.844,
+      "p95": 5.272,
+      "p99": 5.949,
+      "mean": 4.815,
+      "max": 10.406
+    },
+    "temporal": {
+      "p50": 60.463,
+      "p95": 60.524,
+      "p99": 60.558,
+      "mean": 60.464,
+      "max": 60.644
+    },
+    "text": {
+      "p50": 0.595,
+      "p95": 0.648,
+      "p99": 0.721,
+      "mean": 0.596,
+      "max": 1.227
+    },
+    "depth": {
+      "p50": 9.032,
+      "p95": 9.14,
+      "p99": 9.188,
+      "mean": 9.041,
+      "max": 9.238
+    },
+    "decode": {
+      "p50": 2.086,
+      "p95": 2.122,
+      "p99": 2.143,
+      "mean": 2.085,
+      "max": 2.154
+    },
+    "host": {
+      "p50": 0.219,
+      "p95": 0.298,
+      "p99": 0.385,
+      "mean": 0.219,
+      "max": 1.788
+    },
+    "frame": {
+      "p50": 77.299,
+      "p95": 77.858,
+      "p99": 78.595,
+      "mean": 77.275,
+      "max": 83.367
+    },
+    "wall": {
+      "p50": 77.427,
+      "p95": 78.012,
+      "p99": 78.728,
+      "mean": 77.402,
+      "max": 83.597
+    }
+  },
+  "per_clip_wall_p99": [
+    78.634,
+    79.324,
+    78.343,
+    78.824,
+    78.805
+  ],
+  "peak_mem_gb": {
+    "allocated": 17.422,
+    "reserved": 17.738,
+    "after_load": 15.77,
+    "device_used_now": 18.059
+  },
+  "lm_weight_gb": 15.375,
+  "gpu_telemetry": [
+    {
+      "sm_mhz": "2040",
+      "mem_mhz": "6251",
+      "power_w": "32.27",
+      "temp_c": "66",
+      "throttle": "0x0000000000000000"
+    },
+    {
+      "sm_mhz": "1785",
+      "mem_mhz": "6251",
+      "power_w": "72.44",
+      "temp_c": "69",
+      "throttle": "0x0000000000000004"
+    },
+    {
+      "sm_mhz": "1770",
+      "mem_mhz": "6251",
+      "power_w": "71.30",
+      "temp_c": "70",
+      "throttle": "0x0000000000000004"
+    },
+    {
+      "sm_mhz": "1740",
+      "mem_mhz": "6251",
+      "power_w": "71.24",
+      "temp_c": "72",
+      "throttle": "0x0000000000000004"
+    },
+    {
+      "sm_mhz": "1845",
+      "mem_mhz": "6251",
+      "power_w": "73.05",
+      "temp_c": "72",
+      "throttle": "0x0000000000000004"
+    },
+    {
+      "sm_mhz": "1815",
+      "mem_mhz": "6251",
+      "power_w": "71.46",
+      "temp_c": "73",
+      "throttle": "0x0000000000000004"
+    }
+  ],
+  "moshi_text": [
+    "Hello, what's up? I'm fine, thanks for asking. It's just a headache, you know, I'm used to it.",
+    "Hello, how are you today? It was strange indeed, but I had no choice. I know, I wish I could unsee it.",
+    "Hey, how are you doing? That's interesting. Why do you say that? Well, how about the blue scarf? Well, that's a good question. Tell me more.",
+    "Hello, what's going on? I'm confused. What do you mean? Oh, I see. What's the fat part? I' sorry, but I don't think it's a good idea to stuff your dog's stomach with food. Hmm. No. Oh, I see what you did",
+    "Hello, how are you today? I'm glad you're enjoying your time with them."
+  ]
+}

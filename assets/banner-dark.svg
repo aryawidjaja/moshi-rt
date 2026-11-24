@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="300" viewBox="0 0 1280 300" role="img" aria-label="moshi-rt">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#20242b"/><stop offset="1" stop-color="#15171c"/></linearGradient>
+    <linearGradient id="tile" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2a2f38"/><stop offset="1" stop-color="#16191f"/></linearGradient>
+    <linearGradient id="rim" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3a404b"/><stop offset="1" stop-color="#0c0e12"/></linearGradient>
+    <linearGradient id="stroke" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#6db0ff"/><stop offset="1" stop-color="#2a78d6"/></linearGradient>
+    <radialGradient id="dot" cx="0.35" cy="0.3" r="0.75"><stop offset="0" stop-color="#8ff0c8"/><stop offset="0.55" stop-color="#1fc48a"/><stop offset="1" stop-color="#0e7d56"/></radialGradient>
+  </defs>
+  <rect width="1280" height="300" fill="url(#bg)"/>
+  <g fill="#ff7a3d" opacity="0.9">
+    <rect x="852" y="128" width="9" height="44" rx="4.5"/><rect x="870" y="104" width="9" height="92" rx="4.5"/>
+    <rect x="888" y="84" width="9" height="132" rx="4.5"/><rect x="906" y="114" width="9" height="72" rx="4.5"/>
+    <rect x="924" y="70" width="9" height="160" rx="4.5"/><rect x="942" y="98" width="9" height="104" rx="4.5"/>
+    <rect x="960" y="122" width="9" height="56" rx="4.5"/><rect x="978" y="110" width="9" height="80" rx="4.5"/>
+    <rect x="996" y="94" width="9" height="112" rx="4.5"/><rect x="1014" y="64" width="9" height="172" rx="4.5"/>
+    <rect x="1032" y="88" width="9" height="124" rx="4.5"/><rect x="1050" y="118" width="9" height="64" rx="4.5"/>
+    <rect x="1068" y="78" width="9" height="144" rx="4.5"/><rect x="1086" y="106" width="9" height="88" rx="4.5"/>
+    <rect x="1104" y="128" width="9" height="44" rx="4.5"/><rect x="1122" y="114" width="9" height="72" rx="4.5"/>
+  </g>
+  <path d="M1160 56V244" stroke="#e9edf3" stroke-width="2" stroke-dasharray="6 5" opacity="0.35"/>
+  <svg x="80" y="82" width="136" height="136" viewBox="0 0 256 256">
+    <rect x="4" y="4" width="248" height="248" rx="58" fill="url(#rim)"/>
+    <rect x="12" y="12" width="232" height="232" rx="52" fill="url(#tile)"/>
+    <path d="M48 184L48 94Q48 72 66 84L110 142Q128 166 146 142L190 84Q208 72 208 94L208 184" fill="none" stroke="#000000" stroke-opacity="0.45" stroke-width="24" stroke-linecap="round" stroke-linejoin="round" transform="translate(3 5)"/>
+    <path d="M48 184L48 94Q48 72 66 84L110 142Q128 166 146 142L190 84Q208 72 208 94L208 184" fill="none" stroke="url(#stroke)" stroke-width="22" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="131" cy="69" r="14" fill="#000000" fill-opacity="0.45"/>
+    <circle cx="128" cy="65" r="14" fill="url(#dot)"/>
+    <circle cx="124" cy="60" r="4.5" fill="#ffffff" fill-opacity="0.6"/>
+  </svg>
+  <text x="246" y="152" font-family="-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Helvetica, Arial, sans-serif" font-size="66" font-weight="700" letter-spacing="-1.5" fill="#e9edf3">moshi-rt</text>
+  <text x="248" y="194" font-family="-apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', Helvetica, Arial, sans-serif" font-size="23" fill="#a3abb9">Real-time inference for full-duplex speech on one GPU</text>
+</svg>

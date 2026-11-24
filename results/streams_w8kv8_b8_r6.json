@@ -1,0 +1,179 @@
+{
+  "meta": {
+    "machine": "modal-L4",
+    "gpu": "NVIDIA L4",
+    "driver": "610.57.04",
+    "cuda": "12.8",
+    "python": "3.12.16",
+    "torch": "2.9.1+cu128",
+    "moshi": "0.2.13",
+    "torchao": "0.14.1",
+    "bitsandbytes": "0.49.2",
+    "triton": "3.5.1",
+    "git": "6b043e3",
+    "seed": 42424242,
+    "command": "python bench/stream_bench.py --quant w8triton --kv int8 --batch 8 --tag streams_w8kv8_b8_r6",
+    "env": {},
+    "date": "2026-11-24 06:02 UTC"
+  },
+  "what": "per-frame latency budget on the moshi.server path, CUDA events per stage, ms",
+  "config": {
+    "batch": 8,
+    "dtype": "bf16",
+    "quant": "w8triton",
+    "compile_temporal": false,
+    "mem_cap_gb": 0.0,
+    "paced": false,
+    "kv": "int8",
+    "graph_mimi": false,
+    "pacing": null,
+    "cuda_graphs": true,
+    "torch_compile": true,
+    "warmup_frames": 50,
+    "clips": 5,
+    "frames_per_clip": 375,
+    "hf_repo": "kyutai/moshiko-pytorch-bf16"
+  },
+  "frames_measured": 1821,
+  "frames_over_80ms": 1,
+  "frames_over_80ms_pct": 0.055,
+  "realtime_strict": false,
+  "realtime_p99": true,
+  "paced_late_ms": null,
+  "late_frames": [
+    {
+      "clip": 0,
+      "frame": 81.33,
+      "encode": 9.17,
+      "temporal": 56.74,
+      "text": 1.12,
+      "depth": 9.98,
+      "decode": 3.1,
+      "host": 1.15,
+      "wall": 81.43
+    }
+  ],
+  "stages_ms": {
+    "encode": {
+      "p50": 5.07,
+      "p95": 5.505,
+      "p99": 6.32,
+      "mean": 5.071,
+      "max": 9.17
+    },
+    "temporal": {
+      "p50": 56.97,
+      "p95": 57.116,
+      "p99": 57.193,
+      "mean": 56.974,
+      "max": 57.406
+    },
+    "text": {
+      "p50": 0.669,
+      "p95": 0.721,
+      "p99": 0.83,
+      "mean": 0.674,
+      "max": 1.351
+    },
+    "depth": {
+      "p50": 10.181,
+      "p95": 10.339,
+      "p99": 10.4,
+      "mean": 10.187,
+      "max": 10.686
+    },
+    "decode": {
+      "p50": 3.213,
+      "p95": 3.326,
+      "p99": 3.362,
+      "mean": 3.214,
+      "max": 3.508
+    },
+    "host": {
+      "p50": 0.234,
+      "p95": 0.332,
+      "p99": 0.522,
+      "mean": 0.245,
+      "max": 1.356
+    },
+    "frame": {
+      "p50": 76.392,
+      "p95": 77.047,
+      "p99": 77.747,
+      "mean": 76.417,
+      "max": 81.326
+    },
+    "wall": {
+      "p50": 76.459,
+      "p95": 77.11,
+      "p99": 77.814,
+      "mean": 76.483,
+      "max": 81.426
+    }
+  },
+  "per_clip_wall_p99": [
+    78.036,
+    77.833,
+    77.804,
+    77.466,
+    78.054
+  ],
+  "peak_mem_gb": {
+    "allocated": 16.326,
+    "reserved": 16.534,
+    "after_load": 9.215,
+    "device_used_now": 16.855
+  },
+  "lm_weight_gb": 8.804,
+  "gpu_telemetry": [
+    {
+      "sm_mhz": "2040",
+      "mem_mhz": "6251",
+      "power_w": "36.27",
+      "temp_c": "70",
+      "throttle": "0x0000000000000000"
+    },
+    {
+      "sm_mhz": "1605",
+      "mem_mhz": "6251",
+      "power_w": "72.45",
+      "temp_c": "81",
+      "throttle": "0x0000000000000004"
+    },
+    {
+      "sm_mhz": "1500",
+      "mem_mhz": "6251",
+      "power_w": "72.70",
+      "temp_c": "74",
+      "throttle": "0x0000000000000004"
+    },
+    {
+      "sm_mhz": "1590",
+      "mem_mhz": "6251",
+      "power_w": "70.60",
+      "temp_c": "76",
+      "throttle": "0x0000000000000004"
+    },
+    {
+      "sm_mhz": "1545",
+      "mem_mhz": "6251",
+      "power_w": "71.39",
+      "temp_c": "78",
+      "throttle": "0x0000000000000004"
+    },
+    {
+      "sm_mhz": "1485",
+      "mem_mhz": "6251",
+      "power_w": "68.82",
+      "temp_c": "77",
+      "throttle": "0x0000000000000004"
+    }
+  ],
+  "moshi_text": [
+    "Hi, how is it going? What's wrong? That's not supposed to happen. What should we do? Well, it' best to take the car to a mechanic. You've got a grass-wid? No problem.",
+    "Hello, how are you today? That's beautiful. Wow. That's beautiful.",
+    "Hey, how your day? And I heard you're working on a new project. How's it going? That's interesting.",
+    "Hey, how can I help you? You know, I've been thinking about that. Yeah, that's a good idea. But what do you do with all this stuff? Hmm. You know, you're an expert. How do you manage to keep things organized? I just don't know how to handle all this stuff.",
+    "Hello, how are you today? Yeah, I've been there. It's not a fun place to be."
+  ]
+}

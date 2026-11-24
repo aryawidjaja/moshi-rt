@@ -1,0 +1,129 @@
+{
+  "what": "launch-overhead ablation: moshi's CUDA graphs and torch.compile turned off one at a time (L4, bf16, batch 1)",
+  "runs": {
+    "baseline": {
+      "source": "results/baseline_l4_bf16.json",
+      "cuda_graphs": true,
+      "torch_compile": true,
+      "p50_ms": {
+        "encode": 4.671,
+        "temporal": 60.849,
+        "text": 0.598,
+        "depth": 9.437,
+        "decode": 2.221,
+        "host": 0.189,
+        "frame": 77.944,
+        "wall": 78.001
+      },
+      "wall_p99_ms": 78.957,
+      "frames_over_80ms_pct": 0.11,
+      "slowdown_vs_baseline": {
+        "encode": 1.0,
+        "temporal": 1.0,
+        "text": 1.0,
+        "depth": 1.0,
+        "decode": 1.0,
+        "host": 1.0,
+        "frame": 1.0,
+        "wall": 1.0
+      }
+    },
+    "no_graphs": {
+      "source": "results/ablation_nograph.json",
+      "cuda_graphs": false,
+      "torch_compile": true,
+      "p50_ms": {
+        "encode": 20.611,
+        "temporal": 73.484,
+        "text": 1.046,
+        "depth": 94.532,
+        "decode": 17.913,
+        "host": 0.117,
+        "frame": 207.861,
+        "wall": 207.907
+      },
+      "wall_p99_ms": 221.354,
+      "frames_over_80ms_pct": 100.0,
+      "slowdown_vs_baseline": {
+        "encode": 4.41,
+        "temporal": 1.21,
+        "text": 1.75,
+        "depth": 10.02,
+        "decode": 8.07,
+        "host": 0.62,
+        "frame": 2.67,
+        "wall": 2.67
+      }
+    },
+    "no_compile": {
+      "source": "results/ablation_nocompile.json",
+      "cuda_graphs": true,
+      "torch_compile": false,
+      "p50_ms": {
+        "encode": 4.832,
+        "temporal": 63.064,
+        "text": 0.606,
+        "depth": 10.819,
+        "decode": 2.473,
+        "host": 0.212,
+        "frame": 82.004,
+        "wall": 82.066
+      },
+      "wall_p99_ms": 83.319,
+      "frames_over_80ms_pct": 100.0,
+      "slowdown_vs_baseline": {
+        "encode": 1.03,
+        "temporal": 1.04,
+        "text": 1.01,
+        "depth": 1.15,
+        "decode": 1.11,
+        "host": 1.12,
+        "frame": 1.05,
+        "wall": 1.05
+      }
+    },
+    "no_graphs_no_compile": {
+      "source": "results/ablation_nograph_nocompile.json",
+      "cuda_graphs": false,
+      "torch_compile": false,
+      "p50_ms": {
+        "encode": 21.811,
+        "temporal": 73.839,
+        "text": 1.028,
+        "depth": 82.724,
+        "decode": 19.138,
+        "host": 0.114,
+        "frame": 198.816,
+        "wall": 198.857
+      },
+      "wall_p99_ms": 211.103,
+      "frames_over_80ms_pct": 100.0,
+      "slowdown_vs_baseline": {
+        "encode": 4.67,
+        "temporal": 1.21,
+        "text": 1.72,
+        "depth": 8.77,
+        "decode": 8.62,
+        "host": 0.6,
+        "frame": 2.55,
+        "wall": 2.55
+      }
+    }
+  },
+  "temporal_bandwidth": {
+    "source": "profiles/profile_l4_bf16.json, results/bw_probe_l4.json (the profiler adds ~7 ms/frame)",
+    "gemv_bucket_weight_gb": 13.517,
+    "gemv_bucket_us_per_frame": 47832.8,
+    "gemv_calls_per_frame": 145.0,
+    "gemv_bucket_gb_per_s": 282.6,
+    "temporal_stage_ms_p50": 60.849,
+    "temporal_stage_effective_gb_per_s": 216.2,
+    "ceiling_gb_per_s": 300.0,
+    "ceiling_kind": "datasheet",
+    "probe_read_gb_per_s": 260.9,
+    "probe_copy_gb_per_s": 233.5,
+    "gemv_fraction_of_ceiling": 0.942,
+    "stage_fraction_of_ceiling": 0.721
+  },
+  "diagnosis": "The 7B temporal step is weight-bandwidth-bound: its large bf16 GEMVs stream 13.5 GB at 283 GB/s (94% of the datasheet 300 GB/s ceiling), and turning CUDA graphs off adds only 12.6 ms to it. The depth transformer and Mimi are launch-bound and only real time because moshi CUDA-graphs them (depth 9.4 -> 94.5 ms without graphs)."
+}

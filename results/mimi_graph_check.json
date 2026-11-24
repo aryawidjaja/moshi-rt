@@ -1,0 +1,23 @@
+{
+  "meta": {
+    "machine": "modal-L4",
+    "gpu": "NVIDIA L4",
+    "driver": "610.57.04",
+    "cuda": "12.8",
+    "python": "3.12.16",
+    "torch": "2.9.1+cu128",
+    "moshi": "0.2.13",
+    "torchao": "0.14.1",
+    "bitsandbytes": "0.49.2",
+    "triton": "3.5.1",
+    "git": "6b043e3",
+    "seed": 42424242,
+    "command": "python bench/mimi_graph.py",
+    "env": {},
+    "date": "2026-11-24 06:12 UTC"
+  },
+  "what": "stock vs graph-captured Mimi encode, codes over 120 frames with resets",
+  "frames": 120,
+  "identical": true,
+  "mismatching_codes": 0
+}

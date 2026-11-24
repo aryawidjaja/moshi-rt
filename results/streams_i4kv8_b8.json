@@ -1,0 +1,164 @@
+{
+  "meta": {
+    "machine": "modal-L4",
+    "gpu": "NVIDIA L4",
+    "driver": "610.57.04",
+    "cuda": "12.8",
+    "python": "3.12.16",
+    "torch": "2.9.1+cu128",
+    "moshi": "0.2.13",
+    "torchao": "0.14.1",
+    "bitsandbytes": "0.49.2",
+    "triton": "3.5.1",
+    "git": "0f37d4a",
+    "seed": 42424242,
+    "command": "python bench/stream_bench.py --quant int4wo-hqq-g32 --kv int8 --batch 8 --tag streams_i4kv8_b8",
+    "env": {},
+    "date": "2026-11-23 20:05 UTC"
+  },
+  "what": "per-frame latency budget on the moshi.server path, CUDA events per stage, ms",
+  "config": {
+    "batch": 8,
+    "dtype": "bf16",
+    "quant": "int4wo-hqq-g32",
+    "compile_temporal": false,
+    "mem_cap_gb": 0.0,
+    "paced": false,
+    "kv": "int8",
+    "cuda_graphs": true,
+    "torch_compile": true,
+    "warmup_frames": 50,
+    "clips": 5,
+    "frames_per_clip": 375,
+    "hf_repo": "kyutai/moshiko-pytorch-bf16"
+  },
+  "frames_measured": 1821,
+  "frames_over_80ms": 0,
+  "frames_over_80ms_pct": 0.0,
+  "realtime_strict": true,
+  "realtime_p99": true,
+  "paced_late_ms": null,
+  "stages_ms": {
+    "encode": {
+      "p50": 4.856,
+      "p95": 5.143,
+      "p99": 5.809,
+      "mean": 4.853,
+      "max": 6.697
+    },
+    "temporal": {
+      "p50": 47.435,
+      "p95": 47.555,
+      "p99": 47.612,
+      "mean": 47.443,
+      "max": 47.84
+    },
+    "text": {
+      "p50": 0.636,
+      "p95": 0.677,
+      "p99": 0.759,
+      "mean": 0.637,
+      "max": 0.97
+    },
+    "depth": {
+      "p50": 10.134,
+      "p95": 10.277,
+      "p99": 10.341,
+      "mean": 10.14,
+      "max": 10.659
+    },
+    "decode": {
+      "p50": 3.05,
+      "p95": 3.151,
+      "p99": 3.193,
+      "mean": 3.057,
+      "max": 3.293
+    },
+    "host": {
+      "p50": 0.223,
+      "p95": 0.314,
+      "p99": 0.387,
+      "mean": 0.23,
+      "max": 0.827
+    },
+    "frame": {
+      "p50": 66.386,
+      "p95": 66.939,
+      "p99": 67.558,
+      "mean": 66.41,
+      "max": 68.405
+    },
+    "wall": {
+      "p50": 66.466,
+      "p95": 67.015,
+      "p99": 67.648,
+      "mean": 66.489,
+      "max": 68.478
+    }
+  },
+  "per_clip_wall_p99": [
+    67.539,
+    67.948,
+    67.482,
+    66.966,
+    67.791
+  ],
+  "peak_mem_gb": {
+    "allocated": 13.868,
+    "reserved": 14.061,
+    "after_load": 6.884,
+    "device_used_now": 14.385
+  },
+  "lm_weight_gb": 6.333,
+  "gpu_telemetry": [
+    {
+      "sm_mhz": "2040",
+      "mem_mhz": "6251",
+      "power_w": "38.44",
+      "temp_c": "77",
+      "throttle": "0x0000000000000000"
+    },
+    {
+      "sm_mhz": "1650",
+      "mem_mhz": "6251",
+      "power_w": "67.30",
+      "temp_c": "80",
+      "throttle": "0x0000000000000004"
+    },
+    {
+      "sm_mhz": "1695",
+      "mem_mhz": "6251",
+      "power_w": "71.91",
+      "temp_c": "76",
+      "throttle": "0x0000000000000004"
+    },
+    {
+      "sm_mhz": "1590",
+      "mem_mhz": "6251",
+      "power_w": "67.51",
+      "temp_c": "75",
+      "throttle": "0x0000000000000004"
+    },
+    {
+      "sm_mhz": "1830",
+      "mem_mhz": "6251",
+      "power_w": "70.81",
+      "temp_c": "75",
+      "throttle": "0x0000000000000004"
+    },
+    {
+      "sm_mhz": "1635",
+      "mem_mhz": "6251",
+      "power_w": "67.32",
+      "temp_c": "77",
+      "throttle": "0x0000000000000004"
+    }
+  ],
+  "moshi_text": [
+    "Hi there, what's going on? What's the plan? That's impressive. What about the earring? I've got an idea. We'll make the polo. That's a great plan.",
+    "Hello, how can I help you? It was as if the sky had been tarnished, and the earth was a darkened shell,",
+    "Hey, how was your day? Mmm, that's a pretty outfit. Wow, that's quite a show. That's too, he looks like a gentle giant.",
+    "Hey there, what's going on? He's nodded. His eyes never leaving his face. She'd break the atmosphere, and then she'd begin to nibble at the food.",
+    "Hello, how is it going? Yes, I have heard of them. What do they do?"
+  ]
+}

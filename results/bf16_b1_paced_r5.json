@@ -1,0 +1,998 @@
+{
+  "meta": {
+    "machine": "modal-L4",
+    "gpu": "NVIDIA L4",
+    "driver": "610.57.04",
+    "cuda": "12.8",
+    "python": "3.12.16",
+    "torch": "2.9.1+cu128",
+    "moshi": "0.2.13",
+    "torchao": "0.14.1",
+    "bitsandbytes": "0.49.2",
+    "triton": "3.5.1",
+    "git": "06696cf",
+    "seed": 42424242,
+    "command": "python bench/stream_bench.py --paced --tag bf16_b1_paced_r5",
+    "env": {},
+    "date": "2026-11-24 04:58 UTC"
+  },
+  "what": "per-frame latency budget on the moshi.server path, CUDA events per stage, ms",
+  "config": {
+    "batch": 1,
+    "dtype": "bf16",
+    "quant": "none",
+    "compile_temporal": false,
+    "mem_cap_gb": 0.0,
+    "paced": true,
+    "kv": "sdpa",
+    "pacing": "restart after warm-up and at each clip",
+    "cuda_graphs": true,
+    "torch_compile": true,
+    "warmup_frames": 50,
+    "clips": 5,
+    "frames_per_clip": 375,
+    "hf_repo": "kyutai/moshiko-pytorch-bf16"
+  },
+  "frames_measured": 1821,
+  "frames_over_80ms": 75,
+  "frames_over_80ms_pct": 4.119,
+  "realtime_strict": false,
+  "realtime_p99": false,
+  "paced_late_ms": {
+    "p50": 0.0,
+    "p95": 52.699,
+    "p99": 79.579,
+    "mean": 6.269,
+    "max": 86.07
+  },
+  "late_frames": [
+    {
+      "clip": 2,
+      "frame": 80.05,
+      "encode": 6.71,
+      "temporal": 60.52,
+      "text": 0.97,
+      "depth": 9.01,
+      "decode": 2.08,
+      "host": 0.71,
+      "wall": 80.33
+    },
+    {
+      "clip": 3,
+      "frame": 80.33,
+      "encode": 7.93,
+      "temporal": 60.47,
+      "text": 0.61,
+      "depth": 8.96,
+      "decode": 2.05,
+      "host": 0.24,
+      "wall": 80.5
+    },
+    {
+      "clip": 3,
+      "frame": 80.45,
+      "encode": 7.48,
+      "temporal": 60.49,
+      "text": 1.05,
+      "depth": 9.02,
+      "decode": 2.08,
+      "host": 0.25,
+      "wall": 80.67
+    },
+    {
+      "clip": 3,
+      "frame": 81.24,
+      "encode": 8.01,
+      "temporal": 60.62,
+      "text": 1.04,
+      "depth": 9.04,
+      "decode": 2.11,
+      "host": 0.36,
+      "wall": 81.35
+    },
+    {
+      "clip": 3,
+      "frame": 81.03,
+      "encode": 8.14,
+      "temporal": 60.49,
+      "text": 0.74,
+      "depth": 9.06,
+      "decode": 2.11,
+      "host": 0.4,
+      "wall": 81.26
+    },
+    {
+      "clip": 3,
+      "frame": 80.16,
+      "encode": 7.01,
+      "temporal": 60.55,
+      "text": 0.84,
+      "depth": 9.06,
+      "decode": 2.11,
+      "host": 0.51,
+      "wall": 80.27
+    },
+    {
+      "clip": 3,
+      "frame": 81.01,
+      "encode": 7.77,
+      "temporal": 60.53,
+      "text": 0.85,
+      "depth": 9.0,
+      "decode": 2.09,
+      "host": 0.7,
+      "wall": 81.22
+    },
+    {
+      "clip": 3,
+      "frame": 88.63,
+      "encode": 15.16,
+      "temporal": 60.51,
+      "text": 1.3,
+      "depth": 9.06,
+      "decode": 2.09,
+      "host": 0.45,
+      "wall": 88.76
+    },
+    {
+      "clip": 3,
+      "frame": 79.98,
+      "encode": 5.96,
+      "temporal": 60.54,
+      "text": 0.69,
+      "depth": 9.05,
+      "decode": 2.11,
+      "host": 1.51,
+      "wall": 80.63
+    },
+    {
+      "clip": 3,
+      "frame": 79.85,
+      "encode": 6.96,
+      "temporal": 60.5,
+      "text": 0.73,
+      "depth": 9.07,
+      "decode": 2.1,
+      "host": 0.42,
+      "wall": 80.15
+    },
+    {
+      "clip": 3,
+      "frame": 81.06,
+      "encode": 7.96,
+      "temporal": 60.56,
+      "text": 0.68,
+      "depth": 9.14,
+      "decode": 2.12,
+      "host": 0.53,
+      "wall": 81.21
+    },
+    {
+      "clip": 3,
+      "frame": 80.3,
+      "encode": 7.25,
+      "temporal": 60.54,
+      "text": 0.78,
+      "depth": 9.13,
+      "decode": 2.12,
+      "host": 0.4,
+      "wall": 80.56
+    },
+    {
+      "clip": 3,
+      "frame": 80.28,
+      "encode": 7.02,
+      "temporal": 60.58,
+      "text": 0.77,
+      "depth": 9.23,
+      "decode": 2.16,
+      "host": 0.46,
+      "wall": 80.39
+    },
+    {
+      "clip": 3,
+      "frame": 88.31,
+      "encode": 15.36,
+      "temporal": 60.56,
+      "text": 0.81,
+      "depth": 9.0,
+      "decode": 2.07,
+      "host": 0.4,
+      "wall": 88.47
+    },
+    {
+      "clip": 3,
+      "frame": 82.84,
+      "encode": 9.48,
+      "temporal": 61.02,
+      "text": 0.76,
+      "depth": 9.03,
+      "decode": 2.09,
+      "host": 0.4,
+      "wall": 82.95
+    },
+    {
+      "clip": 3,
+      "frame": 86.13,
+      "encode": 13.23,
+      "temporal": 60.51,
+      "text": 0.76,
+      "depth": 9.04,
+      "decode": 2.09,
+      "host": 0.43,
+      "wall": 86.27
+    },
+    {
+      "clip": 3,
+      "frame": 85.01,
+      "encode": 10.97,
+      "temporal": 60.49,
+      "text": 0.88,
+      "depth": 9.06,
+      "decode": 2.09,
+      "host": 1.44,
+      "wall": 85.11
+    },
+    {
+      "clip": 3,
+      "frame": 84.16,
+      "encode": 11.2,
+      "temporal": 60.46,
+      "text": 0.85,
+      "depth": 9.03,
+      "decode": 2.09,
+      "host": 0.42,
+      "wall": 84.65
+    },
+    {
+      "clip": 3,
+      "frame": 81.66,
+      "encode": 8.28,
+      "temporal": 60.55,
+      "text": 0.98,
+      "depth": 9.11,
+      "decode": 2.11,
+      "host": 0.55,
+      "wall": 81.87
+    },
+    {
+      "clip": 3,
+      "frame": 86.35,
+      "encode": 13.2,
+      "temporal": 60.52,
+      "text": 1.06,
+      "depth": 9.02,
+      "decode": 2.07,
+      "host": 0.38,
+      "wall": 86.52
+    },
+    {
+      "clip": 3,
+      "frame": 80.3,
+      "encode": 7.19,
+      "temporal": 60.54,
+      "text": 0.76,
+      "depth": 9.05,
+      "decode": 2.09,
+      "host": 0.61,
+      "wall": 80.4
+    },
+    {
+      "clip": 3,
+      "frame": 108.44,
+      "encode": 23.81,
+      "temporal": 60.47,
+      "text": 1.09,
+      "depth": 9.04,
+      "decode": 2.08,
+      "host": 11.88,
+      "wall": 108.57
+    },
+    {
+      "clip": 4,
+      "frame": 82.84,
+      "encode": 9.77,
+      "temporal": 60.55,
+      "text": 0.95,
+      "depth": 9.02,
+      "decode": 2.06,
+      "host": 0.4,
+      "wall": 83.24
+    },
+    {
+      "clip": 4,
+      "frame": 81.93,
+      "encode": 8.73,
+      "temporal": 60.56,
+      "text": 0.98,
+      "depth": 9.07,
+      "decode": 2.11,
+      "host": 0.42,
+      "wall": 82.02
+    },
+    {
+      "clip": 4,
+      "frame": 85.41,
+      "encode": 11.86,
+      "temporal": 60.62,
+      "text": 1.26,
+      "depth": 9.07,
+      "decode": 2.1,
+      "host": 0.43,
+      "wall": 85.54
+    },
+    {
+      "clip": 4,
+      "frame": 81.15,
+      "encode": 8.2,
+      "temporal": 60.53,
+      "text": 0.84,
+      "depth": 9.09,
+      "decode": 2.09,
+      "host": 0.34,
+      "wall": 81.23
+    },
+    {
+      "clip": 4,
+      "frame": 80.74,
+      "encode": 7.64,
+      "temporal": 60.6,
+      "text": 0.78,
+      "depth": 9.17,
+      "decode": 2.12,
+      "host": 0.35,
+      "wall": 80.94
+    },
+    {
+      "clip": 4,
+      "frame": 80.62,
+      "encode": 7.56,
+      "temporal": 60.59,
+      "text": 0.77,
+      "depth": 9.13,
+      "decode": 2.11,
+      "host": 0.41,
+      "wall": 80.7
+    },
+    {
+      "clip": 4,
+      "frame": 82.47,
+      "encode": 8.84,
+      "temporal": 60.53,
+      "text": 1.32,
+      "depth": 9.07,
+      "decode": 2.09,
+      "host": 0.54,
+      "wall": 82.65
+    },
+    {
+      "clip": 4,
+      "frame": 82.13,
+      "encode": 8.98,
+      "temporal": 60.6,
+      "text": 0.9,
+      "depth": 9.08,
+      "decode": 2.11,
+      "host": 0.38,
+      "wall": 82.29
+    },
+    {
+      "clip": 4,
+      "frame": 80.18,
+      "encode": 7.21,
+      "temporal": 60.6,
+      "text": 0.81,
+      "depth": 9.01,
+      "decode": 2.09,
+      "host": 0.39,
+      "wall": 80.26
+    },
+    {
+      "clip": 4,
+      "frame": 81.44,
+      "encode": 7.99,
+      "temporal": 60.56,
+      "text": 1.16,
+      "depth": 9.08,
+      "decode": 2.12,
+      "host": 0.41,
+      "wall": 81.6
+    },
+    {
+      "clip": 4,
+      "frame": 83.35,
+      "encode": 10.04,
+      "temporal": 60.54,
+      "text": 0.92,
+      "depth": 9.12,
+      "decode": 2.12,
+      "host": 0.48,
+      "wall": 83.52
+    },
+    {
+      "clip": 4,
+      "frame": 82.01,
+      "encode": 8.87,
+      "temporal": 60.59,
+      "text": 0.91,
+      "depth": 9.1,
+      "decode": 2.11,
+      "host": 0.37,
+      "wall": 82.12
+    },
+    {
+      "clip": 4,
+      "frame": 80.19,
+      "encode": 6.8,
+      "temporal": 60.64,
+      "text": 1.07,
+      "depth": 9.12,
+      "decode": 2.11,
+      "host": 0.39,
+      "wall": 80.33
+    },
+    {
+      "clip": 4,
+      "frame": 84.81,
+      "encode": 11.46,
+      "temporal": 60.56,
+      "text": 1.1,
+      "depth": 9.05,
+      "decode": 2.09,
+      "host": 0.42,
+      "wall": 84.92
+    },
+    {
+      "clip": 4,
+      "frame": 81.14,
+      "encode": 7.95,
+      "temporal": 60.58,
+      "text": 1.0,
+      "depth": 9.06,
+      "decode": 2.09,
+      "host": 0.35,
+      "wall": 81.23
+    },
+    {
+      "clip": 4,
+      "frame": 81.06,
+      "encode": 7.88,
+      "temporal": 60.57,
+      "text": 1.06,
+      "depth": 9.05,
+      "decode": 2.09,
+      "host": 0.35,
+      "wall": 81.14
+    },
+    {
+      "clip": 4,
+      "frame": 81.06,
+      "encode": 8.12,
+      "temporal": 60.61,
+      "text": 0.79,
+      "depth": 9.01,
+      "decode": 2.07,
+      "host": 0.41,
+      "wall": 81.37
+    },
+    {
+      "clip": 4,
+      "frame": 83.95,
+      "encode": 10.75,
+      "temporal": 60.57,
+      "text": 1.0,
+      "depth": 9.08,
+      "decode": 2.12,
+      "host": 0.36,
+      "wall": 84.09
+    },
+    {
+      "clip": 4,
+      "frame": 80.11,
+      "encode": 7.27,
+      "temporal": 60.53,
+      "text": 0.66,
+      "depth": 9.07,
+      "decode": 2.09,
+      "host": 0.43,
+      "wall": 80.21
+    },
+    {
+      "clip": 4,
+      "frame": 81.37,
+      "encode": 7.62,
+      "temporal": 60.55,
+      "text": 0.78,
+      "depth": 9.05,
+      "decode": 2.09,
+      "host": 1.21,
+      "wall": 81.57
+    },
+    {
+      "clip": 4,
+      "frame": 83.3,
+      "encode": 8.04,
+      "temporal": 60.61,
+      "text": 1.08,
+      "depth": 9.06,
+      "decode": 2.11,
+      "host": 1.35,
+      "wall": 83.53
+    },
+    {
+      "clip": 4,
+      "frame": 84.37,
+      "encode": 11.37,
+      "temporal": 60.52,
+      "text": 0.78,
+      "depth": 9.06,
+      "decode": 2.08,
+      "host": 0.44,
+      "wall": 84.53
+    },
+    {
+      "clip": 4,
+      "frame": 89.07,
+      "encode": 13.8,
+      "temporal": 60.83,
+      "text": 1.8,
+      "depth": 9.02,
+      "decode": 2.07,
+      "host": 1.38,
+      "wall": 89.2
+    },
+    {
+      "clip": 4,
+      "frame": 80.45,
+      "encode": 7.52,
+      "temporal": 60.55,
+      "text": 0.73,
+      "depth": 9.01,
+      "decode": 2.07,
+      "host": 0.5,
+      "wall": 80.6
+    },
+    {
+      "clip": 4,
+      "frame": 82.81,
+      "encode": 8.7,
+      "temporal": 60.56,
+      "text": 0.84,
+      "depth": 9.05,
+      "decode": 2.11,
+      "host": 1.38,
+      "wall": 83.0
+    },
+    {
+      "clip": 4,
+      "frame": 84.64,
+      "encode": 11.28,
+      "temporal": 60.48,
+      "text": 0.79,
+      "depth": 9.06,
+      "decode": 2.09,
+      "host": 0.57,
+      "wall": 84.93
+    },
+    {
+      "clip": 4,
+      "frame": 82.11,
+      "encode": 8.99,
+      "temporal": 60.51,
+      "text": 0.86,
+      "depth": 9.06,
+      "decode": 2.09,
+      "host": 0.52,
+      "wall": 82.27
+    },
+    {
+      "clip": 4,
+      "frame": 88.7,
+      "encode": 14.92,
+      "temporal": 60.69,
+      "text": 1.38,
+      "depth": 9.02,
+      "decode": 2.08,
+      "host": 0.49,
+      "wall": 88.84
+    },
+    {
+      "clip": 4,
+      "frame": 83.32,
+      "encode": 10.31,
+      "temporal": 60.56,
+      "text": 0.74,
+      "depth": 9.05,
+      "decode": 2.11,
+      "host": 0.43,
+      "wall": 83.48
+    },
+    {
+      "clip": 4,
+      "frame": 80.0,
+      "encode": 7.24,
+      "temporal": 60.51,
+      "text": 0.66,
+      "depth": 9.03,
+      "decode": 2.09,
+      "host": 0.39,
+      "wall": 80.13
+    },
+    {
+      "clip": 4,
+      "frame": 80.9,
+      "encode": 8.03,
+      "temporal": 60.5,
+      "text": 0.84,
+      "depth": 9.04,
+      "decode": 2.09,
+      "host": 0.35,
+      "wall": 81.11
+    },
+    {
+      "clip": 4,
+      "frame": 80.47,
+      "encode": 7.46,
+      "temporal": 60.63,
+      "text": 0.73,
+      "depth": 9.08,
+      "decode": 2.11,
+      "host": 0.38,
+      "wall": 80.81
+    },
+    {
+      "clip": 4,
+      "frame": 81.37,
+      "encode": 7.16,
+      "temporal": 60.61,
+      "text": 0.96,
+      "depth": 9.07,
+      "decode": 2.11,
+      "host": 0.38,
+      "wall": 81.53
+    },
+    {
+      "clip": 4,
+      "frame": 80.2,
+      "encode": 7.04,
+      "temporal": 60.61,
+      "text": 0.83,
+      "depth": 9.16,
+      "decode": 2.15,
+      "host": 0.33,
+      "wall": 80.31
+    },
+    {
+      "clip": 4,
+      "frame": 83.93,
+      "encode": 11.01,
+      "temporal": 60.48,
+      "text": 0.85,
+      "depth": 9.09,
+      "decode": 2.11,
+      "host": 0.34,
+      "wall": 84.01
+    },
+    {
+      "clip": 4,
+      "frame": 80.07,
+      "encode": 7.28,
+      "temporal": 60.5,
+      "text": 0.73,
+      "depth": 9.11,
+      "decode": 2.12,
+      "host": 0.27,
+      "wall": 80.17
+    },
+    {
+      "clip": 4,
+      "frame": 80.29,
+      "encode": 7.37,
+      "temporal": 60.48,
+      "text": 0.78,
+      "depth": 9.09,
+      "decode": 2.11,
+      "host": 0.39,
+      "wall": 82.11
+    },
+    {
+      "clip": 4,
+      "frame": 85.14,
+      "encode": 12.1,
+      "temporal": 60.53,
+      "text": 0.83,
+      "depth": 9.12,
+      "decode": 2.11,
+      "host": 0.35,
+      "wall": 85.24
+    },
+    {
+      "clip": 4,
+      "frame": 80.36,
+      "encode": 7.49,
+      "temporal": 60.54,
+      "text": 0.78,
+      "depth": 9.01,
+      "decode": 2.08,
+      "host": 0.37,
+      "wall": 80.59
+    },
+    {
+      "clip": 4,
+      "frame": 80.26,
+      "encode": 7.33,
+      "temporal": 60.54,
+      "text": 0.86,
+      "depth": 9.06,
+      "decode": 2.07,
+      "host": 0.33,
+      "wall": 80.34
+    },
+    {
+      "clip": 4,
+      "frame": 79.94,
+      "encode": 7.09,
+      "temporal": 60.59,
+      "text": 0.66,
+      "depth": 9.08,
+      "decode": 2.08,
+      "host": 0.36,
+      "wall": 80.08
+    },
+    {
+      "clip": 4,
+      "frame": 80.71,
+      "encode": 8.01,
+      "temporal": 60.54,
+      "text": 0.68,
+      "depth": 9.01,
+      "decode": 2.07,
+      "host": 0.35,
+      "wall": 80.88
+    },
+    {
+      "clip": 4,
+      "frame": 79.92,
+      "encode": 6.99,
+      "temporal": 60.56,
+      "text": 0.75,
+      "depth": 9.12,
+      "decode": 2.09,
+      "host": 0.35,
+      "wall": 80.01
+    },
+    {
+      "clip": 4,
+      "frame": 81.25,
+      "encode": 8.27,
+      "temporal": 60.57,
+      "text": 0.86,
+      "depth": 9.05,
+      "decode": 2.11,
+      "host": 0.35,
+      "wall": 81.34
+    },
+    {
+      "clip": 4,
+      "frame": 82.22,
+      "encode": 8.76,
+      "temporal": 60.65,
+      "text": 1.13,
+      "depth": 9.15,
+      "decode": 2.12,
+      "host": 0.34,
+      "wall": 82.37
+    },
+    {
+      "clip": 4,
+      "frame": 80.62,
+      "encode": 7.54,
+      "temporal": 60.6,
+      "text": 0.92,
+      "depth": 9.07,
+      "decode": 2.09,
+      "host": 0.32,
+      "wall": 80.79
+    },
+    {
+      "clip": 4,
+      "frame": 80.47,
+      "encode": 7.47,
+      "temporal": 60.55,
+      "text": 0.82,
+      "depth": 9.09,
+      "decode": 2.08,
+      "host": 0.4,
+      "wall": 80.55
+    },
+    {
+      "clip": 4,
+      "frame": 80.98,
+      "encode": 8.09,
+      "temporal": 60.54,
+      "text": 0.74,
+      "depth": 9.04,
+      "decode": 2.08,
+      "host": 0.42,
+      "wall": 81.09
+    },
+    {
+      "clip": 4,
+      "frame": 80.15,
+      "encode": 7.14,
+      "temporal": 60.57,
+      "text": 0.9,
+      "depth": 9.03,
+      "decode": 2.08,
+      "host": 0.38,
+      "wall": 80.26
+    },
+    {
+      "clip": 4,
+      "frame": 80.32,
+      "encode": 7.24,
+      "temporal": 60.69,
+      "text": 0.71,
+      "depth": 9.05,
+      "decode": 2.08,
+      "host": 0.47,
+      "wall": 80.44
+    },
+    {
+      "clip": 4,
+      "frame": 82.61,
+      "encode": 9.22,
+      "temporal": 60.6,
+      "text": 1.25,
+      "depth": 8.99,
+      "decode": 2.09,
+      "host": 0.4,
+      "wall": 82.73
+    },
+    {
+      "clip": 4,
+      "frame": 80.3,
+      "encode": 7.06,
+      "temporal": 60.59,
+      "text": 0.98,
+      "depth": 9.07,
+      "decode": 2.12,
+      "host": 0.41,
+      "wall": 80.42
+    },
+    {
+      "clip": 4,
+      "frame": 81.8,
+      "encode": 8.86,
+      "temporal": 60.49,
+      "text": 0.89,
+      "depth": 9.03,
+      "decode": 2.1,
+      "host": 0.34,
+      "wall": 81.9
+    }
+  ],
+  "stages_ms": {
+    "encode": {
+      "p50": 4.755,
+      "p95": 6.519,
+      "p99": 9.716,
+      "mean": 4.986,
+      "max": 23.81
+    },
+    "temporal": {
+      "p50": 60.51,
+      "p95": 60.609,
+      "p99": 60.693,
+      "mean": 60.518,
+      "max": 61.021
+    },
+    "text": {
+      "p50": 0.595,
+      "p95": 0.777,
+      "p99": 0.998,
+      "mean": 0.614,
+      "max": 1.804
+    },
+    "depth": {
+      "p50": 9.055,
+      "p95": 9.169,
+      "p99": 9.236,
+      "mean": 9.061,
+      "max": 9.31
+    },
+    "decode": {
+      "p50": 2.099,
+      "p95": 2.145,
+      "p99": 2.159,
+      "mean": 2.099,
+      "max": 2.185
+    },
+    "host": {
+      "p50": 0.213,
+      "p95": 0.392,
+      "p99": 0.632,
+      "mean": 0.24,
+      "max": 11.879
+    },
+    "frame": {
+      "p50": 77.259,
+      "p95": 79.529,
+      "p99": 83.206,
+      "mean": 77.576,
+      "max": 108.437
+    },
+    "wall": {
+      "p50": 77.392,
+      "p95": 79.658,
+      "p99": 83.43,
+      "mean": 77.699,
+      "max": 108.572
+    }
+  },
+  "per_clip_wall_p99": [
+    78.96,
+    77.787,
+    77.884,
+    86.34,
+    85.012
+  ],
+  "peak_mem_gb": {
+    "allocated": 17.439,
+    "reserved": 17.738,
+    "after_load": 15.77,
+    "device_used_now": 18.059
+  },
+  "lm_weight_gb": 15.375,
+  "gpu_telemetry": [
+    {
+      "sm_mhz": "2040",
+      "mem_mhz": "6251",
+      "power_w": "33.07",
+      "temp_c": "69",
+      "throttle": "0x0000000000000000"
+    },
+    {
+      "sm_mhz": "1875",
+      "mem_mhz": "6251",
+      "power_w": "72.81",
+      "temp_c": "75",
+      "throttle": "0x0000000000000004"
+    },
+    {
+      "sm_mhz": "1785",
+      "mem_mhz": "6251",
+      "power_w": "72.40",
+      "temp_c": "73",
+      "throttle": "0x0000000000000004"
+    },
+    {
+      "sm_mhz": "1785",
+      "mem_mhz": "6251",
+      "power_w": "70.63",
+      "temp_c": "73",
+      "throttle": "0x0000000000000004"
+    },
+    {
+      "sm_mhz": "1800",
+      "mem_mhz": "6251",
+      "power_w": "70.23",
+      "temp_c": "75",
+      "throttle": "0x0000000000000004"
+    },
+    {
+      "sm_mhz": "1755",
+      "mem_mhz": "6251",
+      "power_w": "71.41",
+      "temp_c": "74",
+      "throttle": "0x0000000000000004"
+    }
+  ],
+  "moshi_text": [
+    "Hello, what's up? I'm fine, thanks for asking. It's just a headache, you know, I'm used to it.",
+    "Hello, how are you today? It was strange indeed, but I had no choice. I know, I wish I could unsee it.",
+    "Hey, how are you doing? That's interesting. Why do you say that? Well, how about the blue scarf? Well, that's a good question. Tell me more.",
+    "Hello, what's going on? I'm confused. What do you mean? Oh, I see. What's the fat part? I' sorry, but I don't think it's a good idea to stuff your dog's stomach with food. Hmm. No. Oh, I see what you did",
+    "Hello, how are you today? I'm glad you're enjoying your time with them."
+  ]
+}

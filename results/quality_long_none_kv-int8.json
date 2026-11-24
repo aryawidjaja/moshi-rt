@@ -1,0 +1,96 @@
+{
+  "meta": {
+    "machine": "modal-L4",
+    "gpu": "NVIDIA L4",
+    "driver": "620.70.06",
+    "cuda": "12.8",
+    "python": "3.12.16",
+    "torch": "2.9.1+cu128",
+    "moshi": "0.2.13",
+    "torchao": "0.14.1",
+    "bitsandbytes": "0.49.2",
+    "triton": "3.5.1",
+    "git": "abd734d",
+    "seed": 42424242,
+    "command": "python quant/teacher_force.py --quant none --kv int8 --long",
+    "env": {},
+    "date": "2026-11-24 04:43 UTC"
+  },
+  "text": {
+    "kl_mean": 0.0001454057201044634,
+    "kl_p99": 0.0021532298997044563,
+    "top1_agree": 0.9984375238418579,
+    "word_steps": 190,
+    "top1_agree_words": 0.9842105507850647,
+    "kl_mean_words": 0.0007368585793301463
+  },
+  "audio": {
+    "kl_mean": 0.0003462698368821293,
+    "kl_p99": 0.002808764111250639,
+    "top1_agree": 0.9935937523841858,
+    "per_codebook_kl": [
+      0.00021,
+      0.0003,
+      0.00035,
+      0.00038,
+      0.00032,
+      0.00034,
+      0.00041,
+      0.00045
+    ],
+    "per_codebook_top1": [
+      0.9972,
+      0.9937,
+      0.9931,
+      0.9944,
+      0.9931,
+      0.9916,
+      0.9916,
+      0.9941
+    ]
+  },
+  "steps": 3200,
+  "after_ring_fills": {
+    "text": {
+      "kl_mean": 0.00019571362645365298,
+      "kl_p99": 0.0023988147731870413,
+      "top1_agree": 0.9987499713897705,
+      "word_steps": 48,
+      "top1_agree_words": 0.9791666865348816,
+      "kl_mean_words": 0.0012557647423818707
+    },
+    "audio": {
+      "kl_mean": 0.0005121430149301887,
+      "kl_p99": 0.0031322180293500423,
+      "top1_agree": 0.9909374713897705,
+      "per_codebook_kl": [
+        0.00027,
+        0.00049,
+        0.00054,
+        0.00052,
+        0.00054,
+        0.00056,
+        0.0006,
+        0.00058
+      ],
+      "per_codebook_top1": [
+        0.9975,
+        0.9887,
+        0.9862,
+        0.9962,
+        0.9912,
+        0.985,
+        0.9912,
+        0.9912
+      ]
+    },
+    "steps": 800
+  },
+  "what": "teacher-forced vs bf16 on one uninterrupted 3200-step call (fills the 3000-slot ring)",
+  "config": {
+    "quant": "none",
+    "kv": "int8",
+    "steps": 3200,
+    "clips": "1-5 twice, concatenated"
+  }
+}

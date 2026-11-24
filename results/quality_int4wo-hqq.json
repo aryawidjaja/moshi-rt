@@ -1,0 +1,56 @@
+{
+  "meta": {
+    "machine": "modal-L4",
+    "gpu": "NVIDIA L4",
+    "driver": "620.70.06",
+    "cuda": "12.8",
+    "python": "3.12.16",
+    "torch": "2.9.1+cu128",
+    "moshi": "0.2.13",
+    "torchao": "0.14.1",
+    "bitsandbytes": "0.49.2",
+    "triton": "3.5.1",
+    "git": "e69b470",
+    "seed": 42424242,
+    "command": "python quant/teacher_force.py --quant int4wo-hqq",
+    "env": {},
+    "date": "2026-11-23 18:56 UTC"
+  },
+  "text": {
+    "kl_mean": 0.01315966434776783,
+    "kl_p99": 0.18980567157268524,
+    "top1_agree": 0.9853333234786987
+  },
+  "audio": {
+    "kl_mean": 0.04520345479249954,
+    "kl_p99": 0.6978691220283508,
+    "top1_agree": 0.9184166789054871,
+    "per_codebook_kl": [
+      0.05194,
+      0.04181,
+      0.04156,
+      0.05247,
+      0.03507,
+      0.04363,
+      0.05352,
+      0.04163
+    ],
+    "per_codebook_top1": [
+      0.9547,
+      0.9287,
+      0.908,
+      0.912,
+      0.9213,
+      0.9173,
+      0.886,
+      0.9193
+    ]
+  },
+  "steps": 1500,
+  "what": "teacher-forced next-token agreement vs bf16 on the 5 clips, same token history",
+  "config": {
+    "quant": "int4wo-hqq",
+    "steps_per_clip": 300,
+    "clips": 5
+  }
+}

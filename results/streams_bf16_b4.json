@@ -1,0 +1,163 @@
+{
+  "meta": {
+    "machine": "modal-L4",
+    "gpu": "NVIDIA L4",
+    "driver": "620.70.06",
+    "cuda": "12.8",
+    "python": "3.12.16",
+    "torch": "2.9.1+cu128",
+    "moshi": "0.2.13",
+    "torchao": "0.14.1",
+    "bitsandbytes": "0.49.2",
+    "triton": "3.5.1",
+    "git": "c5e8b13",
+    "seed": 42424242,
+    "command": "python bench/stream_bench.py --batch 4 --tag streams_bf16_b4",
+    "env": {},
+    "date": "2026-11-23 18:56 UTC"
+  },
+  "what": "per-frame latency budget on the moshi.server path, CUDA events per stage, ms",
+  "config": {
+    "batch": 4,
+    "dtype": "bf16",
+    "quant": "none",
+    "compile_temporal": false,
+    "mem_cap_gb": 0.0,
+    "paced": false,
+    "cuda_graphs": true,
+    "torch_compile": true,
+    "warmup_frames": 50,
+    "clips": 5,
+    "frames_per_clip": 375,
+    "hf_repo": "kyutai/moshiko-pytorch-bf16"
+  },
+  "frames_measured": 1821,
+  "frames_over_80ms": 1821,
+  "frames_over_80ms_pct": 100.0,
+  "realtime_strict": false,
+  "realtime_p99": false,
+  "paced_late_ms": null,
+  "stages_ms": {
+    "encode": {
+      "p50": 3.353,
+      "p95": 3.798,
+      "p99": 5.883,
+      "mean": 3.429,
+      "max": 10.335
+    },
+    "temporal": {
+      "p50": 83.92,
+      "p95": 84.113,
+      "p99": 84.216,
+      "mean": 83.921,
+      "max": 84.565
+    },
+    "text": {
+      "p50": 0.444,
+      "p95": 0.542,
+      "p99": 0.63,
+      "mean": 0.383,
+      "max": 2.605
+    },
+    "depth": {
+      "p50": 10.032,
+      "p95": 10.202,
+      "p99": 10.268,
+      "mean": 10.042,
+      "max": 10.429
+    },
+    "decode": {
+      "p50": 2.718,
+      "p95": 2.782,
+      "p99": 2.824,
+      "mean": 2.719,
+      "max": 2.901
+    },
+    "host": {
+      "p50": 0.22,
+      "p95": 0.274,
+      "p99": 0.649,
+      "mean": 0.191,
+      "max": 1.041
+    },
+    "frame": {
+      "p50": 100.7,
+      "p95": 101.457,
+      "p99": 103.117,
+      "mean": 100.719,
+      "max": 107.273
+    },
+    "wall": {
+      "p50": 100.746,
+      "p95": 101.508,
+      "p99": 103.162,
+      "mean": 100.762,
+      "max": 107.318
+    }
+  },
+  "per_clip_wall_p99": [
+    104.137,
+    102.657,
+    102.51,
+    103.213,
+    102.867
+  ],
+  "peak_mem_gb": {
+    "allocated": 22.327,
+    "reserved": 22.588,
+    "after_load": 15.77,
+    "device_used_now": 22.821
+  },
+  "lm_weight_gb": 15.375,
+  "gpu_telemetry": [
+    {
+      "sm_mhz": "2040",
+      "mem_mhz": "6251",
+      "power_w": "39.25",
+      "temp_c": "76.75",
+      "throttle": "0x0000000000000000"
+    },
+    {
+      "sm_mhz": "1665",
+      "mem_mhz": "6251",
+      "power_w": "70.20",
+      "temp_c": "81.16",
+      "throttle": "0x0000000000000004"
+    },
+    {
+      "sm_mhz": "1530",
+      "mem_mhz": "6251",
+      "power_w": "63.18",
+      "temp_c": "81.41",
+      "throttle": "0x0000000000000004"
+    },
+    {
+      "sm_mhz": "1515",
+      "mem_mhz": "6251",
+      "power_w": "70.74",
+      "temp_c": "81.72",
+      "throttle": "0x0000000000000004"
+    },
+    {
+      "sm_mhz": "1575",
+      "mem_mhz": "6251",
+      "power_w": "74.59",
+      "temp_c": "81.91",
+      "throttle": "0x0000000000000004"
+    },
+    {
+      "sm_mhz": "1620",
+      "mem_mhz": "6251",
+      "power_w": "74.80",
+      "temp_c": "82.00",
+      "throttle": "0x0000000000000004"
+    }
+  ],
+  "moshi_text": [
+    "Hello, what's up? I'm just really nervous about the finals. I don't want to let the team down. I just feel like I'm not cut",
+    "Hello, how are you today? It was as if I could see the future in those quirks, she said. I'm just so scared, she said.",
+    "Hey, how are you doing? hey how's it going W oh hey I'm doing good you know that's oh yeah I've heard of him he's a pretty cool guy isn't he",
+    "Hello, what's going on? Well, you know, that's a great idea. What do you think? That sounds delicious. Yeah, that's a good idea. Yeah. Hmm. What do you think? Yeah,",
+    "Hello, how is it going? I'm not quite as familiar with all of those terms. That's a good way to think about it."
+  ]
+}

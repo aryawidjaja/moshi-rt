@@ -1,0 +1,109 @@
+{
+  "meta": {
+    "machine": "modal-L4",
+    "gpu": "NVIDIA L4",
+    "driver": "610.57.04",
+    "cuda": "12.8",
+    "python": "3.12.16",
+    "torch": "2.9.1+cu128",
+    "moshi": "0.2.13",
+    "torchao": null,
+    "bitsandbytes": "0.49.2",
+    "triton": "3.5.1",
+    "git": "e576c33",
+    "seed": 42424242,
+    "command": "python bench/stream_bench.py --tag baseline_l4_bf16",
+    "env": {},
+    "date": "2026-11-23 14:06 UTC"
+  },
+  "what": "per-frame latency budget on the moshi.server path, CUDA events per stage, ms",
+  "config": {
+    "batch": 1,
+    "dtype": "bf16",
+    "quant": "none",
+    "cuda_graphs": true,
+    "warmup_frames": 50,
+    "clips": 5,
+    "frames_per_clip": 375,
+    "hf_repo": "kyutai/moshiko-pytorch-bf16"
+  },
+  "frames_measured": 1821,
+  "frames_over_80ms": 2,
+  "frames_over_80ms_pct": 0.11,
+  "stages_ms": {
+    "encode": {
+      "p50": 4.671,
+      "p95": 4.988,
+      "p99": 5.149,
+      "mean": 4.653,
+      "max": 6.52
+    },
+    "temporal": {
+      "p50": 60.849,
+      "p95": 61.064,
+      "p99": 61.118,
+      "mean": 60.824,
+      "max": 61.32
+    },
+    "text": {
+      "p50": 0.598,
+      "p95": 0.648,
+      "p99": 0.676,
+      "mean": 0.601,
+      "max": 0.905
+    },
+    "depth": {
+      "p50": 9.437,
+      "p95": 9.612,
+      "p99": 9.645,
+      "mean": 9.408,
+      "max": 9.853
+    },
+    "decode": {
+      "p50": 2.221,
+      "p95": 2.29,
+      "p99": 2.305,
+      "mean": 2.211,
+      "max": 2.369
+    },
+    "host": {
+      "p50": 0.189,
+      "p95": 0.26,
+      "p99": 0.314,
+      "mean": 0.194,
+      "max": 1.41
+    },
+    "frame": {
+      "p50": 77.944,
+      "p95": 78.564,
+      "p99": 78.896,
+      "mean": 77.94,
+      "max": 80.053
+    },
+    "wall": {
+      "p50": 78.001,
+      "p95": 78.627,
+      "p99": 78.957,
+      "mean": 77.999,
+      "max": 80.151
+    }
+  },
+  "per_clip_wall_p99": [
+    78.058,
+    79.358,
+    78.966,
+    79.004,
+    78.875
+  ],
+  "peak_mem_gb": {
+    "allocated": 17.439,
+    "reserved": 17.738
+  },
+  "moshi_text": [
+    "Hello, what's up? I'm fine, thanks for asking. It's just a headache, you know, I'm used to it.",
+    "Hello, how are you today? It was strange indeed, but I had no choice. I know, I wish I could unsee it.",
+    "Hey, how are you doing? That's interesting. Why do you say that? Well, how about the blue scarf? Well, that's a good question. Tell me more.",
+    "Hello, what's going on? I'm confused. What do you mean? Oh, I see. What's the fat part? I' sorry, but I don't think it's a good idea to stuff your dog's stomach with food. Hmm. No. Oh, I see what you did",
+    "Hello, how are you today? I'm glad you're enjoying your time with them."
+  ]
+}

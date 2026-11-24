@@ -1,0 +1,205 @@
+{
+  "meta": {
+    "machine": "modal-L4",
+    "gpu": "NVIDIA L4",
+    "driver": "620.70.06",
+    "cuda": "12.8",
+    "python": "3.12.16",
+    "torch": "2.9.1+cu128",
+    "moshi": "0.2.13",
+    "torchao": "0.14.1",
+    "bitsandbytes": "0.49.2",
+    "triton": "3.5.1",
+    "git": "3eed6a0",
+    "seed": 42424242,
+    "command": "python bench/profile_frame.py --tag profile_l4_bf16",
+    "env": {},
+    "date": "2026-11-23 18:42 UTC"
+  },
+  "what": "PyTorch profiler summary over steady-state frames, single stream, bf16",
+  "frames": 100,
+  "graphs_off": false,
+  "wall_ms": {
+    "p50": 80.424,
+    "mean": 80.804
+  },
+  "gpu_busy_ms_per_frame": 74.145,
+  "gpu_busy_fraction": 0.9176,
+  "gpu_ops_per_frame": 5354.0,
+  "cpu_api_calls_per_frame": {
+    "cudaLaunchKernel": 210.0,
+    "cudaMemcpyAsync": 14.0,
+    "cudaPeekAtLastError": 10.0,
+    "cudaOccupancyMaxActiveBlocksPerMultiprocessorWithFlags": 10.0,
+    "cudaStreamIsCapturing": 9.0,
+    "cudaGraphLaunch": 6.0,
+    "cudaDriverGetVersion": 6.0,
+    "cudaDeviceGetAttribute": 6.0,
+    "cudaMemsetAsync": 3.0,
+    "cudaFuncGetAttributes": 2.0,
+    "cudaStreamSynchronize": 2.0,
+    "cudaDeviceSynchronize": 1.01
+  },
+  "top_gpu_ops": [
+    {
+      "name": "std::enable_if<!(false), void>::type internal::gemvx::kernel<int, int, __nv_bfloat16, __nv_bfloat16, __nv_bfloat16, float, false, true, true",
+      "per_frame": 145.0,
+      "us_per_frame": 47832.8,
+      "avg_us": 329.88,
+      "share": 0.6451
+    },
+    {
+      "name": "std::enable_if<!(false), void>::type internal::gemvx::kernel<int, int, __nv_bfloat16, __nv_bfloat16, __nv_bfloat16, float, false, true, true",
+      "per_frame": 192.0,
+      "us_per_frame": 9601.0,
+      "avg_us": 50.01,
+      "share": 0.1295
+    },
+    {
+      "name": "fmha_cutlassF_bf16_aligned_64x128_rf_sm80(PyTorchMemEffAttention::AttentionKernel<cutlass::bfloat16_t, cutlass::arch::Sm80, true, 64, 128, 1",
+      "per_frame": 32.0,
+      "us_per_frame": 6288.2,
+      "avg_us": 196.51,
+      "share": 0.0848
+    },
+    {
+      "name": "void gemmSN_TN_kernel<float, 128, 16, 2, 4, 2, 2, true, cublasGemvTensorStridedBatched<float const>, cublasGemvTensorStridedBatched<float co",
+      "per_frame": 48.0,
+      "us_per_frame": 703.6,
+      "avg_us": 14.66,
+      "share": 0.0095
+    },
+    {
+      "name": "fmha_cutlassF_f32_aligned_64x64_rf_sm80(PyTorchMemEffAttention::AttentionKernel<float, cutlass::arch::Sm80, true, 64, 64, 64, true, true>::P",
+      "per_frame": 16.0,
+      "us_per_frame": 622.8,
+      "avg_us": 38.93,
+      "share": 0.0084
+    },
+    {
+      "name": "void at::native::vectorized_elementwise_kernel<2, at::native::CUDAFunctorOnSelf_add<long>, std::array<char*, 2ul> >(int, at::native::CUDAFun",
+      "per_frame": 493.0,
+      "us_per_frame": 620.2,
+      "avg_us": 1.26,
+      "share": 0.0084
+    },
+    {
+      "name": "void at::native::elementwise_kernel<128, 2, at::native::gpu_kernel_impl_nocast<at::native::CUDAFunctor_add<long> >(at::TensorIteratorBase&, ",
+      "per_frame": 418.0,
+      "us_per_frame": 563.5,
+      "avg_us": 1.35,
+      "share": 0.0076
+    },
+    {
+      "name": "void at::native::vectorized_elementwise_kernel<2, at::native::(anonymous namespace)::where_kernel_impl(at::TensorIterator&)::{lambda()#1}::o",
+      "per_frame": 350.0,
+      "us_per_frame": 505.5,
+      "avg_us": 1.44,
+      "share": 0.0068
+    },
+    {
+      "name": "void cudnn::engines_precompiled::nchwToNhwcKernel<float, float, float, false, true, (cudnnKernelDataType_t)2>(cudnn::engines_precompiled::nc",
+      "per_frame": 34.0,
+      "us_per_frame": 492.6,
+      "avg_us": 14.49,
+      "share": 0.0066
+    },
+    {
+      "name": "void at::native::vectorized_elementwise_kernel<4, at::native::compare_scalar_kernel<long>(at::TensorIteratorBase&, at::native::(anonymous na",
+      "per_frame": 337.0,
+      "us_per_frame": 452.4,
+      "avg_us": 1.34,
+      "share": 0.0061
+    },
+    {
+      "name": "ampere_sgemm_32x32_sliced1x4_tn",
+      "per_frame": 16.0,
+      "us_per_frame": 398.2,
+      "avg_us": 24.89,
+      "share": 0.0054
+    },
+    {
+      "name": "memcpy32_post",
+      "per_frame": 319.0,
+      "us_per_frame": 347.3,
+      "avg_us": 1.09,
+      "share": 0.0047
+    },
+    {
+      "name": "void at::native::vectorized_elementwise_kernel<2, at::native::BUnaryFunctor<long, long, long, at::native::remainder_kernel_cuda(at::TensorIt",
+      "per_frame": 196.0,
+      "us_per_frame": 311.0,
+      "avg_us": 1.59,
+      "share": 0.0042
+    },
+    {
+      "name": "void (anonymous namespace)::elementwise_kernel_with_index<int, at::native::arange_cuda_out(c10::Scalar const&, c10::Scalar const&, c10::Scal",
+      "per_frame": 288.0,
+      "us_per_frame": 291.2,
+      "avg_us": 1.01,
+      "share": 0.0039
+    },
+    {
+      "name": "fmha_cutlassF_bf16_aligned_64x64_rf_sm80(PyTorchMemEffAttention::AttentionKernel<cutlass::bfloat16_t, cutlass::arch::Sm80, true, 64, 64, 64,",
+      "per_frame": 48.0,
+      "us_per_frame": 274.1,
+      "avg_us": 5.71,
+      "share": 0.0037
+    },
+    {
+      "name": "void at::native::index_elementwise_kernel<128, 4, at::native::index_copy_kernel_impl<at::native::OpaqueType<2> >(at::TensorIterator&, long, ",
+      "per_frame": 96.0,
+      "us_per_frame": 226.9,
+      "avg_us": 2.36,
+      "share": 0.0031
+    },
+    {
+      "name": "void cudnn::detail::dgrad_engine<float, 512, 6, 5, 3, 3, 3, false>(int, int, int, float const*, int, float const*, int, float*, kernel_grad_",
+      "per_frame": 3.0,
+      "us_per_frame": 215.8,
+      "avg_us": 71.93,
+      "share": 0.0029
+    },
+    {
+      "name": "void at::native::vectorized_elementwise_kernel<4, at::native::CUDAFunctor_add<c10::BFloat16>, std::array<char*, 3ul> >(int, at::native::CUDA",
+      "per_frame": 184.0,
+      "us_per_frame": 214.1,
+      "avg_us": 1.16,
+      "share": 0.0029
+    },
+    {
+      "name": "void at::native::_scatter_gather_elementwise_kernel<128, 8, at::native::_cuda_scatter_gather_internal_kernel<true, at::native::OpaqueType<2>",
+      "per_frame": 64.0,
+      "us_per_frame": 213.7,
+      "avg_us": 3.34,
+      "share": 0.0029
+    },
+    {
+      "name": "void at::native::vectorized_elementwise_kernel<2, at::native::CUDAFunctor_add<long>, std::array<char*, 3ul> >(int, at::native::CUDAFunctor_a",
+      "per_frame": 160.0,
+      "us_per_frame": 213.1,
+      "avg_us": 1.33,
+      "share": 0.0029
+    }
+  ],
+  "weights_gb": {
+    "temporal": 13.154,
+    "depth": 1.429,
+    "lm_total": 15.375,
+    "mimi": 0.317,
+    "lm_groups": {
+      "transformer": 13.1539,
+      "depformer": 1.2331,
+      "emb": 0.2686,
+      "text_emb": 0.2622,
+      "text_linear": 0.2621,
+      "depformer_in": 0.0671,
+      "depformer_text_emb": 0.0655,
+      "linears": 0.0336,
+      "depformer_emb": 0.0294,
+      "out_norm": 0.0
+    }
+  },
+  "l4_peak_gbs": 300.0,
+  "notes": "busy fraction near 1 = GPU never waits on the CPU (not launch-bound). Achieved bandwidth = weight bytes / stage GPU time, see scripts/summarize_ablation.py."
+}

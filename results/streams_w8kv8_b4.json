@@ -1,0 +1,164 @@
+{
+  "meta": {
+    "machine": "modal-L4",
+    "gpu": "NVIDIA L4",
+    "driver": "610.57.04",
+    "cuda": "12.8",
+    "python": "3.12.16",
+    "torch": "2.9.1+cu128",
+    "moshi": "0.2.13",
+    "torchao": "0.14.1",
+    "bitsandbytes": "0.49.2",
+    "triton": "3.5.1",
+    "git": "27a7a88",
+    "seed": 42424242,
+    "command": "python bench/stream_bench.py --quant w8triton --kv int8 --batch 4 --tag streams_w8kv8_b4",
+    "env": {},
+    "date": "2026-11-23 19:43 UTC"
+  },
+  "what": "per-frame latency budget on the moshi.server path, CUDA events per stage, ms",
+  "config": {
+    "batch": 4,
+    "dtype": "bf16",
+    "quant": "w8triton",
+    "compile_temporal": false,
+    "mem_cap_gb": 0.0,
+    "paced": false,
+    "kv": "int8",
+    "cuda_graphs": true,
+    "torch_compile": true,
+    "warmup_frames": 50,
+    "clips": 5,
+    "frames_per_clip": 375,
+    "hf_repo": "kyutai/moshiko-pytorch-bf16"
+  },
+  "frames_measured": 1821,
+  "frames_over_80ms": 3,
+  "frames_over_80ms_pct": 0.165,
+  "realtime_strict": false,
+  "realtime_p99": true,
+  "paced_late_ms": null,
+  "stages_ms": {
+    "encode": {
+      "p50": 5.183,
+      "p95": 5.932,
+      "p99": 8.139,
+      "mean": 5.316,
+      "max": 30.537
+    },
+    "temporal": {
+      "p50": 43.766,
+      "p95": 43.897,
+      "p99": 43.944,
+      "mean": 43.776,
+      "max": 44.182
+    },
+    "text": {
+      "p50": 0.675,
+      "p95": 0.775,
+      "p99": 0.974,
+      "mean": 0.689,
+      "max": 3.129
+    },
+    "depth": {
+      "p50": 10.06,
+      "p95": 10.257,
+      "p99": 10.335,
+      "mean": 10.082,
+      "max": 10.542
+    },
+    "decode": {
+      "p50": 2.744,
+      "p95": 2.85,
+      "p99": 2.888,
+      "mean": 2.751,
+      "max": 2.967
+    },
+    "host": {
+      "p50": 0.247,
+      "p95": 0.417,
+      "p99": 0.584,
+      "mean": 0.269,
+      "max": 4.366
+    },
+    "frame": {
+      "p50": 62.789,
+      "p95": 63.64,
+      "p99": 65.822,
+      "mean": 62.935,
+      "max": 88.193
+    },
+    "wall": {
+      "p50": 62.855,
+      "p95": 63.716,
+      "p99": 65.929,
+      "mean": 63.004,
+      "max": 89.353
+    }
+  },
+  "per_clip_wall_p99": [
+    63.589,
+    63.988,
+    77.083,
+    64.344,
+    64.204
+  ],
+  "peak_mem_gb": {
+    "allocated": 12.882,
+    "reserved": 13.145,
+    "after_load": 9.215,
+    "device_used_now": 13.307
+  },
+  "lm_weight_gb": 8.804,
+  "gpu_telemetry": [
+    {
+      "sm_mhz": "2040",
+      "mem_mhz": "6251",
+      "power_w": "36.71",
+      "temp_c": "71",
+      "throttle": "0x0000000000000000"
+    },
+    {
+      "sm_mhz": "1485",
+      "mem_mhz": "6251",
+      "power_w": "73.22",
+      "temp_c": "81",
+      "throttle": "0x0000000000000004"
+    },
+    {
+      "sm_mhz": "1710",
+      "mem_mhz": "6251",
+      "power_w": "71.46",
+      "temp_c": "77",
+      "throttle": "0x0000000000000004"
+    },
+    {
+      "sm_mhz": "1545",
+      "mem_mhz": "6251",
+      "power_w": "72.13",
+      "temp_c": "75",
+      "throttle": "0x0000000000000004"
+    },
+    {
+      "sm_mhz": "1515",
+      "mem_mhz": "6251",
+      "power_w": "72.12",
+      "temp_c": "76",
+      "throttle": "0x0000000000000004"
+    },
+    {
+      "sm_mhz": "1620",
+      "mem_mhz": "6251",
+      "power_w": "71.29",
+      "temp_c": "77",
+      "throttle": "0x0000000000000004"
+    }
+  ],
+  "moshi_text": [
+    "Hey, how was your day? Yeah, me too. It's so enjoyable. Yeah, it's incredible to think about the stories they've had over the years. Yeah, they' been through some tough times. Haha, that's a good one.",
+    "Hello, how are you today? I'm sorry. I don' know anything about that. Yeah. That sounds like a tragic story.",
+    "Hey, how are you doing? He was feeling a bit old-fashioned. Ah, you're right.",
+    "Hey, how can I help you? Well, I'm not sure. Well, I'm not sure. Well, those are some interesting dishes. Well, those are some interesting dishes. What' the problem? You're describing a beautiful meal. Of course. I'm a sucker for groats.",
+    "Hello, how are you today? I'm doing okay. Thanks for asking."
+  ]
+}
