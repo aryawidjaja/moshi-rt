@@ -111,14 +111,14 @@
     const tc = performance.now();
     clearInterval(start.timer);
     start.timer = setInterval(() => {
-      if (state !== "connecting") { clearInterval(start.timer); return; }
+      if (state !== "connecting") { clearInterval(start.timer); document.body.classList.remove("waking"); return; }
       const s = Math.floor((performance.now() - tc) / 1000), clock = `${Math.floor(s / 60)}:${String(s % 60).padStart(2, "0")}`;
-      if (s >= 4) {
+      if (s >= 3) {
+        document.body.classList.add("waking");
         $("status").textContent = `Waking up the GPU… ${clock}`;
-        $("callLabel").textContent = `Waking up the GPU… ${clock}`;
+        $("wakeClock").textContent = clock;
       }
-      if (s === 4) toast("The GPU is probably asleep (it sleeps after 3 idle minutes). Waking it takes 1–3 minutes.", 8000);
-      if (s >= 420) { clearInterval(start.timer); cleanup(); setState("error", "Server not answering");
+      if (s >= 420) { clearInterval(start.timer); document.body.classList.remove("waking"); cleanup(); setState("error", "Server not answering");
         toast("The model server did not answer in 7 minutes. Check the terminal running ./start.sh."); }
     }, 1000);
   }
@@ -256,6 +256,10 @@
   }
   $("startBtn").onclick = start;
   $("againBtn").onclick = start;
+  $("cancelBtn").onclick = () => {
+    clearInterval(start.timer); document.body.classList.remove("waking");
+    cleanup(); setState("idle", "Ready");
+  };
   $("saveLog").onclick = () => {  // per-frame log of the call as JSON, e.g. for results/app_call_<date>.json
     if (!callLog) return;
     const name = `app_call_${callLog.started.slice(0, 16).replace(/[-:]/g, "").replace("T", "_")}.json`;

@@ -65,6 +65,17 @@
       </button>
       <div class="call-label" id="callLabel">Start conversation</div>
       <p class="hint"><svg class="ico sm"><use href="#i-info"/></svg>Use headphones. Your microphone audio goes to your model server only.</p>
+      <div class="wake glass" id="wake" role="status" aria-live="polite">
+        <div class="wake-head"><span>Waking up the GPU</span><span class="wake-clock" id="wakeClock">0:00</span></div>
+        <div class="wake-bar"><span></span></div>
+        <ol class="wake-steps">
+          <li class="done">Microphone ready</li>
+          <li class="now">Starting the GPU and loading Moshi <small>usually 1–3 minutes</small></li>
+          <li>Connected</li>
+        </ol>
+        <p class="wake-note">The GPU sleeps after 3 idle minutes so it doesn't cost money. Keep this tab open and it stays awake.</p>
+        <button class="pill ghost" id="cancelBtn">Cancel</button>
+      </div>
     </div>
 
     <div class="panel-ended glass">

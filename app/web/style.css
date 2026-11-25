@@ -295,3 +295,28 @@ body[data-state="live"] .chip { color: var(--green); }
 @media (max-width: 980px) {
   .stage { min-height: calc(100dvh - 100px); }
 }
+
+/* GPU wake-up panel: replaces the call button while a sleeping Modal GPU starts */
+.wake { display: none; width: min(440px, 100%); margin-top: 6px; padding: 18px 20px; border-radius: 22px; text-align: left; }
+body.waking .wake { display: block; }
+body.waking .call, body.waking .call-label, body.waking .hint, body.waking .lead { display: none; }
+body.waking .orb { width: clamp(120px, min(18vw, 22vh), 220px); }
+body.waking .disclaimer { display: none; }
+.wake-head { display: flex; justify-content: space-between; align-items: baseline; font-weight: 650; font-size: 16px; }
+.wake-clock { font-weight: 600; color: var(--ink-2); font-size: 15px; }
+.wake-bar { position: relative; height: 6px; margin: 12px 0 14px; border-radius: 99px; overflow: hidden;
+  background: color-mix(in srgb, var(--ink-3) 22%, transparent); }
+.wake-bar span { position: absolute; top: 0; bottom: 0; width: 38%; border-radius: 99px;
+  background: linear-gradient(90deg, var(--accent-2), var(--accent)); animation: wakebar 1.6s ease-in-out infinite; }
+@keyframes wakebar { from { left: -40%; } to { left: 100%; } }
+.wake-steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; font-size: 14px; color: var(--ink-3); }
+.wake-steps li { position: relative; padding-left: 26px; }
+.wake-steps li::before { content: ""; position: absolute; left: 2px; top: 3px; width: 12px; height: 12px; border-radius: 50%;
+  border: 2px solid color-mix(in srgb, var(--ink-3) 60%, transparent); }
+.wake-steps li.done { color: var(--ink-2); }
+.wake-steps li.done::before { border-color: var(--green); background: var(--green); }
+.wake-steps li.now { color: var(--ink); font-weight: 600; }
+.wake-steps li.now::before { border-color: var(--accent); border-top-color: transparent; animation: spin .9s linear infinite; }
+.wake-steps small { display: block; font-weight: 400; color: var(--ink-3); font-size: 12px; }
+.wake-note { margin: 12px 0 14px; font-size: 12.5px; color: var(--ink-3); line-height: 1.45; }
+.wake .pill.ghost { padding: 8px 18px; font-size: 14px; }

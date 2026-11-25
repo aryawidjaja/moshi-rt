@@ -149,8 +149,17 @@ async def index(request):
     return web.FileResponse(WEB / "index.html")
 
 
+@web.middleware
+async def no_cache(request, handler):
+    """Page files are never cached, so a reload always picks up the newest app."""
+    resp = await handler(request)
+    if not request.path.startswith("/api/"):
+        resp.headers["Cache-Control"] = "no-store"
+    return resp
+
+
 def make_app(engine, token):
-    app = web.Application()
+    app = web.Application(middlewares=[no_cache])
     app["engine"], app["token"] = engine, token
     app.router.add_get("/api/chat", chat)
     app.router.add_get("/api/health", lambda r: web.json_response({"ok": True, "gpu": engine.gpu,

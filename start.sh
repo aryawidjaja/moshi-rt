@@ -85,7 +85,12 @@ else
   echo "starting an L4 on your Modal account: $REMOTE"
   echo "(usually 1-2 minutes; the very first start also downloads the weights, about 5 minutes)"
   wait_ready "$REMOTE/api/health" "$SERVER" "starting the model server"
-  "$PY" -m http.server 8765 --bind 127.0.0.1 --directory app/web >/dev/null 2>&1 &
+  "$PY" -c 'import functools, http.server as h  # serve app/web with no caching, so a reload always gets the newest page
+class H(h.SimpleHTTPRequestHandler):
+    def end_headers(self):
+        self.send_header("Cache-Control", "no-store"); super().end_headers()
+    def log_message(self, *a): pass
+h.ThreadingHTTPServer(("127.0.0.1", 8765), functools.partial(H, directory="app/web")).serve_forever()' &
   PIDS="$PIDS $!"
   sleep 1
   URL="http://127.0.0.1:8765/?server=$REMOTE&token=$TOKEN"
