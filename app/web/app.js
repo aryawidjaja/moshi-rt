@@ -107,7 +107,32 @@
     ws.onerror = () => { if (state === "connecting") { cleanup(); setState("error", "Server unreachable");
       toast("Could not reach the model server. Is ./start.sh still running?"); } };
     ws.onclose = () => { if (state === "live") finish("Connection closed"); };
+    // A Modal GPU that went idle has to cold-start (1-3 min); say so instead of a silent "Connecting…".
+    const tc = performance.now();
+    clearInterval(start.timer);
+    start.timer = setInterval(() => {
+      if (state !== "connecting") { clearInterval(start.timer); return; }
+      const s = Math.floor((performance.now() - tc) / 1000), clock = `${Math.floor(s / 60)}:${String(s % 60).padStart(2, "0")}`;
+      if (s >= 4) {
+        $("status").textContent = `Waking up the GPU… ${clock}`;
+        $("callLabel").textContent = `Waking up the GPU… ${clock}`;
+      }
+      if (s === 4) toast("The GPU is probably asleep (it sleeps after 3 idle minutes). Waking it takes 1–3 minutes.", 8000);
+      if (s >= 420) { clearInterval(start.timer); cleanup(); setState("error", "Server not answering");
+        toast("The model server did not answer in 7 minutes. Check the terminal running ./start.sh."); }
+    }, 1000);
   }
+
+  // Keep a Modal GPU awake while this page is open and visible; once the tab is closed or hidden,
+  // the GPU shuts down after its 3 idle minutes, so a forgotten tab in the background costs nothing.
+  const HEALTH = `${(q.get("server") || location.origin).replace(/\/$/, "")}/api/health`;
+  function keepWarm() {
+    if (DEMO || document.hidden || state === "live") return;
+    fetch(HEALTH, { mode: "no-cors", cache: "no-store" }).catch(() => {});
+  }
+  keepWarm();
+  setInterval(keepWarm, 60000);
+  document.addEventListener("visibilitychange", keepWarm);
 
   function onMic(chunk) {
     if (!ws || ws.readyState !== 1 || state !== "live") return;
