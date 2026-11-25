@@ -6,7 +6,7 @@
 <meta name="color-scheme" content="light dark">
 <title>moshi-rt</title>
 <link rel="icon" type="image/svg+xml" href="logo.svg">
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css?v=3">
 <script>
   // apply the saved or system theme before first paint
   (function () {
@@ -65,7 +65,7 @@
       </button>
       <div class="call-label" id="callLabel">Start conversation</div>
       <p class="hint"><svg class="ico sm"><use href="#i-info"/></svg>Use headphones. Your microphone audio goes to your model server only.</p>
-      <div class="wake glass" id="wake" role="status" aria-live="polite">
+      <div class="wake glass" id="wake" role="status" aria-live="polite" hidden>
         <div class="wake-head"><span>Waking up the GPU</span><span class="wake-clock" id="wakeClock">0:00</span></div>
         <div class="wake-bar"><span></span></div>
         <ol class="wake-steps">
@@ -150,6 +150,6 @@
 
 <div class="toast glass" id="toast" role="status" aria-live="polite"></div>
 
-<script src="app.js"></script>
+<script src="app.js?v=3"></script>
 </body>
 </html>

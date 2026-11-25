@@ -297,8 +297,7 @@ body[data-state="live"] .chip { color: var(--green); }
 }
 
 /* GPU wake-up panel: replaces the call button while a sleeping Modal GPU starts */
-.wake { display: none; width: min(440px, 100%); margin-top: 6px; padding: 18px 20px; border-radius: 22px; text-align: left; }
-body.waking .wake { display: block; }
+.wake { width: min(440px, 100%); margin-top: 6px; padding: 18px 20px; border-radius: 22px; text-align: left; }
 body.waking .call, body.waking .call-label, body.waking .hint, body.waking .lead { display: none; }
 body.waking .orb { width: clamp(120px, min(18vw, 22vh), 220px); }
 body.waking .disclaimer { display: none; }
